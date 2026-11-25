@@ -2,9 +2,9 @@
 Contributors: aguard
 Tags: security, malware scanner, 2fa, login security, activity log
 Requires at least: 6.2
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.10.1
+Stable tag: 1.10.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -202,6 +202,15 @@ All of it is in the plugin. The JavaScript and CSS files in the `assets` folder 
 The plugin name in the header is set in a typeface by TypeTogether (Veronika Burian, José Scaglione), SIL Open Font License 1.1. The font file `assets/wordmark.woff` is a renamed subset that contains only the letters of the name.
 
 == Changelog ==
+
+= 1.10.2 =
+* A notification address that was never confirmed with a code can be replaced without one: in the first-run window and on the locked Settings screen. Only for an administrator working from an address they have signed in from before; a notice goes to the old address.
+* The first-run window shows the address where alerts and codes will go, so that it can be corrected at once.
+* The note about active tools on the Overview opens that check itself, not the summary of a full check that has not run yet.
+* Files found by a check are links that open the file in the viewer.
+* File list: a "Show SHA-256 / Hide SHA-256" button that stays on while moving between folders, and a path with a link for every folder.
+* While Settings are locked, the e-mail addresses in the fields are masked.
+* Tested with WordPress 7.2.
 
 = 1.10.1 =
 * Fewer e-mails. What an administrator does from an address they have signed in from during the last 30 days goes to the log only: settings, quarantine, allowlist, installing, activating, deactivating and deleting plugins, theme and profile changes. From an unknown address the e-mail is still sent.

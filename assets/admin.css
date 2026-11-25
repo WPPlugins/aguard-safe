@@ -3916,3 +3916,10 @@
 /* diff: only the changed places */
 .aguard .ag-diffbox td.ag-diff-at{padding:10px 14px 6px;font:700 12px/1.2 inherit;letter-spacing:.04em;text-transform:uppercase;color:#64748b;background:#f6f8fb;border-top:2px solid #0f1f45}
 .aguard .ag-diffbox tr:first-child td.ag-diff-at{border-top:0}
+
+.aguard .ag-setup-mail { display: block; margin: 16px 0 0; }
+.aguard .ag-setup-mail span { display: block; margin: 0 0 6px; line-height: 1.5; }
+.aguard .ag-setup-mail input { width: 100%; max-width: 340px; }
+.aguard .ag-lock-fix { margin: 12px 0 0; }
+.aguard .ag-lock-fix p { margin: 0 0 8px; }
+.aguard .ag-lock-fix input { width: 280px; max-width: 100%; }
