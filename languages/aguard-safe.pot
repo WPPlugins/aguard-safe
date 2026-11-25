@@ -2,21 +2,21 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: AGuard Safe 1.9.3\n"
+"Project-Id-Version: AGuard Safe – Login Security, 2FA, Malware Scan 1.10.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/aguard-safe\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-24T09:08:35+00:00\n"
+"POT-Creation-Date: 2026-11-25T14:06:53+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: aguard-safe\n"
 
 #. Plugin Name of the plugin
 #: aguard-safe.php
-msgid "AGuard Safe"
+msgid "AGuard Safe – Login Security, 2FA, Malware Scan"
 msgstr ""
 
 #. Description of the plugin
@@ -34,2642 +34,3893 @@ msgstr ""
 msgid "https://aguard.lt"
 msgstr ""
 
-#: aguard-safe.php:89
-#: aguard-safe.php:1749
-#: aguard-safe.php:1906
-#: aguard-safe.php:1986
-#: aguard-safe.php:1998
+#: aguard-safe.php:97
+#: aguard-safe.php:2413
+#: aguard-safe.php:2656
+#: aguard-safe.php:2771
+#: aguard-safe.php:2914
 msgid "Settings"
 msgstr ""
 
-#: aguard-safe.php:104
-msgid "AGuard Safe activated"
+#. translators: %s: the plugin name "AGuard Safe" as a link to the plugin author's site
+#: aguard-safe.php:115
+#, php-format
+msgid "This site is watched by %s"
 msgstr ""
 
-#: aguard-safe.php:109
-#: aguard-safe.php:215
-msgid "AGuard Safe deactivated"
+#: aguard-safe.php:186
+msgid "the answer could not be read"
 msgstr ""
 
-#: aguard-safe.php:168
-msgid "data truncated (too large for the log)"
+#. translators: %s: plugin version number
+#: aguard-safe.php:237
+#: aguard-safe.php:3140
+#, php-format
+msgid "fixed in %s"
 msgstr ""
 
-#: aguard-safe.php:178
-msgid "e-mail not sent: limit of 10 messages per hour reached"
+#: aguard-safe.php:242
+msgid "Plugins with a vulnerability that needs an urgent update:"
 msgstr ""
 
-#: aguard-safe.php:198
-msgid "IMPORTANT –"
+#: aguard-safe.php:275
+msgid "needs a signed-in user"
 msgstr ""
 
-#: aguard-safe.php:199
-#: aguard-safe.php:1333
-#: aguard-safe.php:1576
-msgid "Site:"
+#: aguard-safe.php:275
+msgid "needs an administrator account"
 msgstr ""
 
-#: aguard-safe.php:199
-msgid "Time:"
+#: aguard-safe.php:275
+msgid "needs an action by a user"
 msgstr ""
 
-#: aguard-safe.php:199
-msgid "Type:"
+#: aguard-safe.php:275
+msgid "hard to exploit"
 msgstr ""
 
-#: aguard-safe.php:199
-msgid "Event:"
-msgstr ""
-
-#: aguard-safe.php:199
-msgid "Who:"
-msgstr ""
-
-#: aguard-safe.php:199
-msgid "Browser:"
-msgstr ""
-
-#: aguard-safe.php:204
-msgid "View:"
-msgstr ""
-
-#: aguard-safe.php:212
-#: aguard-safe.php:1171
-msgid "no changes found"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:231
-msgid "NEW ADMINISTRATOR:"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:250
-msgid "ADMINISTRATOR ROLE ADDED:"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:245
-msgid "ROLE CHANGED TO ADMINISTRATOR:"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:255
-msgid "User deleted: #"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:365
-msgid "Application password created for user #"
-msgstr ""
-
-#: aguard-safe.php:213
-#: aguard-safe.php:264
-msgid "Administrator password changed:"
-msgstr ""
-
-#: aguard-safe.php:215
-#: aguard-safe.php:300
-msgid "INSTALLED"
-msgstr ""
-
-#: aguard-safe.php:231
-msgid "New user:"
-msgstr ""
-
-#: aguard-safe.php:245
-msgid "User role changed:"
-msgstr ""
-
-#: aguard-safe.php:260
-msgid "Administrator password reset requested:"
-msgstr ""
-
-#: aguard-safe.php:272
-msgid "changed"
-msgstr ""
-
-#: aguard-safe.php:273
-msgid "Administrator account changed:"
-msgstr ""
-
-#: aguard-safe.php:285
-msgid "Plugin activated:"
-msgstr ""
-
-#: aguard-safe.php:286
-msgid "Plugin deactivated:"
+#: aguard-safe.php:275
+msgid "not reachable over the network"
 msgstr ""
 
 #: aguard-safe.php:287
-msgid "Plugin deleted:"
+msgid "AGuard Safe activated"
 msgstr ""
 
-#: aguard-safe.php:293
-msgid "WordPress updated to"
+#: aguard-safe.php:292
+#: aguard-safe.php:398
+msgid "AGuard Safe deactivated"
 msgstr ""
 
-#: aguard-safe.php:293
-msgid "(system files changed legitimately, the baseline has been updated)"
-msgstr ""
-
-#: aguard-safe.php:300
-msgid "Updated"
-msgstr ""
-
-#: aguard-safe.php:307
-msgid "Theme changed:"
-msgstr ""
-
-#: aguard-safe.php:323
-msgid "File edited in the wp-admin editor:"
-msgstr ""
-
-#: aguard-safe.php:339
-msgid "Administrator signed in:"
-msgstr ""
-
-#: aguard-safe.php:339
-msgid "Administrator signed in from a NEW IP:"
-msgstr ""
-
-#: aguard-safe.php:354
-msgid "Password guessing:"
-msgstr ""
-
-#: aguard-safe.php:354
-msgid "failed attempts in 15 min from"
+#: aguard-safe.php:351
+msgid "data truncated (too large for the log)"
 msgstr ""
 
 #: aguard-safe.php:361
-msgid "XML-RPC: 50+ calls per hour ("
+msgid "e-mail not sent: limit of 10 messages per hour reached"
 msgstr ""
 
-#: aguard-safe.php:375
-msgid "List of active plugins changed"
+#: aguard-safe.php:381
+msgid "IMPORTANT –"
 msgstr ""
 
-#: aguard-safe.php:378
-msgid "System option changed:"
+#: aguard-safe.php:382
+#: aguard-safe.php:1931
+#: aguard-safe.php:2174
+msgid "Site:"
 msgstr ""
 
-#: aguard-safe.php:453
-msgid "Folder not found or outside the allowed area:"
+#: aguard-safe.php:382
+msgid "Time:"
+msgstr ""
+
+#: aguard-safe.php:382
+msgid "Type:"
+msgstr ""
+
+#: aguard-safe.php:382
+msgid "Event:"
+msgstr ""
+
+#: aguard-safe.php:382
+msgid "Who:"
+msgstr ""
+
+#: aguard-safe.php:382
+msgid "Browser:"
+msgstr ""
+
+#: aguard-safe.php:387
+msgid "View:"
+msgstr ""
+
+#: aguard-safe.php:395
+#: aguard-safe.php:1682
+msgid "no changes found"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:414
+msgid "NEW ADMINISTRATOR:"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:433
+msgid "ADMINISTRATOR ROLE ADDED:"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:428
+msgid "ROLE CHANGED TO ADMINISTRATOR:"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:438
+msgid "User deleted: #"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:668
+msgid "Application password created for user #"
+msgstr ""
+
+#: aguard-safe.php:396
+#: aguard-safe.php:447
+msgid "Administrator password changed:"
+msgstr ""
+
+#: aguard-safe.php:398
+#: aguard-safe.php:483
+msgid "INSTALLED"
+msgstr ""
+
+#: aguard-safe.php:414
+msgid "New user:"
+msgstr ""
+
+#: aguard-safe.php:428
+msgid "User role changed:"
+msgstr ""
+
+#: aguard-safe.php:443
+msgid "Administrator password reset requested:"
+msgstr ""
+
+#: aguard-safe.php:455
+#: aguard-safe.php:1659
+msgid "changed"
 msgstr ""
 
 #: aguard-safe.php:456
-msgid "Cannot read:"
+msgid "Administrator account changed:"
 msgstr ""
 
-#: aguard-safe.php:471
-msgid "File not found or outside the allowed area:"
+#: aguard-safe.php:468
+msgid "Plugin activated:"
 msgstr ""
 
-#: aguard-safe.php:472
-msgid "File is not readable:"
+#: aguard-safe.php:469
+msgid "Plugin deactivated:"
 msgstr ""
 
-#: aguard-safe.php:480
-#: aguard-safe.php:481
-msgid "File not found or not readable:"
+#: aguard-safe.php:470
+msgid "Plugin deleted:"
 msgstr ""
 
-#: aguard-safe.php:589
-msgid "Could not get WordPress"
+#: aguard-safe.php:476
+msgid "WordPress updated to"
 msgstr ""
 
-#: aguard-safe.php:589
-msgid "checksums from api.wordpress.org"
+#: aguard-safe.php:476
+msgid "(system files changed legitimately, the baseline has been updated)"
+msgstr ""
+
+#: aguard-safe.php:483
+msgid "Updated"
+msgstr ""
+
+#: aguard-safe.php:490
+msgid "Theme changed:"
+msgstr ""
+
+#: aguard-safe.php:506
+msgid "File edited in the wp-admin editor:"
+msgstr ""
+
+#: aguard-safe.php:522
+msgid "Administrator signed in:"
+msgstr ""
+
+#: aguard-safe.php:522
+msgid "Administrator signed in from a NEW IP:"
+msgstr ""
+
+#. translators: 1: IP address, 2: number of attempts
+#: aguard-safe.php:594
+#, php-format
+msgid "Address %1$s blocked for 30 minutes after %2$d failed attempts"
 msgstr ""
 
 #: aguard-safe.php:598
-#: aguard-safe.php:714
-#: aguard-safe.php:751
-msgid "… stopped after"
+msgid "Password guessing:"
 msgstr ""
 
 #: aguard-safe.php:598
-msgid "files)"
+msgid "failed attempts in 15 min from"
+msgstr ""
+
+#. translators: %d: minutes
+#: aguard-safe.php:608
+#, php-format
+msgid "Access blocked: too many failed sign-in attempts from your address. The address is recorded. Blocked for %d more minutes."
+msgstr ""
+
+#: aguard-safe.php:619
+#: aguard-safe.php:621
+msgid "Access blocked"
+msgstr ""
+
+#: aguard-safe.php:622
+msgid "Too many failed sign-in attempts came from your address. The address has been blocked and recorded."
+msgstr ""
+
+#: aguard-safe.php:623
+msgid "Your address"
+msgstr ""
+
+#: aguard-safe.php:623
+msgid "Recorded"
+msgstr ""
+
+#: aguard-safe.php:623
+msgid "Blocked until"
+msgstr ""
+
+#: aguard-safe.php:624
+msgid "Every attempt from this address is logged and reported to the administrator of this site."
+msgstr ""
+
+#: aguard-safe.php:625
+msgid "Are you the owner and forgot the password?"
+msgstr ""
+
+#: aguard-safe.php:625
+msgid "Reset the password"
+msgstr ""
+
+#: aguard-safe.php:626
+msgid "Protected by AGuard Safe"
+msgstr ""
+
+#. translators: %s: user login
+#: aguard-safe.php:649
+#, php-format
+msgid "The password of administrator %s is in a list of leaked passwords – change it"
 msgstr ""
 
 #: aguard-safe.php:664
-#: aguard-safe.php:667
-msgid "Folder not found:"
+msgid "XML-RPC: 50+ calls per hour ("
 msgstr ""
 
-#: aguard-safe.php:665
-msgid "Folder outside the allowed area:"
+#: aguard-safe.php:678
+msgid "List of active plugins changed"
 msgstr ""
 
-#: aguard-safe.php:771
-msgid "response is not 200 or a Cloudflare check ("
+#: aguard-safe.php:681
+msgid "System option changed:"
 msgstr ""
 
-#: aguard-safe.php:771
-msgid ") – cannot compare"
+#: aguard-safe.php:756
+msgid "Folder not found or outside the allowed area:"
 msgstr ""
 
-#: aguard-safe.php:810
-msgid "System files (wp-config.php, .htaccess, index.php…)"
+#: aguard-safe.php:759
+msgid "Cannot read:"
 msgstr ""
 
-#: aguard-safe.php:810
-#: aguard-safe.php:1956
-msgid "List of administrator accounts"
+#: aguard-safe.php:774
+msgid "File not found or outside the allowed area:"
 msgstr ""
 
-#: aguard-safe.php:810
-msgid "PHP files in the upload and cache folders"
+#: aguard-safe.php:775
+msgid "File is not readable:"
 msgstr ""
 
-#: aguard-safe.php:810
-msgid "WordPress core – every file is compared with the original"
-msgstr ""
-
-#: aguard-safe.php:810
-msgid "Files changed in the last 48 hours"
-msgstr ""
-
-#: aguard-safe.php:811
-msgid "Content for Google's crawler and for a regular visitor"
-msgstr ""
-
-#: aguard-safe.php:812
-msgid "Code Snippets code snippets"
-msgstr ""
-
-#: aguard-safe.php:813
-msgid "Remote management and auto-login tools"
-msgstr ""
-
-#: aguard-safe.php:814
-msgid "PHP block rules in the upload folders"
-msgstr ""
-
-#: aguard-safe.php:819
-#: aguard-safe.php:1644
-msgid "failed:"
-msgstr ""
-
-#: aguard-safe.php:820
-msgid "no result"
-msgstr ""
-
-#: aguard-safe.php:822
-msgid "baseline not created yet"
-msgstr ""
-
-#: aguard-safe.php:822
-msgid "files changed:"
-msgstr ""
-
-#: aguard-safe.php:822
-msgid "no changes"
-msgstr ""
-
-#: aguard-safe.php:823
-msgid "changed: +"
-msgstr ""
-
-#: aguard-safe.php:823
-msgid "list unchanged ("
-msgstr ""
-
-#: aguard-safe.php:824
-msgid "PHP files found:"
-msgstr ""
-
-#: aguard-safe.php:824
-msgid "no PHP files found, checked"
-msgstr ""
-
-#: aguard-safe.php:825
-msgid "modified:"
-msgstr ""
-
-#: aguard-safe.php:825
-msgid ", missing"
-msgstr ""
-
-#: aguard-safe.php:825
-msgid ", unknown"
-msgstr ""
-
-#: aguard-safe.php:825
-msgid "files match, unknown:"
-msgstr ""
-
-#: aguard-safe.php:825
-msgid "files match the original"
-msgstr ""
-
-#: aguard-safe.php:826
-msgid "modified files:"
-msgstr ""
-
-#: aguard-safe.php:826
-msgid "(the “Files” tab)"
-msgstr ""
-
-#: aguard-safe.php:827
-msgid "could not compare:"
-msgstr ""
-
-#: aguard-safe.php:827
-msgid "the crawler is shown different content!"
-msgstr ""
-
-#: aguard-safe.php:827
-msgid "content matches"
-msgstr ""
-
-#: aguard-safe.php:828
-msgid "the Code Snippets plugin is not installed"
-msgstr ""
-
-#: aguard-safe.php:828
-msgid "snippets changed:"
-msgstr ""
-
-#: aguard-safe.php:828
-msgid "snippets, no changes"
-msgstr ""
-
-#: aguard-safe.php:829
-msgid "found:"
-msgstr ""
-
-#: aguard-safe.php:829
-#: aguard-safe.php:2065
-msgid "none found"
-msgstr ""
-
-#: aguard-safe.php:830
-msgid "rules missing:"
-msgstr ""
-
-#: aguard-safe.php:830
-msgid "(being restored)"
-msgstr ""
-
-#: aguard-safe.php:830
-msgid "rules in place"
-msgstr ""
-
-#: aguard-safe.php:832
-msgid "done"
-msgstr ""
-
-#: aguard-safe.php:835
-msgid "no permission or the security key has expired – reload the page"
-msgstr ""
-
-#: aguard-safe.php:841
-msgid "started"
-msgstr ""
-
-#: aguard-safe.php:843
-msgid "check session not found – start again"
-msgstr ""
-
-#: aguard-safe.php:846
-msgid "Manual check"
-msgstr ""
-
-#: aguard-safe.php:847
-#: aguard-safe.php:1906
-#: aguard-safe.php:1978
-msgid "Score"
-msgstr ""
-
-#. translators: %s: time span
-#: aguard-safe.php:847
-#: aguard-safe.php:1167
-#: aguard-safe.php:1222
-msgid "note"
-msgid_plural "notes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: aguard-safe.php:847
-msgid "no issues found"
-msgstr ""
-
-#: aguard-safe.php:850
-msgid "unknown step"
-msgstr ""
-
-#: aguard-safe.php:866
-msgid "Hourly check"
-msgstr ""
-
-#: aguard-safe.php:868
-msgid "A check step failed:"
-msgstr ""
-
-#: aguard-safe.php:871
-msgid "System files changed"
-msgstr ""
-
-#: aguard-safe.php:874
-msgid "The list of administrators changed"
-msgstr ""
-
-#: aguard-safe.php:877
-msgid "PHP files in the upload/cache folders"
-msgstr ""
-
-#: aguard-safe.php:881
-msgid "WordPress core files do not match the original"
-msgstr ""
-
-#: aguard-safe.php:884
-msgid "Search crawlers are shown different content than visitors (cloaking)"
-msgstr ""
-
-#: aguard-safe.php:886
-msgid "Cloaking is no longer detected"
-msgstr ""
-
-#: aguard-safe.php:889
-msgid "Code Snippets snippets changed"
+#: aguard-safe.php:783
+#: aguard-safe.php:784
+msgid "File not found or not readable:"
 msgstr ""
 
 #: aguard-safe.php:892
-msgid "Remote management or auto-login tool detected"
+msgid "Could not get WordPress"
 msgstr ""
 
-#: aguard-safe.php:894
-msgid "The PHP execution block in the uploads folder was removed – restored"
+#: aguard-safe.php:892
+msgid "checksums from api.wordpress.org"
 msgstr ""
 
-#: aguard-safe.php:903
-msgid ": no changes found"
-msgstr ""
-
-#: aguard-safe.php:909
-msgid "unknown device"
-msgstr ""
-
-#: aguard-safe.php:910
-msgid "other OS"
-msgstr ""
-
-#: aguard-safe.php:912
-msgid "other browser"
-msgstr ""
-
-#: aguard-safe.php:913
-msgid "application (not a browser)"
-msgstr ""
-
-#: aguard-safe.php:914
-msgid "· phone"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Administrator"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Editor"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Shop manager"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Author"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Contributor"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Subscriber"
-msgstr ""
-
-#: aguard-safe.php:918
-msgid "Customer"
-msgstr ""
-
-#: aguard-safe.php:990
-#: aguard-safe.php:1688
-msgid "File not found."
-msgstr ""
-
-#: aguard-safe.php:993
-msgid "The site needs this file – restore it from the original instead of quarantining it."
-msgstr ""
-
-#: aguard-safe.php:994
-#: aguard-safe.php:1021
-msgid "Only files of the site (the WordPress folder) can be quarantined."
-msgstr ""
-
-#: aguard-safe.php:995
-msgid "This is an AGuard Safe file."
-msgstr ""
-
-#: aguard-safe.php:996
-msgid "The file is already in quarantine."
-msgstr ""
-
-#: aguard-safe.php:1004
-msgid "The quarantine folder is not writable:"
-msgstr ""
-
-#: aguard-safe.php:1008
-msgid "Could not move the file (permissions?)."
-msgstr ""
-
-#: aguard-safe.php:1012
-msgid "File moved to quarantine:"
-msgstr ""
-
-#: aguard-safe.php:1018
-msgid "Entry not found."
-msgstr ""
-
-#: aguard-safe.php:1019
-msgid "The quarantined file no longer exists."
-msgstr ""
-
+#: aguard-safe.php:901
 #: aguard-safe.php:1022
-msgid "A file already exists at the original location – remove it first."
+#: aguard-safe.php:1059
+msgid "… stopped after"
 msgstr ""
 
-#: aguard-safe.php:1023
-msgid "The checksum of the quarantined file does not match – the file was changed."
+#: aguard-safe.php:901
+msgid "files)"
 msgstr ""
 
-#: aguard-safe.php:1026
-msgid "Could not restore the file."
+#: aguard-safe.php:967
+#: aguard-safe.php:970
+msgid "Folder not found:"
 msgstr ""
 
-#: aguard-safe.php:1029
-msgid "File restored from quarantine:"
+#: aguard-safe.php:968
+msgid "Folder outside the allowed area:"
 msgstr ""
 
-#: aguard-safe.php:1053
-msgid "written"
+#: aguard-safe.php:1079
+msgid "response is not 200 or a Cloudflare check ("
 msgstr ""
 
-#: aguard-safe.php:1053
-msgid "FAILED to write"
+#: aguard-safe.php:1079
+msgid ") – cannot compare"
 msgstr ""
 
-#: aguard-safe.php:1057
-msgid "removed"
+#: aguard-safe.php:1118
+msgid "System files (wp-config.php, .htaccess, index.php…)"
 msgstr ""
 
-#: aguard-safe.php:1057
-msgid "FAILED to remove"
+#: aguard-safe.php:1118
+#: aguard-safe.php:2729
+msgid "List of administrator accounts"
 msgstr ""
 
-#: aguard-safe.php:1058
-msgid "already there"
+#: aguard-safe.php:1118
+msgid "PHP files in the upload and cache folders"
 msgstr ""
 
-#: aguard-safe.php:1058
-msgid "was not there"
+#: aguard-safe.php:1118
+msgid "WordPress core – every file is compared with the original"
 msgstr ""
 
-#: aguard-safe.php:1061
-#: aguard-safe.php:1906
-msgid "Enabled"
+#: aguard-safe.php:1118
+msgid "Files changed in the last 48 hours"
 msgstr ""
 
-#: aguard-safe.php:1061
-#: aguard-safe.php:2053
-msgid "Disabled"
+#: aguard-safe.php:1119
+msgid "Content for Google's crawler and for a regular visitor"
 msgstr ""
 
-#: aguard-safe.php:1061
-msgid "PHP execution block in the uploads folder"
+#: aguard-safe.php:1120
+msgid "PHP snippets (code kept by snippet plugins)"
 msgstr ""
 
-#: aguard-safe.php:1078
-msgid "could not create the test file"
+#: aguard-safe.php:1121
+msgid "Remote management and auto-login tools"
 msgstr ""
 
-#: aguard-safe.php:1099
-msgid "NEW"
-msgstr ""
-
-#: aguard-safe.php:1100
-msgid "CHANGED"
-msgstr ""
-
-#: aguard-safe.php:1101
-msgid "STATUS"
-msgstr ""
-
-#: aguard-safe.php:1103
-msgid "DELETED"
-msgstr ""
-
-#: aguard-safe.php:1112
-msgid "auto-login plugin"
-msgstr ""
-
-#: aguard-safe.php:1112
-msgid "temporary login plugin"
-msgstr ""
-
-#: aguard-safe.php:1112
-msgid "one-time login plugin"
-msgstr ""
-
-#: aguard-safe.php:1112
-msgid "login-as plugin"
-msgstr ""
-
-#: aguard-safe.php:1112
-msgid "WP File Manager (file manager in the browser)"
-msgstr ""
-
-#: aguard-safe.php:1114
-msgid "UpdraftCentral remote control ("
-msgstr ""
-
-#: aguard-safe.php:1114
-msgid "key(s))"
-msgstr ""
-
-#: aguard-safe.php:1115
-msgid "Jetpack connected to WordPress.com (SSO/remote management possible)"
+#: aguard-safe.php:1122
+msgid "PHP block rules in the upload folders"
 msgstr ""
 
 #: aguard-safe.php:1127
-msgid "(e-mail failed)"
+#: aguard-safe.php:2305
+msgid "failed:"
+msgstr ""
+
+#: aguard-safe.php:1128
+msgid "no result"
+msgstr ""
+
+#: aguard-safe.php:1130
+msgid "baseline not created yet"
+msgstr ""
+
+#: aguard-safe.php:1130
+msgid "files changed:"
+msgstr ""
+
+#: aguard-safe.php:1130
+msgid "no changes"
+msgstr ""
+
+#: aguard-safe.php:1131
+msgid "changed: +"
+msgstr ""
+
+#: aguard-safe.php:1131
+msgid "list unchanged ("
 msgstr ""
 
 #: aguard-safe.php:1132
-msgid "LOCKDOWN enabled"
+msgid "PHP files found:"
+msgstr ""
+
+#: aguard-safe.php:1132
+msgid "no PHP files found, checked"
+msgstr ""
+
+#: aguard-safe.php:1133
+msgid "modified:"
+msgstr ""
+
+#: aguard-safe.php:1133
+msgid ", missing"
+msgstr ""
+
+#: aguard-safe.php:1133
+msgid ", unknown"
+msgstr ""
+
+#: aguard-safe.php:1133
+msgid "files match, unknown:"
+msgstr ""
+
+#: aguard-safe.php:1133
+msgid "files match the original"
+msgstr ""
+
+#: aguard-safe.php:1134
+msgid "modified files:"
+msgstr ""
+
+#: aguard-safe.php:1134
+msgid "(Scan → Files)"
+msgstr ""
+
+#: aguard-safe.php:1135
+msgid "could not compare:"
+msgstr ""
+
+#: aguard-safe.php:1135
+msgid "the crawler is shown different content!"
+msgstr ""
+
+#: aguard-safe.php:1135
+msgid "content matches"
 msgstr ""
 
 #: aguard-safe.php:1136
-msgid "LOCKDOWN disabled"
+msgid "no snippet plugin on this site"
 msgstr ""
 
-#: aguard-safe.php:1142
-msgid ": installing, updating and editing plugins/themes and registration are temporarily disabled."
+#: aguard-safe.php:1136
+msgid "snippets changed:"
 msgstr ""
 
-#: aguard-safe.php:1142
-msgid "Manage"
+#: aguard-safe.php:1136
+msgid "snippets, no changes"
+msgstr ""
+
+#: aguard-safe.php:1137
+msgid "found:"
+msgstr ""
+
+#: aguard-safe.php:1137
+#: aguard-safe.php:2903
+msgid "none found"
+msgstr ""
+
+#: aguard-safe.php:1138
+msgid "rules missing:"
+msgstr ""
+
+#: aguard-safe.php:1138
+msgid "(being restored)"
+msgstr ""
+
+#: aguard-safe.php:1138
+msgid "rules in place"
+msgstr ""
+
+#: aguard-safe.php:1140
+msgid "done"
+msgstr ""
+
+#: aguard-safe.php:1143
+msgid "no permission or the security key has expired – reload the page"
+msgstr ""
+
+#: aguard-safe.php:1149
+msgid "started"
 msgstr ""
 
 #: aguard-safe.php:1151
-msgid "AGuard Safe · site protection"
+msgid "check session not found – start again"
 msgstr ""
 
-#: aguard-safe.php:1156
-#: aguard-safe.php:1218
-msgid "Protection is working"
+#: aguard-safe.php:1154
+msgid "Manual check"
 msgstr ""
 
-#: aguard-safe.php:1156
-#: aguard-safe.php:1218
-msgid "Needs attention"
+#: aguard-safe.php:1155
+#: aguard-safe.php:2656
+#: aguard-safe.php:2757
+msgid "Score"
 msgstr ""
 
-#: aguard-safe.php:1156
-#: aguard-safe.php:1218
-msgid "Action required"
-msgstr ""
-
-#: aguard-safe.php:1158
-msgid "matches the original"
-msgstr ""
-
-#: aguard-safe.php:1158
-#: aguard-safe.php:1233
-msgid "modified"
-msgid_plural "modified"
+#. translators: %d: number of things to do
+#. translators: %d: number of things
+#: aguard-safe.php:1155
+#: aguard-safe.php:1653
+#: aguard-safe.php:1775
+#, php-format
+msgid "%d thing needs your attention"
+msgid_plural "%d things need your attention"
 msgstr[0] ""
 msgstr[1] ""
 
+#. translators: %d: number of things to do
+#: aguard-safe.php:1155
+msgid "no issues found"
+msgstr ""
+
 #: aguard-safe.php:1158
-#: aguard-safe.php:1233
+msgid "unknown step"
+msgstr ""
+
+#: aguard-safe.php:1177
+msgid "Hourly check"
+msgstr ""
+
+#: aguard-safe.php:1179
+msgid "A check step failed:"
+msgstr ""
+
+#: aguard-safe.php:1182
+msgid "System files changed"
+msgstr ""
+
+#: aguard-safe.php:1185
+msgid "The list of administrators changed"
+msgstr ""
+
+#: aguard-safe.php:1188
+msgid "PHP files in the upload/cache folders"
+msgstr ""
+
+#: aguard-safe.php:1192
+msgid "WordPress core files do not match the original"
+msgstr ""
+
+#: aguard-safe.php:1195
+msgid "Search crawlers are shown different content than visitors (cloaking)"
+msgstr ""
+
+#: aguard-safe.php:1197
+msgid "Cloaking is no longer detected"
+msgstr ""
+
+#: aguard-safe.php:1200
+msgid "PHP snippets changed"
+msgstr ""
+
+#: aguard-safe.php:1203
+msgid "Remote management or auto-login tool detected"
+msgstr ""
+
+#: aguard-safe.php:1205
+msgid "The PHP execution block in the uploads folder was removed – restored"
+msgstr ""
+
+#: aguard-safe.php:1214
+msgid ": no changes found"
+msgstr ""
+
+#: aguard-safe.php:1220
+msgid "unknown device"
+msgstr ""
+
+#: aguard-safe.php:1221
+msgid "other OS"
+msgstr ""
+
+#: aguard-safe.php:1223
+msgid "other browser"
+msgstr ""
+
+#: aguard-safe.php:1224
+msgid "application (not a browser)"
+msgstr ""
+
+#: aguard-safe.php:1225
+msgid "· phone"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Administrator"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Editor"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Shop manager"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Author"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Contributor"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Subscriber"
+msgstr ""
+
+#: aguard-safe.php:1229
+msgid "Customer"
+msgstr ""
+
+#: aguard-safe.php:1301
+#: aguard-safe.php:2349
+msgid "File not found."
+msgstr ""
+
+#: aguard-safe.php:1304
+msgid "The site needs this file – restore it from the original instead of quarantining it."
+msgstr ""
+
+#: aguard-safe.php:1305
+#: aguard-safe.php:1475
+msgid "Only files of the site (the WordPress folder) can be quarantined."
+msgstr ""
+
+#: aguard-safe.php:1306
+msgid "This is an AGuard Safe file."
+msgstr ""
+
+#: aguard-safe.php:1307
+msgid "The file is already in quarantine."
+msgstr ""
+
+#. translators: %d: line number in the file
+#: aguard-safe.php:1414
+#, php-format
+msgid "From line %d"
+msgstr ""
+
+#: aguard-safe.php:1424
+msgid "Could not download the original from WordPress.org. The file was left as it is."
+msgstr ""
+
+#: aguard-safe.php:1426
+msgid "The downloaded file does not match the official checksum, so it was not used. The file was left as it is."
+msgstr ""
+
+#: aguard-safe.php:1436
+msgid "There is no official original for this file."
+msgstr ""
+
+#: aguard-safe.php:1437
+msgid "The file already matches the original."
+msgstr ""
+
+#: aguard-safe.php:1444
+msgid "Could not write the original (permissions?). The file was left as it is."
+msgstr ""
+
+#: aguard-safe.php:1449
+msgid "With the original in place the site started answering with an error, so the previous file was put back."
+msgstr ""
+
+#: aguard-safe.php:1450
+msgid "File replaced with the original from WordPress.org:"
+msgstr ""
+
+#: aguard-safe.php:1458
+msgid "The quarantine folder is not writable:"
+msgstr ""
+
+#: aguard-safe.php:1462
+msgid "Could not move the file (permissions?)."
+msgstr ""
+
+#: aguard-safe.php:1466
+msgid "File moved to quarantine:"
+msgstr ""
+
+#: aguard-safe.php:1472
+msgid "Entry not found."
+msgstr ""
+
+#: aguard-safe.php:1473
+msgid "The quarantined file no longer exists."
+msgstr ""
+
+#: aguard-safe.php:1476
+msgid "A file already exists at the original location – remove it first."
+msgstr ""
+
+#: aguard-safe.php:1477
+msgid "The checksum of the quarantined file does not match – the file was changed."
+msgstr ""
+
+#: aguard-safe.php:1480
+msgid "Could not restore the file."
+msgstr ""
+
+#: aguard-safe.php:1483
+msgid "File restored from quarantine:"
+msgstr ""
+
+#: aguard-safe.php:1507
+msgid "written"
+msgstr ""
+
+#: aguard-safe.php:1507
+#: aguard-safe.php:2455
+msgid "FAILED to write"
+msgstr ""
+
+#: aguard-safe.php:1511
+msgid "removed"
+msgstr ""
+
+#: aguard-safe.php:1511
+msgid "FAILED to remove"
+msgstr ""
+
+#: aguard-safe.php:1512
+msgid "already there"
+msgstr ""
+
+#: aguard-safe.php:1512
+msgid "was not there"
+msgstr ""
+
+#: aguard-safe.php:1515
+#: aguard-safe.php:2656
+msgid "Enabled"
+msgstr ""
+
+#: aguard-safe.php:1515
+msgid "Disabled"
+msgstr ""
+
+#: aguard-safe.php:1515
+msgid "PHP execution block in the uploads folder"
+msgstr ""
+
+#: aguard-safe.php:1532
+msgid "could not create the test file"
+msgstr ""
+
+#: aguard-safe.php:1590
+msgid "NEW"
+msgstr ""
+
+#: aguard-safe.php:1591
+msgid "CHANGED"
+msgstr ""
+
+#: aguard-safe.php:1592
+msgid "STATUS"
+msgstr ""
+
+#: aguard-safe.php:1594
+msgid "DELETED"
+msgstr ""
+
+#: aguard-safe.php:1603
+msgid "auto-login plugin"
+msgstr ""
+
+#: aguard-safe.php:1603
+msgid "temporary login plugin"
+msgstr ""
+
+#: aguard-safe.php:1603
+msgid "one-time login plugin"
+msgstr ""
+
+#: aguard-safe.php:1603
+msgid "login-as plugin"
+msgstr ""
+
+#: aguard-safe.php:1603
+msgid "WP File Manager (file manager in the browser)"
+msgstr ""
+
+#: aguard-safe.php:1605
+msgid "UpdraftCentral remote control ("
+msgstr ""
+
+#: aguard-safe.php:1605
+msgid "key(s))"
+msgstr ""
+
+#: aguard-safe.php:1606
+msgid "Jetpack connected to WordPress.com (SSO/remote management possible)"
+msgstr ""
+
+#: aguard-safe.php:1618
+msgid "(e-mail failed)"
+msgstr ""
+
+#: aguard-safe.php:1623
+msgid "LOCKDOWN enabled"
+msgstr ""
+
+#: aguard-safe.php:1627
+msgid "LOCKDOWN disabled"
+msgstr ""
+
+#: aguard-safe.php:1633
+msgid ": installing, updating and editing plugins/themes and registration are temporarily disabled."
+msgstr ""
+
+#: aguard-safe.php:1633
+msgid "Manage"
+msgstr ""
+
+#. translators: %d: number of things
+#: aguard-safe.php:1653
+#: aguard-safe.php:1758
+msgid "Protection is working"
+msgstr ""
+
+#. translators: %s: time span, e.g. 5 mins
+#: aguard-safe.php:1655
+#, php-format
+msgid "Last check %s ago"
+msgstr ""
+
+#. translators: %s: time span, e.g. 5 mins
+#. translators: %s: time span
+#: aguard-safe.php:1655
+#: aguard-safe.php:1762
+msgid "No automatic check has run yet"
+msgstr ""
+
+#: aguard-safe.php:1657
+msgid "score out of 100"
+msgstr ""
+
+#: aguard-safe.php:1657
+msgid "Open AGuard Safe"
+msgstr ""
+
+#: aguard-safe.php:1659
+msgid "match"
+msgstr ""
+
+#: aguard-safe.php:1659
+#: aguard-safe.php:1786
 msgid "unknown"
 msgid_plural "unknown"
 msgstr[0] ""
 msgstr[1] ""
 
-#: aguard-safe.php:1158
-msgid "not checked yet"
-msgstr ""
-
-#: aguard-safe.php:1160
-#: aguard-safe.php:1222
-#: aguard-safe.php:1906
-msgid "Last check"
-msgstr ""
-
-#. translators: %s: time span, e.g. 5 mins
-#. translators: %s: time span
-#: aguard-safe.php:1160
-#: aguard-safe.php:1222
-#: aguard-safe.php:2114
-#, php-format
-msgid "%s ago"
-msgstr ""
-
-#. translators: %s: time span, e.g. 5 mins
-#: aguard-safe.php:1160
-msgid "has not run yet"
-msgstr ""
-
-#. translators: %s: time span, e.g. 5 mins
-#: aguard-safe.php:1161
-#: aguard-safe.php:1235
+#: aguard-safe.php:1662
+#: aguard-safe.php:1789
 msgid "WordPress files"
 msgstr ""
 
-#: aguard-safe.php:1162
+#: aguard-safe.php:1663
 msgid "Failed logins today"
 msgstr ""
 
-#: aguard-safe.php:1163
-msgid "Signed-in administrator devices"
+#: aguard-safe.php:1664
+msgid "Addresses blocked now"
 msgstr ""
 
-#: aguard-safe.php:1163
-msgid "(accounts:"
+#: aguard-safe.php:1665
+#: aguard-safe.php:1791
+msgid "Signed-in devices"
 msgstr ""
 
-#: aguard-safe.php:1164
-#: aguard-safe.php:1906
-msgid "PHP block in the upload folders"
+#: aguard-safe.php:1665
+msgid "Plugins to update urgently"
 msgstr ""
 
-#: aguard-safe.php:1164
-#: aguard-safe.php:2051
-msgid "enabled"
+#: aguard-safe.php:1672
+#: aguard-safe.php:1834
+msgid "Last 7 days"
 msgstr ""
 
-#: aguard-safe.php:1164
-#: aguard-safe.php:2051
-msgid "disabled"
+#: aguard-safe.php:1672
+msgid "events"
 msgstr ""
 
-#: aguard-safe.php:1167
-msgid "– see AGuard Safe"
+#: aguard-safe.php:1672
+#: aguard-safe.php:1834
+#: aguard-safe.php:1839
+msgid "failed logins"
 msgstr ""
 
-#: aguard-safe.php:1167
-msgid "No issues found"
+#: aguard-safe.php:1677
+#: aguard-safe.php:1805
+#: aguard-safe.php:2989
+msgid "What to do"
 msgstr ""
 
-#: aguard-safe.php:1174
+#: aguard-safe.php:1686
 msgid "Recent events"
 msgstr ""
 
-#: aguard-safe.php:1175
-msgid "(notification sent)"
+#: aguard-safe.php:1688
+msgid "All events"
 msgstr ""
 
-#: aguard-safe.php:1178
-msgid "Open AGuard Safe"
-msgstr ""
-
-#: aguard-safe.php:1178
-msgid "Event log"
-msgstr ""
-
-#: aguard-safe.php:1179
+#: aguard-safe.php:1690
 msgid "AGuard Safe: could not show the status ("
 msgstr ""
 
-#: aguard-safe.php:1186
+#: aguard-safe.php:1697
 msgid "Modified or missing WordPress core files:"
 msgstr ""
 
-#: aguard-safe.php:1186
+#: aguard-safe.php:1697
 msgid ". Check them and restore from the original."
 msgstr ""
 
-#: aguard-safe.php:1187
+#: aguard-safe.php:1698
 msgid "The core folders contain"
 msgstr ""
 
-#: aguard-safe.php:1187
+#: aguard-safe.php:1698
 msgid "unknown files:"
 msgstr ""
 
-#: aguard-safe.php:1187
+#: aguard-safe.php:1698
 msgid ". If you know the file, add it to the allowlist."
 msgstr ""
 
-#: aguard-safe.php:1189
+#: aguard-safe.php:1700
 msgid "Executable PHP files found in the upload/cache folders:"
 msgstr ""
 
-#: aguard-safe.php:1190
+#: aguard-safe.php:1701
 msgid "Google's crawler is shown different content than visitors (cloaking) – the site is infected."
 msgstr ""
 
-#: aguard-safe.php:1191
+#: aguard-safe.php:1702
 msgid "System files changed:"
 msgstr ""
 
-#: aguard-safe.php:1192
-msgid "Code snippets changed (Code Snippets):"
+#: aguard-safe.php:1703
+msgid "PHP snippets changed:"
 msgstr ""
 
-#: aguard-safe.php:1194
+#: aguard-safe.php:1705
 msgid "Tools are active that allow managing the site without a password or changing files in the browser:"
 msgstr ""
 
-#: aguard-safe.php:1194
+#: aguard-safe.php:1705
 msgid ". If you do not use them, turn them off."
 msgstr ""
 
-#: aguard-safe.php:1196
+#: aguard-safe.php:1707
 msgid "PHP execution in the uploads folder is not blocked. Turn it on in Settings – it closes the most common malware route."
 msgstr ""
 
-#: aguard-safe.php:1197
+#: aguard-safe.php:1708
 msgid "The PHP block rule is gone from:"
 msgstr ""
 
-#: aguard-safe.php:1197
+#: aguard-safe.php:1708
 msgid "(it will be restored automatically)."
 msgstr ""
 
+#. translators: %s: user logins
+#: aguard-safe.php:1711
+#, php-format
+msgid "An administrator password is in a list of leaked passwords: %s. Change it: attackers try such passwords first."
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:1713
+#, php-format
+msgid "%d plugin has a vulnerability that needs an urgent update. Open Plugins."
+msgid_plural "%d plugins have vulnerabilities that need an urgent update. Open Plugins."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:1714
+#, php-format
+msgid "%d installed plugin has been closed on WordPress.org and will get no more updates. Open Plugins."
+msgid_plural "%d installed plugins have been closed on WordPress.org and will get no more updates. Open Plugins."
+msgstr[0] ""
+msgstr[1] ""
+
 #. translators: %s: time span
-#: aguard-safe.php:1199
+#: aguard-safe.php:1716
 #, php-format
 msgid "The automatic check has not run for %s"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1199
+#: aguard-safe.php:1716
 msgid "The automatic check has never run"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1199
+#: aguard-safe.php:1716
 msgid ". Press “Check now” or check WP-Cron."
 msgstr ""
 
-#. translators: %s: time span
-#: aguard-safe.php:1222
-msgid "No automatic check has run yet"
+#: aguard-safe.php:1747
+msgid "One step to finish the setup"
+msgstr ""
+
+#: aguard-safe.php:1747
+msgid "Press the button once and the full protection is on. Each item can be changed later in Settings."
+msgstr ""
+
+#: aguard-safe.php:1748
+#: aguard-safe.php:2884
+msgid "Block PHP execution in the uploads folder"
+msgstr ""
+
+#: aguard-safe.php:1749
+msgid "Check the installed plugins for known vulnerabilities once a day. For that the folder names (slugs) of all installed plugins and their versions are sent to data.aguard.lt."
+msgstr ""
+
+#: aguard-safe.php:1750
+msgid "Check administrator passwords against lists of leaked passwords. The password itself is never sent anywhere."
+msgstr ""
+
+#: aguard-safe.php:1751
+msgid "Agree and turn on"
+msgstr ""
+
+#: aguard-safe.php:1751
+msgid "Remind me later"
+msgstr ""
+
+#: aguard-safe.php:1751
+msgid "Continue without these"
+msgstr ""
+
+#: aguard-safe.php:1752
+msgid "By pressing “Agree and turn on” you accept the"
+msgstr ""
+
+#: aguard-safe.php:1752
+msgid "terms"
+msgstr ""
+
+#: aguard-safe.php:1752
+msgid "and the"
+msgstr ""
+
+#: aguard-safe.php:1752
+msgid "privacy policy"
+msgstr ""
+
+#: aguard-safe.php:1752
+msgid "of the data.aguard.lt service."
+msgstr ""
+
+#: aguard-safe.php:1758
+msgid "Needs attention"
+msgstr ""
+
+#: aguard-safe.php:1758
+msgid "Action required"
+msgstr ""
+
+#: aguard-safe.php:1762
+#: aguard-safe.php:2656
+msgid "Last check"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1222
+#: aguard-safe.php:1762
+#: aguard-safe.php:3076
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#. translators: %s: time span
+#: aguard-safe.php:1762
 #, php-format
 msgid "next in %s"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1222
+#: aguard-safe.php:1762
+msgid "note"
+msgid_plural "notes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: time span
+#: aguard-safe.php:1762
 msgid "below."
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1222
+#: aguard-safe.php:1762
 msgid "No issues found."
 msgstr ""
 
-#: aguard-safe.php:1224
-#: aguard-safe.php:2045
+#. translators: %d: the security score, 0 to 100
+#: aguard-safe.php:1765
+#, php-format
+msgid "Security score: %d of 100"
+msgstr ""
+
+#. translators: %d: the security score, 0 to 100
+#: aguard-safe.php:1765
+msgid "100 means nothing needs attention. Points taken off:"
+msgstr ""
+
+#. translators: %d: the security score, 0 to 100
+#: aguard-safe.php:1765
+msgid "100 means nothing needs attention."
+msgstr ""
+
+#: aguard-safe.php:1775
+msgid "Score out of 100"
+msgstr ""
+
+#. translators: %d: number of things to do
+#: aguard-safe.php:1776
+#: aguard-safe.php:2305
+#: aguard-safe.php:2737
+#: aguard-safe.php:2954
+#: aguard-safe.php:3129
+msgid "Details"
+msgstr ""
+
+#. translators: %d: number of things to do
+#: aguard-safe.php:1776
+#: aguard-safe.php:2878
+#: aguard-safe.php:3100
 msgid "Check now"
 msgstr ""
 
-#: aguard-safe.php:1227
-#: aguard-safe.php:1906
-#: aguard-safe.php:2084
+#: aguard-safe.php:1779
+#: aguard-safe.php:2656
+#: aguard-safe.php:2723
+#: aguard-safe.php:2742
 msgid "Full check"
 msgstr ""
 
-#: aguard-safe.php:1228
+#: aguard-safe.php:1780
 msgid "The check goes through"
 msgstr ""
 
-#: aguard-safe.php:1228
+#: aguard-safe.php:1780
 msgid "WordPress files,"
 msgstr ""
 
-#: aguard-safe.php:1228
+#: aguard-safe.php:1780
 msgid "the upload folders, settings and accounts. It takes from a dozen seconds to a few minutes and the server works harder meanwhile, so it only starts when you press “Start”. A light check runs automatically every hour, a full one every 6 hours."
 msgstr ""
 
-#: aguard-safe.php:1228
+#: aguard-safe.php:1780
 msgid "Last full check:"
 msgstr ""
 
-#: aguard-safe.php:1229
-#: aguard-safe.php:1644
+#: aguard-safe.php:1781
+#: aguard-safe.php:2305
 msgid "waiting"
 msgstr ""
 
-#: aguard-safe.php:1230
+#: aguard-safe.php:1782
 msgid "Start the check"
 msgstr ""
 
-#: aguard-safe.php:1230
+#: aguard-safe.php:1782
 msgid "Close"
 msgstr ""
 
-#: aguard-safe.php:1233
+#: aguard-safe.php:1786
+msgid "modified"
+msgid_plural "modified"
+msgstr[0] ""
+msgstr[1] ""
+
+#: aguard-safe.php:1786
 msgid "Matches the original"
 msgstr ""
 
-#: aguard-safe.php:1233
+#: aguard-safe.php:1786
 msgid "Not checked yet"
 msgstr ""
 
-#: aguard-safe.php:1235
+#: aguard-safe.php:1787
+msgid "Files are missing"
+msgstr ""
+
+#: aguard-safe.php:1789
 msgid "files checked:"
 msgstr ""
 
-#: aguard-safe.php:1235
+#: aguard-safe.php:1789
 msgid "waiting for a full check"
 msgstr ""
 
-#: aguard-safe.php:1236
+#: aguard-safe.php:1790
 msgid "Failed logins"
 msgstr ""
 
-#: aguard-safe.php:1236
+#: aguard-safe.php:1790
 msgid "today · alert from"
 msgstr ""
 
-#: aguard-safe.php:1236
+#: aguard-safe.php:1790
 msgid "none today"
 msgstr ""
 
-#: aguard-safe.php:1237
-msgid "Signed-in devices"
-msgstr ""
-
-#: aguard-safe.php:1237
+#: aguard-safe.php:1791
 msgid "administrator accounts:"
 msgstr ""
 
-#: aguard-safe.php:1238
-#: aguard-safe.php:1755
-#: aguard-safe.php:1906
-#: aguard-safe.php:1986
+#: aguard-safe.php:1792
+#: aguard-safe.php:2419
+#: aguard-safe.php:2656
+#: aguard-safe.php:2768
+#: aguard-safe.php:2916
 msgid "Quarantine"
 msgstr ""
 
-#: aguard-safe.php:1238
+#: aguard-safe.php:1792
 msgid "isolated file"
 msgid_plural "isolated files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: aguard-safe.php:1238
+#: aguard-safe.php:1792
 msgid "no isolated files"
 msgstr ""
 
-#: aguard-safe.php:1244
+#. translators: %d: number of plugins
+#: aguard-safe.php:1797
+#: aguard-safe.php:2770
+#: aguard-safe.php:2912
+msgid "Plugins"
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:1797
+#, php-format
+msgid "%d urgent"
+msgid_plural "%d urgent"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:1797
+#: aguard-safe.php:3094
+msgid "updates available:"
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:1797
+#: aguard-safe.php:3095
+msgid "with known vulnerabilities:"
+msgstr ""
+
+#: aguard-safe.php:1804
+#: aguard-safe.php:2230
+msgid "Open Scan"
+msgstr ""
+
+#: aguard-safe.php:1804
+#: aguard-safe.php:2230
+msgid "Open Settings"
+msgstr ""
+
+#: aguard-safe.php:1804
+#: aguard-safe.php:2230
+msgid "Open Plugins"
+msgstr ""
+
+#: aguard-safe.php:1815
 msgid "e-mail confirmation"
 msgstr ""
 
-#: aguard-safe.php:1244
+#: aguard-safe.php:1815
 msgid "custom login address"
 msgstr ""
 
-#: aguard-safe.php:1246
+#: aguard-safe.php:1817
 msgid "File integrity"
 msgstr ""
 
-#: aguard-safe.php:1246
+#: aguard-safe.php:1817
 msgid "The WordPress core is compared with the official checksums every 6 hours; between checks, new and changed files are tracked."
 msgstr ""
 
-#: aguard-safe.php:1247
+#: aguard-safe.php:1818
+#: aguard-safe.php:2845
+#: aguard-safe.php:2870
 msgid "Login protection"
 msgstr ""
 
-#: aguard-safe.php:1247
+#: aguard-safe.php:1818
 msgid "Administrator logins, failed attempts, e-mail confirmation, the login address of the site."
 msgstr ""
 
-#: aguard-safe.php:1247
+#: aguard-safe.php:1818
 msgid "Enabled:"
 msgstr ""
 
-#: aguard-safe.php:1247
+#: aguard-safe.php:1818
 msgid "Standard wp-login without extra protection"
 msgstr ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "Upload and code protection"
 msgstr ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "PHP block in the upload folders, remote management tools, comparison of the content with what Google sees."
 msgstr ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "PHP block enabled"
 msgstr ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "PHP block disabled"
 msgstr ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "risky tool"
 msgid_plural "risky tools"
 msgstr[0] ""
 msgstr[1] ""
 
-#: aguard-safe.php:1248
+#: aguard-safe.php:1819
 msgid "· cloaking!"
 msgstr ""
 
-#: aguard-safe.php:1258
-msgid "Last 7 days"
+#: aguard-safe.php:1821
+msgid "on"
 msgstr ""
 
-#: aguard-safe.php:1258
-#: aguard-safe.php:1263
-msgid "failed logins"
+#: aguard-safe.php:1821
+msgid "off"
 msgstr ""
 
-#: aguard-safe.php:1258
+#: aguard-safe.php:1823
+msgid "File checks"
+msgstr ""
+
+#: aguard-safe.php:1823
+msgid "needs attention"
+msgstr ""
+
+#: aguard-safe.php:1823
+msgid "every hour"
+msgstr ""
+
+#: aguard-safe.php:1824
+msgid "Login alerts"
+msgstr ""
+
+#: aguard-safe.php:1825
+msgid "PHP block in uploads"
+msgstr ""
+
+#: aguard-safe.php:1826
+msgid "Two-factor code"
+msgstr ""
+
+#: aguard-safe.php:1827
+msgid "Googlebot sees the same content"
+msgstr ""
+
+#: aguard-safe.php:1827
+#: aguard-safe.php:2660
+msgid "yes"
+msgstr ""
+
+#: aguard-safe.php:1827
+#: aguard-safe.php:2660
+msgid "no"
+msgstr ""
+
+#: aguard-safe.php:1829
+msgid "Protection"
+msgstr ""
+
+#: aguard-safe.php:1834
+#: aguard-safe.php:1839
 msgid "recorded events"
 msgstr ""
 
-#: aguard-safe.php:1263
-#: aguard-safe.php:2069
-msgid "events"
-msgstr ""
-
-#: aguard-safe.php:1272
-msgid "Why not 100 out of 100"
-msgstr ""
-
-#: aguard-safe.php:1272
+#: aguard-safe.php:1843
 msgid "What is checked"
 msgstr ""
 
-#: aguard-safe.php:1273
+#: aguard-safe.php:1843
 msgid "Files match the originals, no foreign code found, Google sees the same content as visitors, PHP does not run in the upload folders. Next automatic check"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1273
+#: aguard-safe.php:1843
 #, php-format
 msgid "in %s"
 msgstr ""
 
 #. translators: %s: time span
-#: aguard-safe.php:1273
+#: aguard-safe.php:1843
 msgid "not scheduled"
 msgstr ""
 
-#: aguard-safe.php:1276
+#: aguard-safe.php:1845
 msgid "Notifications are sent to"
 msgstr ""
 
-#: aguard-safe.php:1276
+#: aguard-safe.php:1845
 msgid "· AGuard Safe v"
 msgstr ""
 
-#: aguard-safe.php:1286
+#: aguard-safe.php:1855
 msgid "Removed from the log"
 msgstr ""
 
-#: aguard-safe.php:1286
+#: aguard-safe.php:1855
 msgid "events by keyword"
 msgstr ""
 
-#: aguard-safe.php:1315
+#: aguard-safe.php:1884
 msgid "browser not remembered (no cookie)"
 msgstr ""
 
-#: aguard-safe.php:1316
+#: aguard-safe.php:1885
 msgid "the cookie belongs to another user"
 msgstr ""
 
-#: aguard-safe.php:1317
+#: aguard-safe.php:1886
 msgid "the list of remembered browsers is empty (forgotten)"
 msgstr ""
 
-#: aguard-safe.php:1319
+#: aguard-safe.php:1888
 msgid "the cookie is no longer valid (forgotten or the password was changed)"
 msgstr ""
 
-#: aguard-safe.php:1320
+#: aguard-safe.php:1889
 msgid "the remembered period has ended (30 days)"
 msgstr ""
 
-#: aguard-safe.php:1333
+#: aguard-safe.php:1915
+msgid "Valid for 10 minutes, for one use."
+msgstr ""
+
+#: aguard-safe.php:1919
+msgid "Sent by the AGuard Safe plugin of this site."
+msgstr ""
+
+#: aguard-safe.php:1931
 msgid "Your login confirmation code:"
 msgstr ""
 
-#: aguard-safe.php:1333
+#: aguard-safe.php:1931
 msgid "The code is valid for 10 minutes and for one login only."
 msgstr ""
 
-#: aguard-safe.php:1333
+#: aguard-safe.php:1931
 msgid "Username:"
 msgstr ""
 
-#: aguard-safe.php:1333
+#: aguard-safe.php:1931
 msgid "From: IP"
 msgstr ""
 
-#: aguard-safe.php:1333
+#: aguard-safe.php:1931
+#: aguard-safe.php:1932
 msgid "If this was not you, do nothing, do not tell the code to anyone and inform the administrator: somebody knows your password."
 msgstr ""
 
-#: aguard-safe.php:1334
+#: aguard-safe.php:1932
 msgid "] Login code:"
 msgstr ""
 
-#: aguard-safe.php:1345
+#: aguard-safe.php:1932
+msgid "Your login code"
+msgstr ""
+
+#: aguard-safe.php:1932
+msgid "Enter it on the sign-in page to finish signing in."
+msgstr ""
+
+#: aguard-safe.php:1932
+#: aguard-safe.php:2175
+msgid "Site"
+msgstr ""
+
+#: aguard-safe.php:1932
+msgid "Username"
+msgstr ""
+
+#: aguard-safe.php:1932
+msgid "Requested from"
+msgstr ""
+
+#: aguard-safe.php:1943
 msgid "Administrator login requires e-mail confirmation – sign in using a browser."
 msgstr ""
 
-#: aguard-safe.php:1348
+#: aguard-safe.php:1946
 msgid "Too many attempts. Try again in an hour or contact the administrator."
 msgstr ""
 
-#: aguard-safe.php:1349
+#: aguard-safe.php:1947
 msgid "2FA: too many code requests (5 per 15 min):"
 msgstr ""
 
-#: aguard-safe.php:1349
+#: aguard-safe.php:1947
 msgid "Too many code requests. Try again in 15 minutes."
 msgstr ""
 
-#: aguard-safe.php:1359
-#: aguard-safe.php:1362
+#: aguard-safe.php:1957
+#: aguard-safe.php:1960
 msgid "IMPORTANT: could not send the 2FA code (mail error) –"
 msgstr ""
 
-#: aguard-safe.php:1359
+#: aguard-safe.php:1957
 msgid "let in without a code from a known IP"
 msgstr ""
 
-#: aguard-safe.php:1362
+#: aguard-safe.php:1960
 msgid "NOT let in from an unknown IP"
 msgstr ""
 
-#: aguard-safe.php:1363
+#: aguard-safe.php:1961
 msgid "Could not send the confirmation code by e-mail. Contact the administrator."
 msgstr ""
 
-#: aguard-safe.php:1365
+#: aguard-safe.php:1963
 msgid "2FA code sent:"
 msgstr ""
 
-#: aguard-safe.php:1376
+#: aguard-safe.php:1974
 msgid "The code has expired or the link is wrong."
 msgstr ""
 
-#: aguard-safe.php:1376
-#: aguard-safe.php:1389
+#: aguard-safe.php:1974
+#: aguard-safe.php:1987
 msgid "Sign in again"
 msgstr ""
 
-#: aguard-safe.php:1381
+#: aguard-safe.php:1979
 msgid "A new code has been sent."
 msgstr ""
 
-#: aguard-safe.php:1388
+#: aguard-safe.php:1986
 msgid "2FA: too many wrong codes – login stopped:"
 msgstr ""
 
-#: aguard-safe.php:1389
+#: aguard-safe.php:1987
 msgid "Too many wrong codes."
 msgstr ""
 
-#: aguard-safe.php:1396
+#: aguard-safe.php:1994
 msgid "Signed in. You can continue working."
 msgstr ""
 
-#: aguard-safe.php:1400
+#: aguard-safe.php:1998
 msgid "User not found."
 msgstr ""
 
-#: aguard-safe.php:1401
+#: aguard-safe.php:1999
 msgid "wrong code"
 msgstr ""
 
-#: aguard-safe.php:1401
+#: aguard-safe.php:1999
 msgid "Wrong code. Attempts left:"
 msgstr ""
 
-#: aguard-safe.php:1404
+#: aguard-safe.php:2002
 msgid "Confirm your login"
 msgstr ""
 
-#: aguard-safe.php:1409
+#: aguard-safe.php:2007
 msgid "A 6-digit code has been sent to"
 msgstr ""
 
-#: aguard-safe.php:1409
+#: aguard-safe.php:2007
 msgid ". Enter it here."
 msgstr ""
 
-#: aguard-safe.php:1410
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2008
+#: aguard-safe.php:2842
 msgid "Code from the e-mail"
 msgstr ""
 
-#: aguard-safe.php:1411
+#: aguard-safe.php:2009
 msgid "Remember this browser for 30 days"
 msgstr ""
 
-#: aguard-safe.php:1412
+#: aguard-safe.php:2010
 msgid "Confirm"
 msgstr ""
 
-#: aguard-safe.php:1414
+#: aguard-safe.php:2012
 msgid "Checking…"
 msgstr ""
 
-#: aguard-safe.php:1415
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2013
+#: aguard-safe.php:2842
 msgid "Send the code again"
 msgstr ""
 
-#: aguard-safe.php:1415
+#: aguard-safe.php:2013
 msgid "Back"
 msgstr ""
 
-#: aguard-safe.php:1500
-#: aguard-safe.php:1502
+#: aguard-safe.php:2098
+#: aguard-safe.php:2100
 msgid "Page not found"
 msgstr ""
 
-#: aguard-safe.php:1502
+#: aguard-safe.php:2100
 msgid "This page does not exist."
 msgstr ""
 
-#: aguard-safe.php:1502
+#: aguard-safe.php:2100
 msgid "Back to the home page"
 msgstr ""
 
-#: aguard-safe.php:1543
+#: aguard-safe.php:2141
 msgid "Invalid address: 3–40 characters, lowercase letters, digits and hyphens; words such as “login” and “admin” are not allowed."
 msgstr ""
 
-#: aguard-safe.php:1544
+#: aguard-safe.php:2142
 msgid "This address is already used on the site (a page or a post). Choose another one."
 msgstr ""
 
-#: aguard-safe.php:1545
+#: aguard-safe.php:2143
 msgid "The emergency switch is on ("
 msgstr ""
 
-#: aguard-safe.php:1545
+#: aguard-safe.php:2143
 msgid "): remove it first."
 msgstr ""
 
-#: aguard-safe.php:1554
+#: aguard-safe.php:2152
 msgid "Login address change CANCELLED – the self-test failed"
 msgstr ""
 
-#: aguard-safe.php:1555
+#: aguard-safe.php:2153
 msgid "The self-test failed and the setting was reverted. The site works as before."
 msgstr ""
 
-#: aguard-safe.php:1558
+#: aguard-safe.php:2156
 msgid "Login address:"
 msgstr ""
 
-#: aguard-safe.php:1558
+#: aguard-safe.php:2156
 msgid "the standard /wp-login.php restored"
 msgstr ""
 
-#: aguard-safe.php:1558
+#: aguard-safe.php:2156
 msgid "trial mode, new address"
 msgstr ""
 
-#: aguard-safe.php:1558
+#: aguard-safe.php:2156
 msgid "ONLY the new address"
 msgstr ""
 
-#: aguard-safe.php:1558
+#: aguard-safe.php:2156
 msgid "(wp-login.php shows 404)"
 msgstr ""
 
-#: aguard-safe.php:1559
+#: aguard-safe.php:2157
 msgid "The standard login address has been restored."
 msgstr ""
 
-#: aguard-safe.php:1559
+#: aguard-safe.php:2157
 msgid "Saved and tested. Login address:"
 msgstr ""
 
-#: aguard-safe.php:1559
+#: aguard-safe.php:2157
 msgid "(the old /wp-login.php still works for now)."
 msgstr ""
 
-#: aguard-safe.php:1559
+#: aguard-safe.php:2157
 msgid ". The old /wp-login.php no longer works – tell the address to everyone who signs in."
 msgstr ""
 
-#: aguard-safe.php:1559
+#: aguard-safe.php:2157
 msgid "The address has been sent to the notification e-mail."
 msgstr ""
 
-#: aguard-safe.php:1572
+#: aguard-safe.php:2170
 msgid "Too many unlock code requests (3 per 15 min)"
 msgstr ""
 
-#: aguard-safe.php:1576
+#: aguard-safe.php:2174
 msgid "AGuard Safe settings unlock code:"
 msgstr ""
 
-#: aguard-safe.php:1576
+#: aguard-safe.php:2174
 msgid "Valid for 10 minutes."
 msgstr ""
 
-#: aguard-safe.php:1576
+#: aguard-safe.php:2174
 msgid "Requested by:"
 msgstr ""
 
-#: aguard-safe.php:1576
+#: aguard-safe.php:2174
+#: aguard-safe.php:2175
 msgid "If this was not you, somebody with administrator permissions is trying to change the security settings. Change the passwords and turn LOCKDOWN on."
 msgstr ""
 
-#: aguard-safe.php:1577
+#: aguard-safe.php:2175
 msgid ": settings unlock code"
 msgstr ""
 
-#: aguard-safe.php:1578
+#: aguard-safe.php:2175
+msgid "Settings unlock code"
+msgstr ""
+
+#: aguard-safe.php:2175
+msgid "Enter it in AGuard Safe → Settings to change the security settings."
+msgstr ""
+
+#: aguard-safe.php:2175
+msgid "Requested by"
+msgstr ""
+
+#: aguard-safe.php:2176
 msgid "Settings unlock code requested"
 msgstr ""
 
-#: aguard-safe.php:1585
+#: aguard-safe.php:2183
 msgid "Too many wrong unlock codes – the code has been cancelled"
 msgstr ""
 
-#: aguard-safe.php:1588
+#: aguard-safe.php:2186
 msgid "Settings unlocked with a code"
 msgstr ""
 
-#: aguard-safe.php:1644
+#: aguard-safe.php:2222
+msgid "Is AGuard Safe useful to you?"
+msgstr ""
+
+#: aguard-safe.php:2222
+msgid "The plugin is made by one person. An honest review on WordPress.org, good or critical, helps other site owners decide and shows what to improve."
+msgstr ""
+
+#: aguard-safe.php:2223
+msgid "Write a review"
+msgstr ""
+
+#: aguard-safe.php:2223
+msgid "Later"
+msgstr ""
+
+#: aguard-safe.php:2223
+msgid "Do not show again"
+msgstr ""
+
+#: aguard-safe.php:2229
+#: aguard-safe.php:2678
+msgid "Open the file"
+msgstr ""
+
+#: aguard-safe.php:2229
+msgid "Open the check"
+msgstr ""
+
+#: aguard-safe.php:2305
 msgid "checking…"
 msgstr ""
 
-#: aguard-safe.php:1644
+#: aguard-safe.php:2305
 msgid "Refresh the overview"
 msgstr ""
 
-#: aguard-safe.php:1644
+#: aguard-safe.php:2305
+msgid "Checking… The result opens here when the check is done. Do not close the page."
+msgstr ""
+
+#: aguard-safe.php:2305
+msgid "Open"
+msgstr ""
+
+#: aguard-safe.php:2305
 msgid "The check was interrupted, you can try again."
 msgstr ""
 
-#: aguard-safe.php:1644
+#: aguard-safe.php:2305
 msgid "server error"
 msgstr ""
 
-#: aguard-safe.php:1644
+#: aguard-safe.php:2305
 msgid "s"
 msgstr ""
 
 #. translators: %d: number of seconds
-#: aguard-safe.php:1646
+#: aguard-safe.php:2307
 #, php-format
 msgid "Finished in %d s."
 msgstr ""
 
-#: aguard-safe.php:1672
+#: aguard-safe.php:2333
 msgid "You do not have permission."
 msgstr ""
 
-#: aguard-safe.php:1678
+#: aguard-safe.php:2339
 msgid "The security key is missing or has expired. Open the page from the menu again."
 msgstr ""
 
-#: aguard-safe.php:1684
-#: aguard-safe.php:1689
+#: aguard-safe.php:2345
+#: aguard-safe.php:2350
 msgid "This tool is turned off."
 msgstr ""
 
-#: aguard-safe.php:1690
+#: aguard-safe.php:2351
 msgid "File downloaded:"
 msgstr ""
 
-#: aguard-safe.php:1715
+#: aguard-safe.php:2376
 msgid "File:"
 msgstr ""
 
-#: aguard-safe.php:1716
+#: aguard-safe.php:2377
 msgid "Folder: /"
 msgstr ""
 
-#: aguard-safe.php:1720
+#: aguard-safe.php:2381
 msgid "Log:"
 msgstr ""
 
-#: aguard-safe.php:1721
-#: aguard-safe.php:1855
-#: aguard-safe.php:1987
+#: aguard-safe.php:2382
+#: aguard-safe.php:2605
+#: aguard-safe.php:2769
 msgid "Logs"
 msgstr ""
 
-#: aguard-safe.php:1724
-#: aguard-safe.php:1987
+#: aguard-safe.php:2385
+#: aguard-safe.php:2768
+#: aguard-safe.php:2910
 msgid "Checks"
 msgstr ""
 
-#: aguard-safe.php:1737
-msgid "Result of the last automatic check ("
-msgstr ""
-
-#: aguard-safe.php:1737
-msgid "). The buttons above run a check again – it takes up to a minute."
-msgstr ""
-
-#: aguard-safe.php:1740
-#: aguard-safe.php:1986
+#: aguard-safe.php:2401
+#: aguard-safe.php:2769
 msgid "Events"
 msgstr ""
 
-#: aguard-safe.php:1743
+#: aguard-safe.php:2404
 msgid "Administrator sessions"
 msgstr ""
 
-#: aguard-safe.php:1746
-#: aguard-safe.php:1986
+#: aguard-safe.php:2407
+msgid "Plugins: updates and known vulnerabilities"
+msgstr ""
+
+#: aguard-safe.php:2410
+#: aguard-safe.php:2767
+#: aguard-safe.php:2798
 msgid "Overview"
 msgstr ""
 
-#: aguard-safe.php:1752
+#: aguard-safe.php:2416
 msgid "Incident response"
 msgstr ""
 
-#: aguard-safe.php:1758
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
-#: aguard-safe.php:1987
-#: aguard-safe.php:2123
+#: aguard-safe.php:2422
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
+#: aguard-safe.php:3156
 msgid "Status"
 msgstr ""
 
-#: aguard-safe.php:1770
-#: aguard-safe.php:1855
-msgid "This tool is turned off. Turn it on in the Settings tab."
+#: aguard-safe.php:2434
+#: aguard-safe.php:2605
+msgid "This viewer is turned off. Turn it on in Settings → Tools."
 msgstr ""
 
-#: aguard-safe.php:1780
+#: aguard-safe.php:2444
 msgid "The unlock code has been sent to"
 msgstr ""
 
-#: aguard-safe.php:1780
+#: aguard-safe.php:2444
 msgid ". Valid for 10 minutes."
 msgstr ""
 
-#: aguard-safe.php:1780
+#: aguard-safe.php:2444
 msgid "Could not send the code."
 msgstr ""
 
-#: aguard-safe.php:1781
+#: aguard-safe.php:2445
 msgid "Settings are unlocked for 15 minutes."
 msgstr ""
 
-#: aguard-safe.php:1781
+#: aguard-safe.php:2445
 msgid "Wrong or expired code."
 msgstr ""
 
-#: aguard-safe.php:1782
+#: aguard-safe.php:2446
 msgid "Settings locked."
 msgstr ""
 
-#: aguard-safe.php:1785
+#: aguard-safe.php:2449
 msgid "All sessions of the user signed out:"
 msgstr ""
 
-#: aguard-safe.php:1785
+#: aguard-safe.php:2449
 msgid ": all devices signed out"
 msgstr ""
 
-#: aguard-safe.php:1785
+#: aguard-safe.php:2449
 msgid ", except this one"
 msgstr ""
 
-#: aguard-safe.php:1785
+#: aguard-safe.php:2449
 msgid ". Signing in again will require the password."
 msgstr ""
 
-#: aguard-safe.php:1788
+#: aguard-safe.php:2459
+msgid "Recommended protection turned on"
+msgstr ""
+
+#: aguard-safe.php:2461
+msgid "The vulnerability check is on, but the PHP block could not be written to the uploads folder. Try again in Settings."
+msgstr ""
+
+#: aguard-safe.php:2461
+msgid "Recommended protection is on. You can change each item in Settings."
+msgstr ""
+
+#: aguard-safe.php:2466
+msgid "All blocked addresses were unblocked"
+msgstr ""
+
+#: aguard-safe.php:2467
+msgid "All addresses are unblocked."
+msgstr ""
+
+#: aguard-safe.php:2475
+msgid "Plugin vulnerability check turned on"
+msgstr ""
+
+#: aguard-safe.php:2477
+msgid "The vulnerability check is on. The plugins have been checked."
+msgstr ""
+
+#: aguard-safe.php:2477
+msgid "The vulnerability check is on, but the first request failed:"
+msgstr ""
+
+#: aguard-safe.php:2481
+msgid "The vulnerability check can be turned off only when Settings are unlocked with the code from the e-mail."
+msgstr ""
+
+#: aguard-safe.php:2484
+msgid "Plugin vulnerability check turned off"
+msgstr ""
+
+#: aguard-safe.php:2485
+msgid "The vulnerability check is off. Nothing is sent to data.aguard.lt."
+msgstr ""
+
+#: aguard-safe.php:2491
+msgid "The vulnerability check is turned off."
+msgstr ""
+
+#: aguard-safe.php:2492
+msgid "The check could not reach data.aguard.lt:"
+msgstr ""
+
+#: aguard-safe.php:2493
+msgid "The plugins have been checked."
+msgstr ""
+
+#: aguard-safe.php:2496
 msgid "Check finished."
 msgstr ""
 
-#: aguard-safe.php:1791
+#: aguard-safe.php:2499
 msgid "Events can be removed only when Settings are unlocked."
 msgstr ""
 
-#: aguard-safe.php:1792
+#: aguard-safe.php:2500
 msgid "The keyword is too short."
 msgstr ""
 
-#: aguard-safe.php:1793
+#: aguard-safe.php:2501
 msgid "Events removed:"
 msgstr ""
 
-#: aguard-safe.php:1796
+#: aguard-safe.php:2504
 msgid "Settings are locked. Unlock them first with the code from the e-mail."
 msgstr ""
 
-#: aguard-safe.php:1797
+#: aguard-safe.php:2505
 msgid "The baseline can be updated only when Settings are unlocked."
 msgstr ""
 
-#: aguard-safe.php:1798
+#: aguard-safe.php:2506
 msgid "Restoring from quarantine is possible only when Settings are unlocked."
 msgstr ""
 
-#: aguard-safe.php:1811
+#: aguard-safe.php:2523
 msgid "PHP block in uploads:"
 msgstr ""
 
-#: aguard-safe.php:1813
+#: aguard-safe.php:2525
 msgid "Settings changed"
 msgstr ""
 
-#: aguard-safe.php:1814
+#: aguard-safe.php:2526
 msgid "Saved."
 msgstr ""
 
-#: aguard-safe.php:1817
+#: aguard-safe.php:2529
 msgid "Test notification"
 msgstr ""
 
-#: aguard-safe.php:1818
+#: aguard-safe.php:2530
 msgid "E-mail sent to"
 msgstr ""
 
-#: aguard-safe.php:1818
+#: aguard-safe.php:2530
 msgid "wp_mail() returned an error – check the mail settings."
 msgstr ""
 
-#: aguard-safe.php:1820
+#: aguard-safe.php:2532
 msgid "Baseline updated."
 msgstr ""
 
-#: aguard-safe.php:1821
+#: aguard-safe.php:2533
 msgid "PHP execution test in the uploads folder:"
 msgstr ""
 
-#: aguard-safe.php:1822
+#: aguard-safe.php:2534
 msgid "LOCKDOWN enabled:"
 msgstr ""
 
-#: aguard-safe.php:1823
+#: aguard-safe.php:2535
 msgid "LOCKDOWN disabled."
 msgstr ""
 
-#: aguard-safe.php:1824
-msgid "Quarantine is locked: unlock Settings first with the code from the e-mail (the Settings tab)."
+#: aguard-safe.php:2537
+msgid "Replacing files is locked: unlock Settings first with the code from the e-mail (Settings)."
 msgstr ""
 
-#: aguard-safe.php:1827
+#. translators: 1: file path, 2: what the original belongs to, e.g. "Elementor 3.5.0"
+#: aguard-safe.php:2542
+#, php-format
+msgid "%1$s is now the original from %2$s. The previous file is kept in Scan → Quarantine."
+msgstr ""
+
+#. translators: 1: file path, 2: what the original belongs to, e.g. "Elementor 3.5.0"
+#: aguard-safe.php:2542
+msgid "The site answered live after the change."
+msgstr ""
+
+#. translators: 1: file path, 2: what the original belongs to, e.g. "Elementor 3.5.0"
+#: aguard-safe.php:2542
+msgid "The plugin could not fully check the site by itself, so open it in a private window and look at it."
+msgstr ""
+
+#: aguard-safe.php:2548
+msgid "The allowlist is locked: unlock Settings with the code from the e-mail first."
+msgstr ""
+
+#: aguard-safe.php:2553
+msgid "File added to the allowlist:"
+msgstr ""
+
+#: aguard-safe.php:2554
+msgid "Added to the allowlist. The file will not be reported again."
+msgstr ""
+
+#: aguard-safe.php:2557
+msgid "Quarantine is locked: unlock Settings first with the code from the e-mail (Settings)."
+msgstr ""
+
+#: aguard-safe.php:2568
+msgid "Without this file the site stopped answering, and the file could not be put back automatically:"
+msgstr ""
+
+#: aguard-safe.php:2568
+msgid "Restore it now in Scan → Quarantine."
+msgstr ""
+
+#: aguard-safe.php:2570
+msgid "The file was put back."
+msgstr ""
+
+#: aguard-safe.php:2570
+msgid "Without it the site started answering with an error, so the move was undone. The site needs this file: replace it with a clean copy (reinstall the plugin or theme) instead of removing it."
+msgstr ""
+
+#: aguard-safe.php:2571
+msgid "Quarantine undone, the site needs the file:"
+msgstr ""
+
+#: aguard-safe.php:2574
+msgid "WordPress and the home page answered live after the move. The file can be restored here at any time."
+msgstr ""
+
+#: aguard-safe.php:2574
+msgid "WordPress with all plugins still loads. The home page could not be checked live (it came from a cache or did not answer), so open the site in a private window and look at it. The file can be restored here at any time."
+msgstr ""
+
+#: aguard-safe.php:2574
+msgid "The plugin could not check the site by itself, so open the site in a private window and make sure it works. The file can be restored here at any time."
+msgstr ""
+
+#: aguard-safe.php:2575
 msgid "Moved to quarantine:"
 msgstr ""
 
-#: aguard-safe.php:1832
+#: aguard-safe.php:2582
 msgid "Restored:"
 msgstr ""
 
-#: aguard-safe.php:1835
+#: aguard-safe.php:2585
 msgid "Changing the login address is locked: unlock Settings first with the code from the e-mail."
 msgstr ""
 
-#: aguard-safe.php:1837
+#: aguard-safe.php:2587
 msgid "Test:"
 msgstr ""
 
-#: aguard-safe.php:1840
+#: aguard-safe.php:2590
 msgid "2FA: all remembered browsers forgotten"
 msgstr ""
 
-#: aguard-safe.php:1840
+#: aguard-safe.php:2590
 msgid "All remembered browsers have been forgotten – next time every administrator will enter a code."
 msgstr ""
 
-#: aguard-safe.php:1843
+#: aguard-safe.php:2593
 msgid "The confirmation can be turned off only when Settings are unlocked with the code from the e-mail (above)."
 msgstr ""
 
-#: aguard-safe.php:1846
-#: aguard-safe.php:2049
+#: aguard-safe.php:2596
+#: aguard-safe.php:2879
 msgid "E-mail confirmation (2FA)"
 msgstr ""
 
-#: aguard-safe.php:1846
+#: aguard-safe.php:2596
 msgid "ENABLED"
 msgstr ""
 
-#: aguard-safe.php:1846
+#: aguard-safe.php:2596
 msgid "DISABLED"
 msgstr ""
 
-#: aguard-safe.php:1846
+#: aguard-safe.php:2596
 msgid "for administrators"
 msgstr ""
 
-#: aguard-safe.php:1848
+#: aguard-safe.php:2598
 msgid "A test e-mail has been sent to"
 msgstr ""
 
-#: aguard-safe.php:1848
+#: aguard-safe.php:2598
 msgid "– if it does not arrive within a few minutes, turn the confirmation off."
 msgstr ""
 
-#: aguard-safe.php:1848
+#: aguard-safe.php:2598
 msgid "WARNING: the test e-mail could not be sent – check the site's mail before relying on this."
 msgstr ""
 
-#: aguard-safe.php:1849
+#: aguard-safe.php:2599
 msgid "E-mail confirmation"
 msgstr ""
 
-#: aguard-safe.php:1849
+#: aguard-safe.php:2599
 msgid "enabled: from the next login administrators will enter a code from the e-mail after the password."
 msgstr ""
 
-#: aguard-safe.php:1849
+#: aguard-safe.php:2599
 msgid "disabled."
 msgstr ""
 
-#: aguard-safe.php:1852
+#: aguard-safe.php:2602
 msgid "Login address self-test:"
 msgstr ""
 
-#: aguard-safe.php:1852
+#: aguard-safe.php:2602
 msgid "everything works."
 msgstr ""
 
-#: aguard-safe.php:1852
+#: aguard-safe.php:2602
 msgid "problems found."
 msgstr ""
 
-#: aguard-safe.php:1855
-#: aguard-safe.php:1987
+#: aguard-safe.php:2605
+#: aguard-safe.php:2768
 msgid "Files"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
 msgid "Plugin"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "PHP mode"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Server"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Operating system"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Site folder"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Folder the tools may read"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "System user"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Database"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Table prefix"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1999
-#: aguard-safe.php:2096
+#: aguard-safe.php:2656
+#: aguard-safe.php:2815
+#: aguard-safe.php:3054
 msgid "Name"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Address"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Constants (wp-config.php)"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "PHP settings"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Non-core files loaded early"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Users in total"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Administrators"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "File baseline"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Files in the baseline"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Next automatic check"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2036
+#: aguard-safe.php:2656
+#: aguard-safe.php:2875
 msgid "Login address"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Mode"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Link"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Turned off by the emergency file"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Saved mode"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Files checked"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
 msgid "Modified"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Missing"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
 msgid "Unknown"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Found"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
 msgid "Checked"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1972
-#: aguard-safe.php:1978
-#: aguard-safe.php:2003
-#: aguard-safe.php:2096
-#: aguard-safe.php:2137
+#: aguard-safe.php:2656
+#: aguard-safe.php:2751
+#: aguard-safe.php:2757
+#: aguard-safe.php:2819
+#: aguard-safe.php:2987
+#: aguard-safe.php:3054
+#: aguard-safe.php:3170
 msgid "Changed"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Added"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Removed"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1975
+#: aguard-safe.php:2656
+#: aguard-safe.php:2754
 msgid "Version"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Allowlist"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Count"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Duration, ms"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Lines"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2070
-#: aguard-safe.php:2123
+#: aguard-safe.php:2656
+#: aguard-safe.php:3156
 msgid "Time"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Visitor"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "The crawler is shown different content"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Page title"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "HTTP code"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1972
-#: aguard-safe.php:1978
+#: aguard-safe.php:2656
+#: aguard-safe.php:2751
+#: aguard-safe.php:2757
 msgid "Size, B"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Content type"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Error"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Table"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Active"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "First run"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Present"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Missing (not counting those removed by WP)"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Blocked"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Executed"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Folder"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Findings"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1972
-#: aguard-safe.php:1978
-#: aguard-safe.php:2003
-#: aguard-safe.php:2137
+#: aguard-safe.php:2656
+#: aguard-safe.php:2751
+#: aguard-safe.php:2757
+#: aguard-safe.php:2819
+#: aguard-safe.php:3170
 msgid "File"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1978
+#: aguard-safe.php:2656
+#: aguard-safe.php:2757
 msgid "Signs"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2070
-#: aguard-safe.php:2123
+#: aguard-safe.php:2656
+#: aguard-safe.php:3156
 msgid "Who"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Now"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Baseline"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
+msgid "PHP block in the upload folders"
+msgstr ""
+
+#: aguard-safe.php:2656
 msgid "Remote management tools"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2084
+#: aguard-safe.php:2656
+#: aguard-safe.php:2965
 msgid "System files"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "PHP files in the upload folders"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2084
+#: aguard-safe.php:2656
+#: aguard-safe.php:2966
 msgid "WordPress core"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Recently changed files"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Content for the crawler and for a visitor"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Check"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Query"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Note"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1999
+#: aguard-safe.php:2656
+#: aguard-safe.php:2815
 msgid "E-mail"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2112
+#: aguard-safe.php:2656
+#: aguard-safe.php:3079
 msgid "Signed in"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2112
+#: aguard-safe.php:2656
+#: aguard-safe.php:3080
 msgid "Valid until"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Browser"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2112
+#: aguard-safe.php:2656
 msgid "Device"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Entries"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Roles"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:1999
+#: aguard-safe.php:2656
+#: aguard-safe.php:2815
 msgid "Registered"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2003
-#: aguard-safe.php:2096
+#: aguard-safe.php:2656
+#: aguard-safe.php:2819
+#: aguard-safe.php:3054
 msgid "Permissions"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "PHP files"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Created"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Restored"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "Quarantined file"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2070
+#: aguard-safe.php:2656
 msgid "Type"
 msgstr ""
 
-#: aguard-safe.php:1906
+#: aguard-safe.php:2656
 msgid "E-mail sent"
 msgstr ""
 
-#: aguard-safe.php:1906
-#: aguard-safe.php:2070
+#: aguard-safe.php:2656
 msgid "Data"
 msgstr ""
 
-#: aguard-safe.php:1910
-msgid "yes"
+#: aguard-safe.php:2678
+#: aguard-safe.php:2990
+#: aguard-safe.php:3031
+msgid "Show what was changed"
 msgstr ""
 
-#: aguard-safe.php:1910
-msgid "no"
+#: aguard-safe.php:2683
+msgid "Unknown files"
 msgstr ""
 
-#: aguard-safe.php:1920
-#: aguard-safe.php:1932
-#: aguard-safe.php:2007
+#: aguard-safe.php:2683
+msgid "They are not part of this WordPress version. Open a file to read its code; there you can move it to quarantine or, if you know the file, add it to the allowlist."
+msgstr ""
+
+#: aguard-safe.php:2684
+msgid "Modified files"
+msgstr ""
+
+#: aguard-safe.php:2684
+msgid "They differ from the official WordPress files. Open a file to see what was changed and to replace it with the original."
+msgstr ""
+
+#: aguard-safe.php:2685
+msgid "Missing files"
+msgstr ""
+
+#: aguard-safe.php:2685
+msgid "WordPress expects these files. To put them back, reinstall the same version:"
+msgstr ""
+
+#: aguard-safe.php:2685
+msgid "Dashboard → Updates → Re-install"
+msgstr ""
+
+#: aguard-safe.php:2693
+#: aguard-safe.php:2705
+#: aguard-safe.php:2823
 msgid "none"
 msgstr ""
 
-#: aguard-safe.php:1940
+#: aguard-safe.php:2710
+msgid "Open the file and show the marked lines"
+msgstr ""
+
+#: aguard-safe.php:2713
 msgid "… more"
 msgstr ""
 
-#: aguard-safe.php:1944
+#: aguard-safe.php:2717
 msgid "Technical details (JSON)"
 msgstr ""
 
-#: aguard-safe.php:1950
-msgid "No result yet – press one of the buttons above."
+#: aguard-safe.php:2723
+msgid "No check has run yet"
 msgstr ""
 
-#: aguard-safe.php:1956
+#: aguard-safe.php:2723
+msgid "The first automatic check starts within an hour. You can run it now."
+msgstr ""
+
+#: aguard-safe.php:2729
 msgid "Content for Google's crawler and for a visitor"
 msgstr ""
 
-#: aguard-safe.php:1956
+#: aguard-safe.php:2729
 msgid "PHP block rules"
 msgstr ""
 
-#: aguard-safe.php:1957
-msgid "What was checked"
+#: aguard-safe.php:2737
+msgid "Run this check again"
 msgstr ""
 
-#: aguard-safe.php:1957
-msgid "Result"
-msgstr ""
-
-#: aguard-safe.php:1957
-msgid "Details"
-msgstr ""
-
-#: aguard-safe.php:1961
-#: aguard-safe.php:2079
-msgid "show"
-msgstr ""
-
-#: aguard-safe.php:1963
+#: aguard-safe.php:2739
 msgid "Check time:"
 msgstr ""
 
-#: aguard-safe.php:1963
+#: aguard-safe.php:2739
 msgid "· last full check:"
 msgstr ""
 
-#: aguard-safe.php:1972
+#. translators: 1: number of checks that need attention, 2: number of all checks
+#: aguard-safe.php:2741
+#, php-format
+msgid "%1$d of %2$d checks need attention"
+msgstr ""
+
+#. translators: 1: number of checks that need attention, 2: number of all checks
+#: aguard-safe.php:2741
+msgid "All checks passed"
+msgstr ""
+
+#: aguard-safe.php:2751
 msgid "Files changed in the selected period:"
 msgstr ""
 
-#: aguard-safe.php:1975
+#: aguard-safe.php:2754
 msgid "Plugins whose files differ from wordpress.org:"
 msgstr ""
 
-#: aguard-safe.php:1975
+#: aguard-safe.php:2754
 msgid "All checked plugins match the wordpress.org copies"
 msgstr ""
 
-#: aguard-safe.php:1978
+#: aguard-safe.php:2757
 msgid "Files checked:"
 msgstr ""
 
-#: aguard-safe.php:1978
+#: aguard-safe.php:2757
 msgid ") · findings:"
 msgstr ""
 
-#: aguard-safe.php:1978
-msgid "Findings are not a verdict but signs (encoded code, eval, remote requests). The higher the score, the more worthwhile it is to look at the file."
+#: aguard-safe.php:2757
+msgid "Findings are not a verdict but signs (encoded code, eval, remote requests). The higher the score, the more worthwhile it is to look at the file. Click a file name to open it with the found lines marked."
 msgstr ""
 
-#: aguard-safe.php:1987
+#: aguard-safe.php:2768
+msgid "Scan"
+msgstr ""
+
+#: aguard-safe.php:2769
+msgid "Activity"
+msgstr ""
+
+#: aguard-safe.php:2769
+#: aguard-safe.php:2909
 msgid "Logins"
 msgstr ""
 
-#: aguard-safe.php:1987
-msgid "Response"
+#: aguard-safe.php:2771
+#: aguard-safe.php:2845
+msgid "Site information"
 msgstr ""
 
-#: aguard-safe.php:1998
-msgid "Settings have moved to the tab"
+#: aguard-safe.php:2772
+msgid "Emergency"
 msgstr ""
 
-#: aguard-safe.php:1999
+#: aguard-safe.php:2777
+msgid "Results of every check"
+msgstr ""
+
+#: aguard-safe.php:2777
+#: aguard-safe.php:2804
+msgid "Read-only file viewer"
+msgstr ""
+
+#: aguard-safe.php:2777
+#: aguard-safe.php:2803
+msgid "Files moved out of reach of the site"
+msgstr ""
+
+#: aguard-safe.php:2778
+msgid "Everything that happened on the site"
+msgstr ""
+
+#: aguard-safe.php:2778
+msgid "Who is signed in right now"
+msgstr ""
+
+#: aguard-safe.php:2778
+#: aguard-safe.php:2805
+msgid "Read-only log viewer"
+msgstr ""
+
+#: aguard-safe.php:2779
+msgid "Notifications, login, files, tools"
+msgstr ""
+
+#: aguard-safe.php:2779
+msgid "WordPress, PHP, server and plugin versions"
+msgstr ""
+
+#: aguard-safe.php:2793
+msgid "Off. Turn it on in Settings"
+msgstr ""
+
+#: aguard-safe.php:2802
+msgid "What this site runs on"
+msgstr ""
+
+#: aguard-safe.php:2802
+msgid "WordPress, PHP, server and plugin versions."
+msgstr ""
+
+#: aguard-safe.php:2803
+msgid "A file in quarantine no longer runs. It can be restored."
+msgstr ""
+
+#: aguard-safe.php:2804
+#: aguard-safe.php:2805
+msgid "Nothing can be changed here."
+msgstr ""
+
+#: aguard-safe.php:2806
+msgid "If the site has been broken into"
+msgstr ""
+
+#: aguard-safe.php:2806
+msgid "Actions for an emergency."
+msgstr ""
+
+#: aguard-safe.php:2809
+msgid "Result of one check, run just now"
+msgstr ""
+
+#: aguard-safe.php:2809
+msgid "The other checks were not run again."
+msgstr ""
+
+#: aguard-safe.php:2809
+msgid "All checks"
+msgstr ""
+
+#: aguard-safe.php:2815
 msgid "Administrators ("
 msgstr ""
 
-#: aguard-safe.php:2002
+#: aguard-safe.php:2818
 msgid "Must-use plugins (mu-plugins)"
 msgstr ""
 
-#: aguard-safe.php:2002
+#: aguard-safe.php:2818
 msgid "wp-content files (drop-ins)"
 msgstr ""
 
-#: aguard-safe.php:2003
-#: aguard-safe.php:2096
-#: aguard-safe.php:2123
-#: aguard-safe.php:2137
+#: aguard-safe.php:2819
+#: aguard-safe.php:2987
+#: aguard-safe.php:3054
+#: aguard-safe.php:3156
+#: aguard-safe.php:3170
 msgid "Size"
 msgstr ""
 
-#: aguard-safe.php:2007
+#: aguard-safe.php:2823
 msgid "Non-core PHP files loaded early"
 msgstr ""
 
-#: aguard-safe.php:2009
+#: aguard-safe.php:2825
 msgid "Environment"
 msgstr ""
 
-#: aguard-safe.php:2017
+#: aguard-safe.php:2838
 msgid "Unlocked"
 msgstr ""
 
-#: aguard-safe.php:2017
+#: aguard-safe.php:2838
 msgid "15 min. Changes are reported by e-mail to the current address."
 msgstr ""
 
-#: aguard-safe.php:2018
-msgid "Locked."
-msgstr ""
-
-#: aguard-safe.php:2018
-msgid "Security settings (notification address, allowlist, protection switches) can be changed only with a code that is sent to the current notification address"
-msgstr ""
-
-#: aguard-safe.php:2018
-msgid ". This way an intruder, even with administrator access, cannot redirect the notifications."
-msgstr ""
-
-#: aguard-safe.php:2020
-msgid "Send the unlock code"
-msgstr ""
-
-#: aguard-safe.php:2020
-msgid "code from the e-mail"
-msgstr ""
-
-#: aguard-safe.php:2020
-msgid "Unlock"
-msgstr ""
-
-#: aguard-safe.php:2021
+#: aguard-safe.php:2838
 msgid "Lock now"
 msgstr ""
 
-#: aguard-safe.php:2025
-msgid "Notification e-mail"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2840
+msgid "Settings are locked"
 msgstr ""
 
-#: aguard-safe.php:2026
-msgid "Client addresses (comma separated): they receive incidents only, no more than 5 e-mails a day; unlock codes are not sent to them"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2840
+#, php-format
+msgid "To change them, first get a one-time code by e-mail. It goes to %s"
 msgstr ""
 
-#: aguard-safe.php:2027
-msgid "Send notifications"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2840
+msgid "Send me the code"
 msgstr ""
 
-#: aguard-safe.php:2027
-msgid "Report administrator logins"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2842
+msgid "Enter the code from the e-mail"
 msgstr ""
 
-#: aguard-safe.php:2027
-msgid "Check the content shown to Googlebot"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2842
+#, php-format
+msgid "The 6-digit code was sent to %s. It is valid for 10 minutes."
 msgstr ""
 
-#: aguard-safe.php:2028
-msgid "Failed login threshold"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2842
+msgid "6-digit code"
 msgstr ""
 
-#: aguard-safe.php:2029
-msgid "Block PHP execution in the uploads folder"
+#. translators: %s: masked e-mail address
+#: aguard-safe.php:2842
+msgid "Unlock"
 msgstr ""
 
-#: aguard-safe.php:2030
-msgid "Optional tools"
+#: aguard-safe.php:2844
+msgid "No access to this mailbox?"
 msgstr ""
 
-#: aguard-safe.php:2030
-msgid "Read-only viewers for investigating an incident. They are off by default; when turned on, each one appears as a tab at the top."
+#: aguard-safe.php:2844
+msgid "Then the code cannot reach you, and that is on purpose: a stranger with an administrator session must not be able to change the address. The owner of the site can still get in through the files: add the line"
 msgstr ""
 
-#: aguard-safe.php:2031
-msgid "Enable the “Files” tab (file viewer, read-only)"
+#: aguard-safe.php:2844
+msgid "to wp-config.php (through the hosting file manager or FTP). Settings then open without a code. Change the notification e-mail, save, and remove the line again."
 msgstr ""
 
-#: aguard-safe.php:2031
-msgid "Enable the “Logs” tab (log viewer)"
+#: aguard-safe.php:2845
+#: aguard-safe.php:2849
+msgid "Notifications"
 msgstr ""
 
-#: aguard-safe.php:2032
-msgid "Known extra files (allowlist, one per line):"
+#: aguard-safe.php:2845
+#: aguard-safe.php:2858
+msgid "Password guessing"
 msgstr ""
 
-#: aguard-safe.php:2033
-#: aguard-safe.php:2054
+#: aguard-safe.php:2845
+#: aguard-safe.php:2883
+msgid "File protection"
+msgstr ""
+
+#: aguard-safe.php:2845
+#: aguard-safe.php:2889
+msgid "Tools"
+msgstr ""
+
+#: aguard-safe.php:2847
+#: aguard-safe.php:2881
 msgid "Save"
 msgstr ""
 
-#: aguard-safe.php:2033
+#: aguard-safe.php:2849
+msgid "Where alerts go and what is reported."
+msgstr ""
+
+#: aguard-safe.php:2850
+msgid "Notification e-mail"
+msgstr ""
+
+#: aguard-safe.php:2850
+msgid "All alerts and unlock codes"
+msgstr ""
+
+#: aguard-safe.php:2851
+msgid "Extra recipients"
+msgstr ""
+
+#: aguard-safe.php:2851
+msgid "Comma separated. Incidents only, no more than 5 e-mails a day; unlock codes are not sent to them"
+msgstr ""
+
+#: aguard-safe.php:2852
+msgid "Send notifications"
+msgstr ""
+
+#: aguard-safe.php:2853
+msgid "Report administrator logins"
+msgstr ""
+
+#: aguard-safe.php:2853
+msgid "An e-mail when an administrator signs in from a new IP"
+msgstr ""
+
+#: aguard-safe.php:2854
+msgid "Failed login threshold"
+msgstr ""
+
+#: aguard-safe.php:2854
+msgid "Failed attempts an hour before an alert is sent"
+msgstr ""
+
+#: aguard-safe.php:2855
+msgid "Changes are reported to the notification e-mail."
+msgstr ""
+
+#: aguard-safe.php:2855
 msgid "Test e-mail"
 msgstr ""
 
-#: aguard-safe.php:2033
-msgid "Update the baseline"
+#: aguard-safe.php:2858
+msgid "What happens when somebody tries passwords one after another."
 msgstr ""
 
-#: aguard-safe.php:2033
-msgid "Test the PHP block"
+#: aguard-safe.php:2859
+msgid "Block the address after failed attempts"
 msgstr ""
 
-#: aguard-safe.php:2037
-msgid "The standard address"
-msgstr ""
-
-#: aguard-safe.php:2037
-msgid "is guessed by bots all the time (failed attempts today:"
-msgstr ""
-
-#: aguard-safe.php:2037
-msgid "). When the address is changed,"
-msgstr ""
-
-#: aguard-safe.php:2037
-msgid "nothing changes for customers"
-msgstr ""
-
-#: aguard-safe.php:2037
-msgid ": their login, registration at checkout and password reset happen on the shop pages ("
-msgstr ""
-
-#: aguard-safe.php:2037
-msgid ", checkout), which do not use wp-login.php. The new address is needed only by administrators and staff – tell it to them. Every change is reported to the notification e-mail."
-msgstr ""
-
-#: aguard-safe.php:2038
-#: aguard-safe.php:2051
-msgid "Now:"
-msgstr ""
-
-#: aguard-safe.php:2038
-msgid "standard address"
-msgstr ""
-
-#: aguard-safe.php:2038
-msgid "trial mode – both addresses work"
-msgstr ""
-
-#: aguard-safe.php:2038
-msgid "new address only"
-msgstr ""
-
-#: aguard-safe.php:2038
-#: aguard-safe.php:2051
+#: aguard-safe.php:2859
+#: aguard-safe.php:2875
+#: aguard-safe.php:2879
 msgid "turned off by the emergency switch ("
 msgstr ""
 
-#: aguard-safe.php:2041
-msgid "Off – only"
+#: aguard-safe.php:2859
+msgid "The address is blocked for 30 minutes and sees a notice instead of the sign-in form. An address an administrator signed in from during the last 30 days is never blocked."
 msgstr ""
 
-#: aguard-safe.php:2042
-msgid "Trial –"
+#: aguard-safe.php:2860
+msgid "Failed attempts before the block"
 msgstr ""
 
-#: aguard-safe.php:2042
-msgid "both"
+#: aguard-safe.php:2860
+msgid "From one address within 15 minutes"
 msgstr ""
 
-#: aguard-safe.php:2042
-msgid "addresses work, links on the site already point to the new one (safe to try, nobody gets locked out)"
+#. translators: %d: number of addresses
+#: aguard-safe.php:2862
+msgid "Blocked right now"
 msgstr ""
 
-#: aguard-safe.php:2043
-msgid "New address only –"
+#. translators: %d: number of addresses
+#: aguard-safe.php:2862
+msgid "nobody"
 msgstr ""
 
-#: aguard-safe.php:2043
-msgid "and"
+#. translators: %d: number of addresses
+#: aguard-safe.php:2862
+msgid "Unblock all"
 msgstr ""
 
-#: aguard-safe.php:2043
-msgid "show “404” to visitors who are not signed in (bots no longer see the login form)"
+#: aguard-safe.php:2863
+msgid "Check administrator passwords against leaked lists"
 msgstr ""
 
-#: aguard-safe.php:2044
-msgid "New address:"
+#: aguard-safe.php:2863
+msgid "After a correct sign-in. The password itself is never sent anywhere."
 msgstr ""
 
-#: aguard-safe.php:2044
-msgid "e.g. team-entrance"
+#: aguard-safe.php:2864
+#: aguard-safe.php:2877
+#: aguard-safe.php:2880
+msgid "How it works"
 msgstr ""
 
-#: aguard-safe.php:2044
-msgid "lowercase letters, digits, hyphen; not “login” or “admin”"
+#: aguard-safe.php:2864
+msgid "Leaked passwords: the plugin sends only the first 5 characters of the SHA-1 hash of the password to data.aguard.lt, receives all leaked hashes that start with them and compares on your server. The list is Pwned Passwords by Have I Been Pwned."
 msgstr ""
 
-#: aguard-safe.php:2045
-msgid "Save and test"
+#: aguard-safe.php:2864
+msgid "Emergency switch without signing in: the line"
 msgstr ""
 
-#: aguard-safe.php:2046
-msgid "After saving, the plugin opens the new address, the home page and the account page by itself; if any of them does not answer “200”, the setting is reverted automatically. The new address is sent to the notification e-mail. Emergency switch without signing in: the line"
-msgstr ""
-
-#: aguard-safe.php:2046
-#: aguard-safe.php:2055
+#: aguard-safe.php:2864
+#: aguard-safe.php:2877
+#: aguard-safe.php:2880
 msgid "in wp-config.php or an empty file"
 msgstr ""
 
-#: aguard-safe.php:2046
-#: aguard-safe.php:2055
+#: aguard-safe.php:2864
+#: aguard-safe.php:2877
+#: aguard-safe.php:2880
 msgid "in the wp-content folder (it survives plugin updates)."
 msgstr ""
 
-#: aguard-safe.php:2050
+#: aguard-safe.php:2870
+msgid "The standard address"
+msgstr ""
+
+#: aguard-safe.php:2870
+msgid "is guessed by bots all the time (failed attempts today:"
+msgstr ""
+
+#: aguard-safe.php:2872
+msgid "Standard"
+msgstr ""
+
+#: aguard-safe.php:2872
+msgid "Trial: both"
+msgstr ""
+
+#: aguard-safe.php:2872
+msgid "New only"
+msgstr ""
+
+#: aguard-safe.php:2874
+msgid "standard address"
+msgstr ""
+
+#: aguard-safe.php:2874
+msgid "trial mode – both addresses work"
+msgstr ""
+
+#: aguard-safe.php:2874
+msgid "new address only"
+msgstr ""
+
+#: aguard-safe.php:2875
+msgid "Now:"
+msgstr ""
+
+#: aguard-safe.php:2876
+msgid "New address:"
+msgstr ""
+
+#: aguard-safe.php:2876
+msgid "lowercase letters, digits, hyphen; not “login” or “admin”"
+msgstr ""
+
+#: aguard-safe.php:2876
+msgid "e.g. team-entrance"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "Trial –"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "both"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "addresses work, links on the site already point to the new one (safe to try, nobody gets locked out)"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "New address only –"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "and"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "show “404” to visitors who are not signed in (bots no longer see the login form)"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "When the address is changed,"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "nothing changes for customers"
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid ": their login, registration at checkout and password reset happen on the shop pages ("
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid ", checkout), which do not use wp-login.php. The new address is needed only by administrators and staff – tell it to them. Every change is reported to the notification e-mail."
+msgstr ""
+
+#: aguard-safe.php:2877
+msgid "After saving, the plugin opens the new address, the home page and the account page by itself; if any of them does not answer “200”, the setting is reverted automatically. The new address is sent to the notification e-mail. Emergency switch without signing in: the line"
+msgstr ""
+
+#: aguard-safe.php:2878
+msgid "Save and test"
+msgstr ""
+
+#: aguard-safe.php:2879
 msgid "After the correct password, a 6-digit code is sent to the administrator's e-mail; signing in is not possible without it. The browser can be remembered for 30 days, so the code is not asked every day. Customers and non-administrators are not affected."
 msgstr ""
 
-#: aguard-safe.php:2053
-msgid "Enabled for administrators"
-msgstr ""
-
-#: aguard-safe.php:2054
-msgid "Forget all remembered browsers? Next time every administrator will enter a code."
-msgstr ""
-
-#: aguard-safe.php:2054
-msgid "Forget remembered browsers"
-msgstr ""
-
-#: aguard-safe.php:2055
+#: aguard-safe.php:2880
 msgid "If the e-mail cannot be sent (mail error), an administrator from a usual IP (used to sign in during the last 30 days) is let in without a code and this is reported; from an unknown IP – not. The confirmation can be turned off only when Settings are unlocked with a code. Emergency switch without signing in: the line"
 msgstr ""
 
-#: aguard-safe.php:2057
+#: aguard-safe.php:2881
+msgid "Forget all remembered browsers? Next time every administrator will enter a code."
+msgstr ""
+
+#: aguard-safe.php:2881
+msgid "Forget remembered browsers"
+msgstr ""
+
+#: aguard-safe.php:2883
+msgid "What the scanner checks and blocks."
+msgstr ""
+
+#: aguard-safe.php:2884
+msgid "Closes the most common malware route"
+msgstr ""
+
+#: aguard-safe.php:2884
+msgid "Test the PHP block"
+msgstr ""
+
+#: aguard-safe.php:2885
+msgid "Check the content shown to Googlebot"
+msgstr ""
+
+#: aguard-safe.php:2885
+msgid "Finds hidden spam shown only to search engines"
+msgstr ""
+
+#: aguard-safe.php:2886
+msgid "Known extra files (allowlist, one per line):"
+msgstr ""
+
+#: aguard-safe.php:2886
+msgid "Files the scanner should not report"
+msgstr ""
+
+#: aguard-safe.php:2887
+msgid "Update the baseline"
+msgstr ""
+
+#: aguard-safe.php:2889
+msgid "Read-only viewers and the notice on the site."
+msgstr ""
+
+#: aguard-safe.php:2890
+msgid "File viewer"
+msgstr ""
+
+#: aguard-safe.php:2890
+msgid "Scan → Files. Read-only"
+msgstr ""
+
+#: aguard-safe.php:2891
+msgid "Log viewer"
+msgstr ""
+
+#: aguard-safe.php:2891
+msgid "Activity → Logs. Read-only"
+msgstr ""
+
+#: aguard-safe.php:2892
+msgid "Notice on the site"
+msgstr ""
+
+#: aguard-safe.php:2892
+msgid "One small line with a link to aguard.lt is added at the bottom of every public page. Off by default; nothing is shown until you tick the box."
+msgstr ""
+
+#: aguard-safe.php:2894
 msgid "Remove events that contain the text:"
 msgstr ""
 
-#: aguard-safe.php:2057
-msgid "Remove"
-msgstr ""
-
-#: aguard-safe.php:2057
+#: aguard-safe.php:2894
 msgid "(for example, your own file flagged by mistake; the action is logged and reported by e-mail)"
 msgstr ""
 
-#: aguard-safe.php:2061
+#: aguard-safe.php:2894
+msgid "Remove"
+msgstr ""
+
+#: aguard-safe.php:2899
 msgid "This tab is for an emergency, when you suspect that someone else controls the site. Normally there is nothing to do here."
 msgstr ""
 
-#: aguard-safe.php:2062
+#: aguard-safe.php:2900
 msgid "LOCKDOWN IS ON"
 msgstr ""
 
-#: aguard-safe.php:2062
+#: aguard-safe.php:2900
 msgid "since"
 msgstr ""
 
-#: aguard-safe.php:2062
+#: aguard-safe.php:2900
 msgid "). Installing and changing plugins/themes and registration are disabled."
 msgstr ""
 
-#: aguard-safe.php:2062
+#: aguard-safe.php:2900
 msgid "Turn LOCKDOWN off"
 msgstr ""
 
-#: aguard-safe.php:2063
+#: aguard-safe.php:2901
 msgid "in one click: signs out all other administrators, sends them password reset links, blocks installing and changing plugins and themes, turns registration off. The site keeps working for visitors. You can turn it off here at any time."
 msgstr ""
 
-#: aguard-safe.php:2063
+#: aguard-safe.php:2901
 msgid "Turn LOCKDOWN on? All other administrators will be signed out."
 msgstr ""
 
-#: aguard-safe.php:2063
+#: aguard-safe.php:2901
 msgid "Turn LOCKDOWN on"
 msgstr ""
 
-#: aguard-safe.php:2064
+#: aguard-safe.php:2902
 msgid "Quarantine:"
 msgstr ""
 
-#: aguard-safe.php:2064
+#: aguard-safe.php:2902
 msgid "files ·"
 msgstr ""
 
-#: aguard-safe.php:2064
+#: aguard-safe.php:2902
 msgid "view"
 msgstr ""
 
-#: aguard-safe.php:2064
-msgid ". A suspicious file can be moved to quarantine from the “Files” tab (after opening the file)."
+#: aguard-safe.php:2902
+msgid ". A suspicious file can be moved to quarantine from Scan → Files, after opening the file."
 msgstr ""
 
-#: aguard-safe.php:2064
-msgid ". A suspicious file can be moved to quarantine from the “Files” tab. The tab is off by default: turn it on in Settings, under “Optional tools”."
+#: aguard-safe.php:2902
+msgid ". A suspicious file can be moved to quarantine from Scan → Files. The file viewer is turned off: turn it on in Settings → Tools."
 msgstr ""
 
-#: aguard-safe.php:2065
+#: aguard-safe.php:2903
 msgid "Remote management / in-browser file editing tools:"
 msgstr ""
 
-#: aguard-safe.php:2069
-msgid "Showing"
+#: aguard-safe.php:2911
+msgid "Users"
 msgstr ""
 
-#: aguard-safe.php:2069
-msgid "of"
+#: aguard-safe.php:2913
+msgid "Themes"
 msgstr ""
 
-#: aguard-safe.php:2069
+#: aguard-safe.php:2915
+msgid "Vulnerabilities"
+msgstr ""
+
+#: aguard-safe.php:2917
+msgid "Viewers"
+msgstr ""
+
+#: aguard-safe.php:2918
+msgid "Tests"
+msgstr ""
+
+#: aguard-safe.php:2919
+msgid "Errors"
+msgstr ""
+
+#: aguard-safe.php:2921
+msgid "Incidents"
+msgstr ""
+
+#. translators: %d: number of events
+#: aguard-safe.php:2926
+#, php-format
+msgid "%d event in the last 24 hours"
+msgid_plural "%d events in the last 24 hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of events
+#: aguard-safe.php:2926
+msgid "E-mails sent about them:"
+msgstr ""
+
+#. translators: %d: number of events
+#: aguard-safe.php:2926
+msgid "events in the log:"
+msgstr ""
+
+#: aguard-safe.php:2927
+msgid "All"
+msgstr ""
+
+#: aguard-safe.php:2932
+msgid "No events yet."
+msgstr ""
+
+#: aguard-safe.php:2939
+msgid "Today"
+msgstr ""
+
+#: aguard-safe.php:2939
+msgid "Yesterday"
+msgstr ""
+
+#: aguard-safe.php:2945
+msgid "automatic check"
+msgstr ""
+
+#: aguard-safe.php:2946
+msgid "server command line"
+msgstr ""
+
+#: aguard-safe.php:2947
+msgid "visitor who is not signed in"
+msgstr ""
+
+#: aguard-safe.php:2952
+msgid "e-mail sent"
+msgstr ""
+
+#: aguard-safe.php:2957
 msgid "show all"
 msgstr ""
 
-#: aguard-safe.php:2069
-msgid ". E-mail notifications are marked ✉."
+#: aguard-safe.php:2963
+msgid "a few seconds"
 msgstr ""
 
-#: aguard-safe.php:2070
-msgid "Event"
+#: aguard-safe.php:2963
+msgid "up to a minute"
 msgstr ""
 
-#: aguard-safe.php:2084
-msgid "PHP in uploads/cache"
+#: aguard-safe.php:2965
+msgid "wp-config.php, .htaccess, index.php, drop-ins and must-use plugins compared with the saved baseline."
 msgstr ""
 
-#: aguard-safe.php:2084
-msgid "Recently changed (48 h)"
+#: aguard-safe.php:2966
+msgid "Every core file compared with the official checksums from WordPress.org."
 msgstr ""
 
-#: aguard-safe.php:2084
+#: aguard-safe.php:2967
+msgid "PHP in uploads and cache"
+msgstr ""
+
+#: aguard-safe.php:2967
+msgid "Looks for PHP files in folders where only images and cache should be."
+msgstr ""
+
+#: aguard-safe.php:2968
+msgid "Recently changed"
+msgstr ""
+
+#: aguard-safe.php:2968
+msgid "Lists all files changed in the last 48 hours."
+msgstr ""
+
+#: aguard-safe.php:2969
 msgid "Googlebot vs visitor"
 msgstr ""
 
-#: aguard-safe.php:2084
-msgid "Plugins vs wordpress.org"
+#: aguard-safe.php:2969
+msgid "Loads the home page as a visitor and as Googlebot and compares the two."
 msgstr ""
 
-#: aguard-safe.php:2084
-msgid "Suspicious code (wp-content)"
+#: aguard-safe.php:2970
+msgid "Plugins vs WordPress.org"
 msgstr ""
 
-#: aguard-safe.php:2085
-msgid "The buttons run the chosen check right away (core and suspicious code take up to a minute and the server works harder meanwhile). With nothing chosen, the result of the last automatic check is shown."
+#: aguard-safe.php:2970
+msgid "Plugin files compared with their official checksums."
 msgstr ""
 
-#: aguard-safe.php:2090
-msgid "B · modified"
+#: aguard-safe.php:2971
+msgid "Suspicious code"
 msgstr ""
 
-#: aguard-safe.php:2090
-msgid "· SHA-256"
+#: aguard-safe.php:2971
+msgid "Searches wp-content for backdoor and loader code patterns."
 msgstr ""
 
-#: aguard-safe.php:2090
-msgid "download"
+#: aguard-safe.php:2972
+msgid "Remote access tools"
 msgstr ""
 
-#: aguard-safe.php:2090
-msgid "↑ folder"
+#: aguard-safe.php:2972
+msgid "Looks for remote management and auto-login plugins that let someone in without a password."
 msgstr ""
 
-#: aguard-safe.php:2091
+#: aguard-safe.php:2974
+msgid "Run one check"
+msgstr ""
+
+#: aguard-safe.php:2975
+msgid "Run"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "active plugin"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "inactive plugin"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "active theme"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "inactive theme"
+msgstr ""
+
+#: aguard-safe.php:2982
+#: aguard-safe.php:3024
+msgid "WordPress itself"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "must-use plugin (always loaded)"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "uploads folder"
+msgstr ""
+
+#: aguard-safe.php:2982
+msgid "not part of WordPress, a plugin or a theme"
+msgstr ""
+
+#: aguard-safe.php:2987
+msgid "Belongs to"
+msgstr ""
+
+#: aguard-safe.php:2990
+#: aguard-safe.php:3031
+msgid "Replace this file with the original from WordPress.org?"
+msgstr ""
+
+#: aguard-safe.php:2990
+#: aguard-safe.php:3031
+msgid "Replace with the original"
+msgstr ""
+
+#: aguard-safe.php:2991
+msgid "The file matches the original. Nothing to do."
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:2992
+#: aguard-safe.php:3034
+#: aguard-safe.php:3047
+msgid "This file belongs to something the site is running. Move it to quarantine anyway?"
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:2992
+#: aguard-safe.php:3034
+#: aguard-safe.php:3047
 msgid "Move the file to quarantine? The site will no longer see it."
 msgstr ""
 
-#: aguard-safe.php:2091
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:2992
+#: aguard-safe.php:3034
+#: aguard-safe.php:3047
 msgid "Move to quarantine"
 msgstr ""
 
-#: aguard-safe.php:2095
+#: aguard-safe.php:2993
+msgid "I know this file: add to the allowlist"
+msgstr ""
+
+#: aguard-safe.php:2994
+msgid "Locked: unlock Settings first"
+msgstr ""
+
+#: aguard-safe.php:2995
+msgid "Download"
+msgstr ""
+
+#: aguard-safe.php:2995
+msgid "Open the folder"
+msgstr ""
+
+#: aguard-safe.php:3007
+msgid "Lines the scan pointed at"
+msgstr ""
+
+#: aguard-safe.php:3007
+msgid "No marked lines in this part of the file"
+msgstr ""
+
+#: aguard-safe.php:3007
+msgid "A sign is not a verdict: plugins use these functions for ordinary work too. Look at what the line does with the data."
+msgstr ""
+
+#: aguard-safe.php:3008
+msgid "line"
+msgstr ""
+
+#: aguard-safe.php:3016
+msgid "What was changed"
+msgstr ""
+
+#. translators: %s: what the original belongs to
+#: aguard-safe.php:3016
+#, php-format
+msgid "Left: the original of %s. Right: the file on this site. Only the changed places are shown."
+msgstr ""
+
+#: aguard-safe.php:3018
+msgid "The file is too large to compare here. Download it and compare on your computer."
+msgstr ""
+
+#: aguard-safe.php:3019
+msgid "The text is the same; the files differ only in line endings."
+msgstr ""
+
+#: aguard-safe.php:3023
+msgid "Needs unlocked Settings (the code from the e-mail)."
+msgstr ""
+
+#: aguard-safe.php:3024
+msgid "a must-use plugin"
+msgstr ""
+
+#: aguard-safe.php:3024
+msgid "the active theme"
+msgstr ""
+
+#: aguard-safe.php:3024
+msgid "the active plugin"
+msgstr ""
+
+#: aguard-safe.php:3027
+msgid "This file matches the original"
+msgstr ""
+
+#: aguard-safe.php:3027
+msgid "This file differs from the original"
+msgstr ""
+
+#. translators: %s: what the original belongs to, e.g. "Elementor 3.5.0"
+#: aguard-safe.php:3027
+#, php-format
+msgid "Compared with the official checksum of %s on WordPress.org."
+msgstr ""
+
+#. translators: %s: what the original belongs to, e.g. "Elementor 3.5.0"
+#: aguard-safe.php:3028
+msgid "Nobody changed it: it is exactly the file its author published. A sign found in it is part of the normal code."
+msgstr ""
+
+#: aguard-safe.php:3030
+msgid "The plugin downloads the original from WordPress.org, checks its checksum and puts it in place of this file. The current file is not deleted: it is kept in Scan → Quarantine. If the site answers with an error afterwards, the previous file is put back at once."
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:3034
+msgid "Move to quarantine instead"
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:3034
+#: aguard-safe.php:3044
+#, php-format
+msgid "This file is part of %s."
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:3034
+msgid "Without it the site can stop working. Use this only when you are sure."
+msgstr ""
+
+#: aguard-safe.php:3039
+msgid "You know this file?"
+msgstr ""
+
+#: aguard-safe.php:3039
+msgid "The check reports it because it is not part of WordPress. If you or your hosting put it here, add it to the allowlist and it will not be reported again. The list can be edited in Settings → File protection."
+msgstr ""
+
+#: aguard-safe.php:3039
+msgid "Add to the allowlist"
+msgstr ""
+
+#: aguard-safe.php:3040
+msgid "Move this file to quarantine"
+msgstr ""
+
+#: aguard-safe.php:3040
+msgid "The file leaves its place and can no longer run. Nothing is deleted: it can be put back in Scan → Quarantine."
+msgstr ""
+
+#. translators: %s: what the file belongs to, e.g. "the active plugin Elementor"
+#: aguard-safe.php:3044
+msgid "Without it the site can stop working. If the file was changed by someone else, it is safer to replace it with a clean copy: reinstall the plugin, the theme or WordPress."
+msgstr ""
+
+#: aguard-safe.php:3045
+msgid "This file is not part of anything the site is running now, so moving it should not affect the site."
+msgstr ""
+
+#: aguard-safe.php:3046
+msgid "Safety net: right after the move the plugin asks WordPress itself (not a cached page) whether it still loads, and opens the home page. If the site answers with an error, the file is put back at once."
+msgstr ""
+
+#: aguard-safe.php:3053
 msgid "with SHA-256"
 msgstr ""
 
-#: aguard-safe.php:2096
+#: aguard-safe.php:3054
 msgid "Created/ctime"
 msgstr ""
 
-#: aguard-safe.php:2096
+#: aguard-safe.php:3054
 msgid "Owner"
 msgstr ""
 
-#: aguard-safe.php:2106
-msgid "Who is currently signed in to the admin area. Each row is one device or browser where the account is still signed in (WordPress usually remembers a login for 2 days, with “remember me” – 14). If you see an unfamiliar device or IP, press “Sign out everywhere” and change that user's password."
-msgstr ""
-
-#: aguard-safe.php:2107
+#: aguard-safe.php:3064
 msgid "Accounts with admin permissions:"
 msgstr ""
 
-#: aguard-safe.php:2107
+#: aguard-safe.php:3064
 msgid "· signed-in devices in total:"
 msgstr ""
 
-#: aguard-safe.php:2111
-msgid "Not signed in anywhere right now."
-msgstr ""
-
-#: aguard-safe.php:2112
-msgid "IP address"
-msgstr ""
-
-#. translators: %s: time span
-#: aguard-safe.php:2115
-msgid "this device"
+#: aguard-safe.php:3064
+msgid "Each row is one device or browser where the account is still signed in. If you see an unfamiliar device or IP, press “Sign out everywhere” and change that user's password."
 msgstr ""
 
 #. translators: %s: user login
-#: aguard-safe.php:2118
+#: aguard-safe.php:3069
 #, php-format
 msgid "Sign %s out of all devices?"
 msgstr ""
 
 #. translators: %s: user login
-#: aguard-safe.php:2118
+#: aguard-safe.php:3069
 msgid "Sign out everywhere"
 msgstr ""
 
-#: aguard-safe.php:2122
+#: aguard-safe.php:3071
+msgid "Not signed in anywhere right now."
+msgstr ""
+
+#: aguard-safe.php:3078
+msgid "IP address"
+msgstr ""
+
+#: aguard-safe.php:3081
+msgid "this device"
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:3090
+#, php-format
+msgid "%d plugin needs an urgent update"
+msgid_plural "%d plugins need an urgent update"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:3091
+msgid "Some plugins have known vulnerabilities"
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:3092
+#, php-format
+msgid "%d update is waiting"
+msgid_plural "%d updates are waiting"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:3093
+msgid "No known vulnerabilities in the installed plugins"
+msgstr ""
+
+#. translators: %d: number of plugins
+#: aguard-safe.php:3093
+msgid "All plugins are up to date"
+msgstr ""
+
+#: aguard-safe.php:3094
+msgid "Installed plugins:"
+msgstr ""
+
+#: aguard-safe.php:3095
+msgid "closed on WordPress.org:"
+msgstr ""
+
+#. translators: %s: time span, e.g. 5 mins
+#: aguard-safe.php:3097
+#, php-format
+msgid "Last check: %s ago."
+msgstr ""
+
+#: aguard-safe.php:3104
+msgid "The vulnerability check is off."
+msgstr ""
+
+#: aguard-safe.php:3104
+msgid "When it is on, once a day the plugin asks data.aguard.lt whether the installed plugins have known vulnerabilities and whether they have been closed on WordPress.org. For that the folder names (slugs) of all installed plugins and their versions are sent to data.aguard.lt."
+msgstr ""
+
+#: aguard-safe.php:3105
+msgid "Turn on the vulnerability check"
+msgstr ""
+
+#: aguard-safe.php:3107
+msgid "The vulnerability check is on: the folder names (slugs) of the installed plugins and their versions are sent to data.aguard.lt once a day and after the list of plugins changes."
+msgstr ""
+
+#: aguard-safe.php:3108
+msgid "The last request failed:"
+msgstr ""
+
+#: aguard-safe.php:3109
+msgid "Turn off"
+msgstr ""
+
+#: aguard-safe.php:3115
+msgid "check is off"
+msgstr ""
+
+#: aguard-safe.php:3116
+msgid "waiting for the next check"
+msgstr ""
+
+#: aguard-safe.php:3117
+msgid "has known vulnerabilities; the details are still being collected"
+msgstr ""
+
+#: aguard-safe.php:3118
+msgid "none known for this version"
+msgstr ""
+
+#. translators: 1: number of urgent vulnerabilities, 2: number of other vulnerabilities
+#: aguard-safe.php:3120
+#, php-format
+msgid "urgent: %1$d, other: %2$d"
+msgstr ""
+
+#. translators: %d: number of vulnerabilities
+#: aguard-safe.php:3122
+#, php-format
+msgid "%d known, not urgent"
+msgid_plural "%d known, none urgent"
+msgstr[0] ""
+msgstr[1] ""
+
+#: aguard-safe.php:3123
+msgid "inactive"
+msgstr ""
+
+#. translators: %s: plugin version number
+#: aguard-safe.php:3125
+msgid "Closed on WordPress.org: no more updates."
+msgstr ""
+
+#. translators: %s: plugin version number
+#: aguard-safe.php:3125
+#, php-format
+msgid "update to %s"
+msgstr ""
+
+#. translators: %s: plugin version number
+#: aguard-safe.php:3125
+msgid "up to date"
+msgstr ""
+
+#: aguard-safe.php:3133
+msgid "description"
+msgstr ""
+
+#: aguard-safe.php:3135
+msgid "on the CISA list of exploited vulnerabilities"
+msgstr ""
+
+#: aguard-safe.php:3137
+msgid "Vulnerability"
+msgstr ""
+
+#: aguard-safe.php:3138
+msgid "Urgent"
+msgstr ""
+
+#: aguard-safe.php:3138
+msgid "Not urgent"
+msgstr ""
+
+#. translators: %s: plugin version number
+#: aguard-safe.php:3142
+#, php-format
+msgid "fixed after %s"
+msgstr ""
+
+#: aguard-safe.php:3143
+msgid "no fixed version yet"
+msgstr ""
+
+#: aguard-safe.php:3147
+msgid "Go to updates"
+msgstr ""
+
+#: aguard-safe.php:3148
+msgid "Need a hand with an update or a replacement?"
+msgstr ""
+
+#: aguard-safe.php:3152
+msgid "“Urgent” means: the vulnerability is on the CISA list of exploited vulnerabilities, or it is rated high, needs no login and no action by a user, and attacks on it are likely. Vulnerability data from WPVulnerability and CISA."
+msgstr ""
+
+#: aguard-safe.php:3155
 msgid "Quarantine folder:"
 msgstr ""
 
-#: aguard-safe.php:2122
+#: aguard-safe.php:3155
 msgid "(closed to direct access with .htaccess). Files are not deleted – they can be restored."
 msgstr ""
 
-#: aguard-safe.php:2123
+#: aguard-safe.php:3156
 msgid "Original path"
 msgstr ""
 
-#: aguard-safe.php:2126
+#: aguard-safe.php:3159
 msgid "in quarantine"
 msgstr ""
 
-#: aguard-safe.php:2126
+#: aguard-safe.php:3159
 msgid "restored"
 msgstr ""
 
-#: aguard-safe.php:2126
+#: aguard-safe.php:3159
 msgid "file is gone"
 msgstr ""
 
-#: aguard-safe.php:2127
+#: aguard-safe.php:3160
 msgid "Return the file to its original location?"
 msgstr ""
 
-#: aguard-safe.php:2127
+#: aguard-safe.php:3160
 msgid "Restore"
 msgstr ""
 
-#: aguard-safe.php:2134
+#: aguard-safe.php:3167
 msgid "lines"
 msgstr ""
 
-#: aguard-safe.php:2134
+#: aguard-safe.php:3167
 msgid "search (text or regexp)"
 msgstr ""
 
-#: aguard-safe.php:2134
+#: aguard-safe.php:3167
 msgid "Show"
 msgstr ""
 
-#: aguard-safe.php:2134
+#: aguard-safe.php:3167
 msgid "download the whole file"
 msgstr ""
 
-#: aguard-safe.php:2139
+#: aguard-safe.php:3172
 msgid "Folder the tools can read:"
 msgstr ""

@@ -1,0 +1,14 @@
+/* AGuard Safe: optional footer notice (Settings > Notice on the site). */
+.aguard-safe-credit {
+	margin: 0;
+	padding: 12px 16px;
+	font-size: 13px;
+	line-height: 1.4;
+	text-align: center;
+	opacity: 0.75;
+}
+
+.aguard-safe-credit a {
+	color: inherit;
+	text-decoration: underline;
+}

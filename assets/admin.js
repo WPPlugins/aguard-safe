@@ -6,6 +6,27 @@
 (function () {
 	'use strict';
 
+	// File viewer: go straight to the first line the scan pointed at.
+	var hit = document.querySelector('.aguard .ag-ln-hit');
+	if (hit && !window.location.hash) {
+		hit.scrollIntoView({ block: 'center' });
+	}
+
+	// First-run window: focus the main button; Escape means "remind me later".
+	var setup = document.getElementById('ag-setup-modal');
+	if (setup) {
+		var main = setup.querySelector('button[name="aguard_setup_all"]');
+		if (main) {
+			main.focus();
+		}
+		document.addEventListener('keydown', function (e) {
+			var later = document.getElementById('ag-setup-later');
+			if (e.key === 'Escape' && later) {
+				later.click();
+			}
+		});
+	}
+
 	// Ask before a destructive action: forms and buttons marked with data-ag-confirm.
 	document.addEventListener('submit', function (e) {
 		var text = e.target.getAttribute && e.target.getAttribute('data-ag-confirm');
@@ -19,6 +40,57 @@
 			e.preventDefault();
 		}
 	});
+
+	// A check that runs while the next page loads: say so, otherwise the click looks ignored.
+	document.addEventListener('click', function (e) {
+		var link = e.target.closest ? e.target.closest('a[data-ag-busy]') : null;
+		var root = document.querySelector('.aguard');
+		if (!link || !root || e.metaKey || e.ctrlKey || e.shiftKey || e.button) {
+			return;
+		}
+		if (root.classList.contains('ag-working')) {
+			e.preventDefault();
+			return;
+		}
+		root.classList.add('ag-working');
+		link.classList.add('ag-busy');
+		var note = document.createElement('div');
+		note.className = 'ag-toast';
+		note.setAttribute('role', 'status');
+		var spin = document.createElement('span');
+		spin.className = 'ag-spin';
+		note.appendChild(spin);
+		note.appendChild(document.createTextNode((window.aguardSafe && window.aguardSafe.busy) || '…'));
+		root.appendChild(note);
+	});
+	window.addEventListener('pageshow', function (e) {
+		var root = document.querySelector('.aguard');
+		if (e.persisted && root) {
+			root.classList.remove('ag-working');
+			[].forEach.call(root.querySelectorAll('.ag-toast'), function (n) { n.parentNode.removeChild(n); });
+			[].forEach.call(root.querySelectorAll('.ag-busy'), function (n) { n.classList.remove('ag-busy'); });
+		}
+	});
+
+	// "Details" on the Overview: go to the list and mark it for a moment, also when the list is already on the screen.
+	var todoButton = document.getElementById('ag-todo-btn');
+	var todo = document.getElementById('ag-todo');
+	function showTodo() {
+		var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		todo.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' });
+		todo.classList.remove('ag-flash');
+		void todo.offsetWidth;
+		todo.classList.add('ag-flash');
+	}
+	if (todoButton && todo) {
+		todoButton.addEventListener('click', function (e) {
+			e.preventDefault();
+			showTodo();
+		});
+		if (window.location.hash === '#ag-todo') {
+			showTodo();
+		}
+	}
 
 	var modal = document.getElementById('ag-scan');
 	var openButton = document.getElementById('ag-scan-btn');
@@ -100,6 +172,10 @@
 		result.textContent = '';
 		rows.forEach(function (row) {
 			row.className = '';
+			var old = row.querySelector('.ag-step-open');
+			if (old) {
+				row.removeChild(old);
+			}
 			setStatus(row, cfg.waiting, false);
 		});
 
@@ -124,13 +200,23 @@
 				if (row) {
 					row.className = 'done ag-' + (data.state || 'info');
 					setStatus(row, data.text + (data.ms > 1500 ? ' · ' + Math.round(data.ms / 1000) + ' ' + cfg.seconds : ''), false);
+					if (data.open) {
+						var link = document.createElement('a');
+						link.className = 'ag-step-open';
+						link.href = data.open;
+						link.textContent = cfg.open + ' →';
+						row.appendChild(link);
+					}
 				}
 				if (step === 'finish') {
 					var took = Math.round((Date.now() - startedAt) / 1000);
 					result.className = 'ag-res ag-' + (data.state || 'info');
 					result.textContent = String(cfg.finished).replace('%d', took) + ' ' + data.text;
-					goButton.textContent = cfg.refresh;
+					goButton.textContent = data.todo ? cfg.todo : cfg.refresh;
 					goButton.onclick = function () {
+						if (data.todo) {
+							window.location.hash = 'ag-todo';
+						}
 						window.location.reload();
 					};
 					unlock();
