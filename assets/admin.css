@@ -2947,18 +2947,22 @@
 
 .aguard .ag-setup-t b {
     display:block;
+    margin:0 0 8px;
     font-size:21px;
+    line-height:1.25;
     letter-spacing:-.01em;
     color:var(--ag-ink);
 }
 
 .aguard .ag-setup-t > span {
+    display:block;
     color:var(--ag-text2);
     font-size:14px;
+    line-height:1.5;
 }
 
 .aguard .ag-setup ul {
-    margin:10px 0 0;
+    margin:14px 0 0;
     padding:0;
 }
 

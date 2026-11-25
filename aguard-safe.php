@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AGuard Safe – Login Security, 2FA, Malware Scan
  * Description: Watches the site for signs of a break-in and reports them by e-mail: changed core files, new administrators, cloaking, PHP in uploads. Optional e-mail login confirmation, custom login address and file quarantine.
- * Version:     1.10.0
+ * Version:     1.10.1
  * Author:      AGuard
  * Author URI:  https://aguard.lt
  * License:     GPLv2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) exit;
 
 final class AGuard_Safe {
 
-    const VERSION      = '1.10.0';
+    const VERSION      = '1.10.1';
     const OPT          = 'aguard_safe';
     const OPT_EVENTS   = 'aguard_safe_events';
     const OPT_BASELINE = 'aguard_safe_baseline';
@@ -59,6 +59,7 @@ final class AGuard_Safe {
         add_action('wp_login',        [__CLASS__, 'on_login'], 10, 2);
         add_action('wp_login_failed', [__CLASS__, 'on_login_failed'], 10, 1);
         add_filter('authenticate', [__CLASS__, 'pw_check'], 90, 3);
+        add_action('admin_init', [__CLASS__, 'privacy_text']);
         add_filter('authenticate', [__CLASS__, 'lockout_authenticate'], 99, 3);
         add_action('login_init', [__CLASS__, 'lockout_login_page'], 1);
         add_action('xmlrpc_call',     [__CLASS__, 'on_xmlrpc'], 10, 1);
@@ -283,13 +284,15 @@ final class AGuard_Safe {
         $o = self::opts();
         if ($fresh) { $o['tool_files'] = (defined('DISALLOW_FILE_EDIT') && DISALLOW_FILE_EDIT) ? 0 : 1; $o['tool_logs'] = 1; }
         if (empty($o['installed']) || $fresh) { if (empty($o['installed'])) $o['installed'] = time(); update_option(self::OPT, $o, true); self::$opts = null; }
+        // the administrator who turns the plugin on is at a known address from the first minute
+        if (function_exists('is_user_logged_in') && is_user_logged_in() && current_user_can('manage_options')) { $ip = (self::srv('HTTP_CF_CONNECTING_IP') ?: self::srv('REMOTE_ADDR')); $k = get_option(self::OPT . '_known_logins', []); if (!is_array($k)) $k = []; if ($ip !== '') { $k[wp_get_current_user()->user_login][$ip] = time(); update_option(self::OPT . '_known_logins', $k, false); } }
         self::build_baseline();
         self::event('plugin', __('AGuard Safe activated', 'aguard-safe'), [], false);
     }
 
     public static function deactivate() {
         wp_clear_scheduled_hook(self::CRON);
-        self::event('plugin', __('AGuard Safe deactivated', 'aguard-safe'), [], true);
+        self::event('plugin', __('AGuard Safe deactivated', 'aguard-safe'), [], self::loud());
     }
 
     /* ------------------------------------------------------------ helpers */
@@ -379,14 +382,104 @@ final class AGuard_Safe {
         }
         $site = wp_parse_url(home_url(), PHP_URL_HOST);
         $subj = '[AGuard Safe] ' . $site . ': ' . ($critical ? __('IMPORTANT –', 'aguard-safe') . ' ' : '') . $title;
-        $lines = [__('Site:', 'aguard-safe') . ' ' . home_url(), __('Time:', 'aguard-safe') . ' ' . wp_date('Y-m-d H:i:s T'), __('Type:', 'aguard-safe') . ' ' . $type, __('Event:', 'aguard-safe') . ' ' . $title, __('Who:', 'aguard-safe') . ' ' . $e['who'], __('Browser:', 'aguard-safe') . ' ' . $e['ua'], ''];
+        $lines = [__('Site:', 'aguard-safe') . ' ' . home_url(), __('Time:', 'aguard-safe') . ' ' . wp_date('Y-m-d H:i:s T'), __('Type:', 'aguard-safe') . ' ' . $type, __('Event:', 'aguard-safe') . ' ' . $title, ''];
+        $w = self::who_words($e['who'], $type); array_pop($lines);
+        if ($w[0] !== '') $lines[] = __('Who:', 'aguard-safe') . ' ' . $w[0];
+        if ($w[1] !== '') $lines[] = __('IP address', 'aguard-safe') . ': ' . $w[1];
+        if ($w[2] !== '') $lines[] = __('Address', 'aguard-safe') . ': ' . $w[2];
+        if ($w[1] !== '' && (string) $e['ua'] !== '') $lines[] = __('Browser:', 'aguard-safe') . ' ' . $e['ua'];
+        $lines[] = '';
         foreach ((array) $data as $k => $v) {
             $lines[] = $k . ': ' . (is_scalar($v) ? $v : wp_json_encode($v, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
         $lines[] = '';
         $lines[] = __('View:', 'aguard-safe') . ' ' . admin_url('admin.php?page=aguard-safe');
         $lines[] = '— AGuard Safe ' . self::VERSION;
-        return (bool) wp_mail(array_merge([$to], $cc), $subj, implode("\n", $lines), ['Content-Type: text/plain; charset=UTF-8']);
+        return self::send_html(array_merge([$to], $cc), $subj, self::mail_event_html($type, $title, $data, $e, $critical), implode("\n", $lines), self::mail_knight($type, $critical));
+    }
+
+    /** Who did it, in words, as in the Events feed: [name, ip, request]. An empty name means the title already says who (logins). */
+    private static function who_words($who, $type) {
+        $p = array_map('trim', explode(' | ', (string) $who, 3)); $u = $p[0] ?? ''; $auto = ($u === 'cron' || $u === 'wp-cli');
+        if ($u === 'cron') $by = __('automatic check', 'aguard-safe');
+        elseif ($u === 'wp-cli') $by = __('server command line', 'aguard-safe');
+        elseif ($u === 'anonymous' || $u === '') $by = in_array($type, ['login', 'attack'], true) ? '' : __('visitor who is not signed in', 'aguard-safe');
+        else $by = $u;
+        return [$by, $auto ? '' : (string) preg_replace('/^IP\s+/', '', $p[1] ?? ''), $auto ? '' : ($p[2] ?? '')];
+    }
+
+    /** False when a signed-in administrator does it from an address they signed in from during the last 30 days: the owner's own routine work goes to the log, not to the mailbox. */
+    private static function loud() {
+        if (!function_exists('is_user_logged_in') || !is_user_logged_in() || !current_user_can('manage_options')) return true;
+        $ip = (self::srv('HTTP_CF_CONNECTING_IP') ?: self::srv('REMOTE_ADDR')); $login = wp_get_current_user()->user_login;
+        $known = get_option(self::OPT . '_known_logins', []);
+        return !(is_array($known) && isset($known[$login][$ip]) && (time() - (int) $known[$login][$ip]) < 30 * DAY_IN_SECONDS);
+    }
+
+    /** Suggested paragraph for the site's privacy policy (Settings > Privacy > Policy Guide). It follows the current settings: the external service is mentioned only when an optional check is on. */
+    public static function privacy_text() {
+        if (!function_exists('wp_add_privacy_policy_content')) return;
+        $o = self::opts(); $vc = !empty($o['vuln_check']); $pw = !empty($o['pw_check']);
+        $t = '<p class="privacy-policy-tutorial">' . esc_html__('AGuard Safe keeps a security log on this site and, if you have turned on its optional checks, contacts the service of its author. The text below describes exactly what the plugin does with the settings this site has now.', 'aguard-safe') . '</p>'
+            . '<strong class="privacy-policy-tutorial">' . esc_html__('Suggested text:', 'aguard-safe') . '</strong> '
+            . '<p>' . esc_html__('This site uses the AGuard Safe security plugin to notice break-ins. The plugin keeps a log of sign-ins, failed sign-in attempts and administrative actions, together with the IP address and the browser name of whoever made them. The log is stored on this site, holds the latest 400 events and is not shared with anyone.', 'aguard-safe') . '</p>';
+        if ($vc || $pw) {
+            $t .= '<p>' . esc_html__('The plugin also uses a service run by its author, AGuard (data.aguard.lt):', 'aguard-safe')
+                . ($vc ? ' ' . esc_html__('once a day it sends the folder names and versions of the installed plugins to learn about known vulnerabilities.', 'aguard-safe') : '')
+                . ($pw ? ' ' . esc_html__('When an administrator signs in, it sends the first 5 characters of a hash of the password to check it against lists of leaked passwords; the password itself is never sent.', 'aguard-safe') : '')
+                . ' ' . esc_html__('The address of this site and the data of its visitors are not sent.', 'aguard-safe')
+                . ' <a href="https://aguard.lt/en/privacy">' . esc_html__('AGuard privacy policy', 'aguard-safe') . '</a>.</p>';
+        }
+        wp_add_privacy_policy_content('AGuard Safe', wp_kses_post($t));
+    }
+
+    /** Event type in words, the same names as the filters of the Events feed. */
+    private static function type_label($type) {
+        $m = ['login' => __('Logins', 'aguard-safe'), 'scan' => __('Checks', 'aguard-safe'), 'file' => __('Files', 'aguard-safe'), 'user' => __('Users', 'aguard-safe'), 'plugin' => __('Plugins', 'aguard-safe'), 'theme' => __('Themes', 'aguard-safe'), 'settings' => __('Settings', 'aguard-safe'), 'option' => __('Settings', 'aguard-safe'), 'vuln' => __('Vulnerabilities', 'aguard-safe'), 'quarantine' => __('Quarantine', 'aguard-safe'), 'tools' => __('Viewers', 'aguard-safe'), 'test' => __('Tests', 'aguard-safe'), 'error' => __('Errors', 'aguard-safe')];
+        return isset($m[$type]) ? $m[$type] : __('Incidents', 'aguard-safe');
+    }
+
+    private static function mail_knight($type, $critical) {
+        $m = ['scan' => 'scan', 'file' => 'scan', 'plugin' => 'plugins', 'theme' => 'plugins', 'vuln' => 'plugins', 'settings' => 'settings', 'option' => 'settings', 'test' => 'settings', 'login' => 'activity', 'user' => 'activity', 'tools' => 'activity'];
+        return plugin_dir_path(__FILE__) . 'assets/knight-' . (isset($m[$type]) ? $m[$type] : ($critical ? 'emergency' : 'overview')) . '.png';
+    }
+
+    /** Notification e-mail in the plugin's look: what happened, who did it, the details and one button. */
+    private static function mail_event_html($type, $title, $data, $e, $critical) {
+        $h = 'esc_html'; $ink = '#0f1f45'; $mint = '#3fb9a8'; $red = '#d62828';
+        $who = self::who_words($e['who'], $type);
+        $rows = [__('Site', 'aguard-safe') => home_url(), __('Time', 'aguard-safe') => wp_date('Y-m-d H:i:s T'), __('Type', 'aguard-safe') => self::type_label($type)];
+        if ($who[0] !== '') $rows[__('Who', 'aguard-safe')] = $who[0];
+        if ($who[1] !== '') $rows[__('IP address', 'aguard-safe')] = $who[1];
+        if ($who[2] !== '') $rows[__('Address', 'aguard-safe')] = $who[2];
+        if ((string) $e['ua'] !== '' && ($who[1] !== '' || $who[2] !== '')) $rows[__('Browser', 'aguard-safe')] = $e['ua'];
+        $td = 'padding:8px 0;border-top:1px solid #e8edf2;font-size:13px;line-height:1.45;vertical-align:top;';
+        $tr = ''; foreach ($rows as $k => $v) $tr .= '<tr><td style="' . $td . 'color:#64748b;width:30%">' . $h($k) . '</td><td style="' . $td . 'color:#101827;font-weight:600;word-break:break-word">' . $h($v) . '</td></tr>';
+        $dt = ''; foreach ((array) $data as $k => $v) $dt .= '<tr>' . (is_int($k) ? '' : '<td style="' . $td . 'color:#64748b;width:30%">' . $h($k) . '</td>') . '<td' . (is_int($k) ? ' colspan="2"' : '') . ' style="' . $td . 'color:#101827;font-family:Menlo,Consolas,monospace;font-size:12px;word-break:break-all">' . (is_array($v) && $v && array_values($v) === $v && count(array_filter($v, 'is_scalar')) === count($v) ? implode('<br>', array_map('esc_html', array_map('strval', $v))) : $h(is_scalar($v) ? (string) $v : wp_json_encode($v, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))) . '</td></tr>';
+        return '<!doctype html><html><body style="margin:0;padding:0;background:#eef1f6">'
+            . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef1f6"><tr><td align="center" style="padding:28px 12px">'
+            . '<table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif">'
+            . '<tr><td style="background:' . $ink . ';border-radius:12px 12px 0 0;padding:16px 26px;color:#fff;font-size:18px;font-weight:800;letter-spacing:.01em">AGuard Safe<span style="float:right;font-size:12px;font-weight:500;color:#c7cfe2;line-height:24px">' . $h(wp_parse_url(home_url(), PHP_URL_HOST)) . '</span></td></tr>'
+            . '<tr><td style="background:' . ($critical ? $red : $mint) . ';height:5px;line-height:5px;font-size:0">&nbsp;</td></tr>'
+            . '<tr><td style="background:#fff;padding:26px 26px 6px">'
+            . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top">'
+            . ($critical ? '<div style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:' . $red . '">' . $h(__('Needs attention', 'aguard-safe')) . '</div>' : '')
+            . '<div style="font-size:20px;font-weight:700;color:' . $ink . ';line-height:1.3;word-break:break-word">' . $h($title) . '</div></td><td width="96" style="vertical-align:top;text-align:right"><img src="cid:aguardknight" width="84" alt="" style="display:block;margin-left:auto;border:0"></td></tr></table>'
+            . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:18px">' . $tr . '</table>'
+            . ($dt !== '' ? '<div style="margin:22px 0 4px;font-size:13px;font-weight:700;color:' . $ink . '">' . $h(__('Details', 'aguard-safe')) . '</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0">' . $dt . '</table>' : '')
+            . '</td></tr>'
+            . '<tr><td style="background:#fff;border-radius:0 0 12px 12px;padding:16px 26px 28px"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:' . $mint . ';border-radius:9px;padding:0 4px 4px 0"><a href="' . esc_url(admin_url('admin.php?page=aguard-safe')) . '" style="display:block;background:' . $ink . ';border-radius:9px;padding:11px 22px;color:#fff;font-size:14px;font-weight:700;text-decoration:none">' . $h(__('Open AGuard Safe', 'aguard-safe')) . '</a></td></tr></table></td></tr>'
+            . '<tr><td style="padding:14px 6px 0;font-size:12px;color:#64748b;text-align:center">' . $h(__('Sent by the AGuard Safe plugin of this site.', 'aguard-safe')) . ' · ' . $h(self::VERSION) . '</td></tr>'
+            . '</table></td></tr></table></body></html>';
+    }
+
+    /** Sends an HTML message with a plain-text copy and the knight embedded as an image. */
+    private static function send_html($to, $subject, $html, $plain, $knight) {
+        $hook = function ($m) use ($plain, $knight) { $m->AltBody = $plain; if (is_readable($knight)) { try { $m->addEmbeddedImage($knight, 'aguardknight', 'knight.png', 'base64', 'image/png'); } catch (\Throwable $e) { unset($e); } } };
+        add_action('phpmailer_init', $hook, 99);
+        $ok = (bool) wp_mail($to, $subject, $html, ['Content-Type: text/html; charset=UTF-8']);
+        remove_action('phpmailer_init', $hook, 99);
+        return $ok;
     }
 
     /** Incidentai, apie kuriuos verta pranešti užsakovui; visa kita – tik techniniam adresui ir žurnalui. */
@@ -435,12 +528,12 @@ final class AGuard_Safe {
     }
 
     public static function on_deleted_user($id) {
-        self::event('user', __('User deleted: #', 'aguard-safe') . $id, ['id' => $id], true, 'deleted_user_' . $id);
+        self::event('user', __('User deleted: #', 'aguard-safe') . $id, ['id' => $id], self::loud(), 'deleted_user_' . $id);
     }
 
     public static function on_retrieve_password($login) {
         $u = get_user_by('login', $login) ?: get_user_by('email', $login);
-        if ($u && user_can($u, 'manage_options') && !self::just_created($u->ID)) self::event('user', __('Administrator password reset requested:', 'aguard-safe') . ' ' . $u->user_login, self::user_brief($u->ID), true, 'retrieve_' . $u->ID);
+        if ($u && user_can($u, 'manage_options') && !self::just_created($u->ID)) self::event('user', __('Administrator password reset requested:', 'aguard-safe') . ' ' . $u->user_login, self::user_brief($u->ID), false, 'retrieve_' . $u->ID); // WordPress itself e-mails the reset link to that administrator; bots press this button daily
     }
 
     public static function on_password_reset($user) {
@@ -453,7 +546,7 @@ final class AGuard_Safe {
         $changes = [];
         if ($u->user_email !== $old->user_email) $changes['email'] = $old->user_email . ' → ' . $u->user_email;
         if ($u->user_pass !== $old->user_pass) $changes['password'] = __('changed', 'aguard-safe');
-        if ($changes && user_can($u, 'manage_options')) self::event('user', __('Administrator account changed:', 'aguard-safe') . ' ' . $u->user_login, $changes + self::user_brief($id), true, 'profile_' . $id . implode(',', array_keys($changes)));
+        if ($changes && user_can($u, 'manage_options')) self::event('user', __('Administrator account changed:', 'aguard-safe') . ' ' . $u->user_login, $changes + self::user_brief($id), self::loud(), 'profile_' . $id . implode(',', array_keys($changes)));
     }
 
     /* ------------------------------------------------------------ plugin / theme hooks */
@@ -465,15 +558,15 @@ final class AGuard_Safe {
         return ($d['Name'] ?? $file) . ' ' . ($d['Version'] ?? '') . ' (' . $file . ')';
     }
 
-    public static function on_plugin_activated($file)   { self::event('plugin', __('Plugin activated:', 'aguard-safe') . ' ' . self::plugin_name($file), ['file' => $file], true, 'act_' . $file); }
-    public static function on_plugin_deactivated($file) { self::event('plugin', __('Plugin deactivated:', 'aguard-safe') . ' ' . self::plugin_name($file), ['file' => $file], true, 'deact_' . $file); }
-    public static function on_plugin_deleted($file, $ok) { self::event('plugin', __('Plugin deleted:', 'aguard-safe') . ' ' . $file, ['file' => $file, 'deleted' => $ok ? 'yes' : 'no'], true, 'del_' . $file); }
+    public static function on_plugin_activated($file)   { self::event('plugin', __('Plugin activated:', 'aguard-safe') . ' ' . self::plugin_name($file), ['file' => $file], $file !== plugin_basename(__FILE__) && self::loud(), 'act_' . $file); } // its own activation goes to the log only: the owner has just done it
+    public static function on_plugin_deactivated($file) { self::event('plugin', __('Plugin deactivated:', 'aguard-safe') . ' ' . self::plugin_name($file), ['file' => $file], self::loud(), 'deact_' . $file); }
+    public static function on_plugin_deleted($file, $ok) { self::event('plugin', __('Plugin deleted:', 'aguard-safe') . ' ' . $file, ['file' => $file, 'deleted' => $ok ? 'yes' : 'no'], self::loud(), 'del_' . $file); }
 
     public static function on_core_updated($new_version) {
         delete_transient('aguard_safe_sums');
         self::build_baseline();
         update_option(self::OPT . '_core_sig', '', false);
-        self::event('plugin', __('WordPress updated to', 'aguard-safe') . ' ' . $new_version . ' ' . __('(system files changed legitimately, the baseline has been updated)', 'aguard-safe'), ['version' => $new_version], true, 'core_' . $new_version, DAY_IN_SECONDS);
+        self::event('plugin', __('WordPress updated to', 'aguard-safe') . ' ' . $new_version . ' ' . __('(system files changed legitimately, the baseline has been updated)', 'aguard-safe'), ['version' => $new_version], false, 'core_' . $new_version, DAY_IN_SECONDS);
     }
     public static function on_upgrader($upgrader, $extra) {
         $type = $extra['type'] ?? '?'; $action = $extra['action'] ?? '?';
@@ -481,13 +574,13 @@ final class AGuard_Safe {
         if ($type === 'plugin' && $action === 'install' && is_object($upgrader) && method_exists($upgrader, 'plugin_info') && !empty($upgrader->plugin_info())) $items = [$upgrader->plugin_info()];
         if ($type === 'theme' && $action === 'install' && is_object($upgrader) && method_exists($upgrader, 'theme_info') && !empty($upgrader->theme_info())) $items = [$upgrader->theme_info()->get_stylesheet()];
         $title = ($action === 'install' ? __('INSTALLED', 'aguard-safe') : __('Updated', 'aguard-safe')) . ' (' . $type . '): ' . implode(', ', (array) $items);
-        self::event('plugin', $title, ['type' => $type, 'action' => $action, 'items' => $items], $action === 'install' || $type === 'core', 'upg_' . $type . $action . implode(',', (array) $items));
+        self::event('plugin', $title, ['type' => $type, 'action' => $action, 'items' => $items], $action === 'install' && self::loud(), 'upg_' . $type . $action . implode(',', (array) $items));
         // Bet koks baigtas atnaujinimas/diegimas teisėtai keičia sargybinius failus (advanced-cache.php, wordfence-waf.php, šakniniai failai) – atskaitos taškas perstatomas, kad kita patikra nekeltų klaidingo aliarmo.
         self::build_baseline();
         if ($type === 'core') update_option(self::OPT . '_core_sig', '', false);
     }
 
-    public static function on_switch_theme($name) { self::event('theme', __('Theme changed:', 'aguard-safe') . ' ' . $name, ['theme' => $name], true); }
+    public static function on_switch_theme($name) { self::event('theme', __('Theme changed:', 'aguard-safe') . ' ' . $name, ['theme' => $name], self::loud()); }
 
     public static function on_editor_save() {
         // Runs before the core handler, so the request is verified here the same way core verifies it.
@@ -591,11 +684,11 @@ final class AGuard_Safe {
             $l = self::lockouts(); $l[$cip] = $until; if (count($l) > 200) $l = array_slice($l, -200, null, true); update_option(self::OPT . '_lockouts', $l, false);
             delete_transient($ipk);
             /* translators: 1: IP address, 2: number of attempts */
-            self::event('attack', sprintf(__('Address %1$s blocked for 30 minutes after %2$d failed attempts', 'aguard-safe'), $cip, $n), ['last_login_tried' => $login, 'today_total' => $t], true, 'lockout_' . $cip, HOUR_IN_SECONDS);
+            self::event('attack', sprintf(__('Address %1$s blocked for 30 minutes after %2$d failed attempts', 'aguard-safe'), $cip, $n), ['last_login_tried' => $login, 'today_total' => $t], false, 'lockout_' . $cip, HOUR_IN_SECONDS); // the address is already blocked: nothing for the owner to do, log only
             return;
         }
         if ($n === $th || ($n > $th && $n % 100 === 0)) {
-            self::event('attack', __('Password guessing:', 'aguard-safe') . ' ' . $n . ' ' . __('failed attempts in 15 min from', 'aguard-safe') . ' ' . self::ip(), ['last_login_tried' => $login, 'today_total' => $t], true, 'bruteforce_' . $cip);
+            self::event('attack', __('Password guessing:', 'aguard-safe') . ' ' . $n . ' ' . __('failed attempts in 15 min from', 'aguard-safe') . ' ' . self::ip(), ['last_login_tried' => $login, 'today_total' => $t], true, 'bruteforce_day', DAY_IN_SECONDS); // one e-mail a day, however many addresses take part
         }
     }
 
@@ -661,7 +754,7 @@ final class AGuard_Safe {
     public static function on_xmlrpc($name) {
         $k = 'aguard_safe_xmlrpc_hour';
         $n = (int) get_transient($k) + 1; set_transient($k, $n, HOUR_IN_SECONDS);
-        if ($n === 50) self::event('attack', __('XML-RPC: 50+ calls per hour (', 'aguard-safe') . $name . ')', ['ip' => self::ip()], true, 'xmlrpc_' . wp_date('YmdH'));
+        if ($n === 50) self::event('attack', __('XML-RPC: 50+ calls per hour (', 'aguard-safe') . $name . ')', ['ip' => self::ip()], true, 'xmlrpc_day', DAY_IN_SECONDS);
     }
 
     public static function on_app_password($user_id, $item) {
@@ -678,7 +771,7 @@ final class AGuard_Safe {
             self::event('plugin', __('List of active plugins changed', 'aguard-safe'), ['added' => $added, 'removed' => $removed], false);
             return;
         }
-        self::event('option', __('System option changed:', 'aguard-safe') . ' ' . $name, ['old' => $fmt($old), 'new' => $fmt($new)], true, 'opt_' . $name);
+        self::event('option', __('System option changed:', 'aguard-safe') . ' ' . $name, ['old' => $fmt($old), 'new' => $fmt($new)], self::loud(), 'opt_' . $name);
     }
 
     /* ------------------------------------------------------------ paths & file tools (read-only) */
@@ -1199,9 +1292,13 @@ final class AGuard_Safe {
         if (isset($r['cloaking']) && empty($r['cloaking']['human']['error']) && empty($r['cloaking']['googlebot']['error'])) update_option(self::OPT . '_cloak_state', $r['cloaking']['cloaked'] ? 'cloaked' : 'clean', false);
         if (is_array($r['snippets'] ?? null) && !empty($r['snippets']['table']) && $r['snippets']['changed']) { $alerts[__('PHP snippets changed', 'aguard-safe')] = $r['snippets']['changed']; }
         if (is_array($r['remote_admin'] ?? null) && !empty($r['remote_admin']['found'])) {
-            $sig = md5(wp_json_encode($r['remote_admin']['found']));
-            if (get_option(self::OPT . '_remote_sig') !== $sig) { $alerts[__('Remote management or auto-login tool detected', 'aguard-safe')] = $r['remote_admin']['found']; update_option(self::OPT . '_remote_sig', $sig, false); }
-        } elseif (isset($r['remote_admin']) && is_array($r['remote_admin'])) update_option(self::OPT . '_remote_sig', '', false);
+            // Tools that were already on the site at the first check are the owner's own: shown on the Scan screen, no e-mail. Only a tool that appears later is reported.
+            // A file manager is not a way in without a password: it stays on the Scan screen and is never e-mailed.
+            $found = array_values(array_filter(array_map('strval', (array) $r['remote_admin']['found']), function ($x) { return stripos($x, 'wp-file-manager') === false; })); $known = get_option(self::OPT . '_remote_known');
+            $fresh = is_array($known) ? array_values(array_diff($found, $known)) : [];
+            if ($fresh) $alerts[__('Remote management or auto-login tool detected', 'aguard-safe')] = $fresh;
+            if (!is_array($known) || $fresh || count($found) !== count($known)) update_option(self::OPT . '_remote_known', $found, false);
+        } elseif (isset($r['remote_admin']) && is_array($r['remote_admin'])) update_option(self::OPT . '_remote_known', [], false);
         if (!empty($r['uploads_guard']) && is_array($r['uploads_guard']) && $r['uploads_guard']['missing']) { self::uploads_guard_apply(true, true); if ($r['uploads_guard']['missing_real']) $alerts[__('The PHP execution block in the uploads folder was removed – restored', 'aguard-safe')] = $r['uploads_guard']['missing_real']; }
         $seen = get_option(self::OPT . '_alert_sigs', []); if (!is_array($seen)) $seen = [];
         foreach ($alerts as $title => $data) {
@@ -1447,7 +1544,7 @@ final class AGuard_Safe {
         self::baseline_touch($abs);
         $after = self::site_probe(); $v = self::probe_verdict($before, $after);
         if ($v === 'broken') { self::rm($abs); $back = self::restore_quarantined($q['id']); return new WP_Error('q', __('With the original in place the site started answering with an error, so the previous file was put back.', 'aguard-safe') . (is_wp_error($back) ? ' ' . $back->get_error_message() : '')); }
-        self::event('quarantine', __('File replaced with the original from WordPress.org:', 'aguard-safe') . ' ' . $q['rel'], ['original_of' => $o['of'], 'previous_file_kept' => $q['dest'], 'previous_sha256' => $q['sha256']], true, 'r_' . $q['id']);
+        self::event('quarantine', __('File replaced with the original from WordPress.org:', 'aguard-safe') . ' ' . $q['rel'], ['original_of' => $o['of'], 'previous_file_kept' => $q['dest'], 'previous_sha256' => $q['sha256']], self::loud(), 'r_' . $q['id']);
         return ['rel' => $q['rel'], 'of' => $o['of'], 'verdict' => $v];
     }
 
@@ -1463,7 +1560,7 @@ final class AGuard_Safe {
         self::fs()->chmod($dest, 0600);
         $list = get_option(self::OPT_Q, []); if (!is_array($list)) $list = [];
         $list[$id] = $entry; update_option(self::OPT_Q, $list, false);
-        self::event('quarantine', __('File moved to quarantine:', 'aguard-safe') . ' ' . $entry['rel'], ['sha256' => $entry['sha256'], 'size' => $entry['size'], 'dest' => $dest], true, 'q_' . $id);
+        self::event('quarantine', __('File moved to quarantine:', 'aguard-safe') . ' ' . $entry['rel'], ['sha256' => $entry['sha256'], 'size' => $entry['size'], 'dest' => $dest], self::loud(), 'q_' . $id);
         return $entry;
     }
 
@@ -1480,7 +1577,7 @@ final class AGuard_Safe {
         if (!self::mv($q['dest'], $q['orig'], $mode)) return new WP_Error('q', __('Could not restore the file.', 'aguard-safe'));
         self::fs()->chmod($q['orig'], $mode);
         $list[$id]['restored'] = time(); update_option(self::OPT_Q, $list, false);
-        self::event('quarantine', __('File restored from quarantine:', 'aguard-safe') . ' ' . $q['rel'], ['sha256' => $q['sha256']], true, 'qr_' . $id);
+        self::event('quarantine', __('File restored from quarantine:', 'aguard-safe') . ' ' . $q['rel'], ['sha256' => $q['sha256']], self::loud(), 'qr_' . $id);
         return $q;
     }
 
@@ -1512,7 +1609,7 @@ final class AGuard_Safe {
             } else $res[self::rel($f)] = $on ? __('already there', 'aguard-safe') : __('was not there', 'aguard-safe');
             self::baseline_touch($f);
         }
-        if (!$silent) self::event('settings', ($on ? __('Enabled', 'aguard-safe') : __('Disabled', 'aguard-safe')) . ' ' . __('PHP execution block in the uploads folder', 'aguard-safe'), $res, true);
+        if (!$silent) self::event('settings', ($on ? __('Enabled', 'aguard-safe') : __('Disabled', 'aguard-safe')) . ' ' . __('PHP execution block in the uploads folder', 'aguard-safe'), $res, self::loud());
         return $res;
     }
 
@@ -1852,7 +1949,7 @@ final class AGuard_Safe {
         update_option(self::OPT_EVENTS, $keep, false);
         $last = self::plain(get_option(self::OPT . '_last_scan', []));
         if (is_array($last) && strpos(self::lower((string) wp_json_encode($last, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)), $kwl) !== false) { self::run_scan(true); }
-        self::event('settings', __('Removed from the log', 'aguard-safe') . ' ' . $n . ' ' . __('events by keyword', 'aguard-safe'), ['keyword' => $kw], true, 'prune_' . time());
+        self::event('settings', __('Removed from the log', 'aguard-safe') . ' ' . $n . ' ' . __('events by keyword', 'aguard-safe'), ['keyword' => $kw], self::loud(), 'prune_' . time());
         return $n;
     }
 
@@ -1918,12 +2015,7 @@ final class AGuard_Safe {
             . '<tr><td style="background:#fff;border-radius:0 0 12px 12px;padding:8px 26px 24px"><div style="border-left:3px solid #d62828;padding:8px 0 8px 14px;font-size:13px;color:#101827;line-height:1.5">' . $e($warn) . '</div></td></tr>'
             . '<tr><td style="padding:14px 6px 0;font-size:12px;color:#64748b;text-align:center">' . $e(__('Sent by the AGuard Safe plugin of this site.', 'aguard-safe')) . '</td></tr>'
             . '</table></td></tr></table></body></html>';
-        $knight = plugin_dir_path(__FILE__) . 'assets/knight-emergency.png';
-        $hook = function ($m) use ($plain, $knight) { $m->AltBody = $plain; if (is_readable($knight)) { try { $m->addEmbeddedImage($knight, 'aguardknight', 'knight.png', 'base64', 'image/png'); } catch (\Throwable $e) { unset($e); } } };
-        add_action('phpmailer_init', $hook, 99);
-        $ok = (bool) wp_mail($to, $subject, $html, ['Content-Type: text/html; charset=UTF-8']);
-        remove_action('phpmailer_init', $hook, 99);
-        return $ok;
+        return self::send_html($to, $subject, $html, $plain, plugin_dir_path(__FILE__) . 'assets/knight-emergency.png');
     }
 
     private static function twofa_send($user, $code) {
@@ -2149,11 +2241,11 @@ final class AGuard_Safe {
         $t = self::login_selftest();
         if ($mode !== 'off' && (empty($t['new_url']) || $t['new_url']['code'] !== 200 || empty($t['new_url']['form']) || $t['home']['code'] !== 200 || (isset($t['account']) && $t['account']['code'] !== 200) || ($mode === 'strict' && $t['old_url']['code'] !== 404))) {
             $o['login_mode'] = $prev['login_mode']; $o['login_slug'] = $prev['login_slug']; update_option(self::OPT, $o, true); self::$opts = null;
-            self::event('settings', __('Login address change CANCELLED – the self-test failed', 'aguard-safe'), ['wanted' => $mode . ' /' . $slug, 'test' => $t], true, 'login_fail_' . time());
+            self::event('settings', __('Login address change CANCELLED – the self-test failed', 'aguard-safe'), ['wanted' => $mode . ' /' . $slug, 'test' => $t], self::loud(), 'login_fail_' . time());
             return ['ok' => false, 'msg' => __('The self-test failed and the setting was reverted. The site works as before.', 'aguard-safe'), 'test' => $t];
         }
         $url = $mode !== 'off' ? home_url('/' . $slug . '/') : wp_login_url();
-        self::event('settings', __('Login address:', 'aguard-safe') . ' ' . ($mode === 'off' ? __('the standard /wp-login.php restored', 'aguard-safe') : ($mode === 'soft' ? __('trial mode, new address', 'aguard-safe') . ' ' . $url : __('ONLY the new address', 'aguard-safe') . ' ' . $url . ' ' . __('(wp-login.php shows 404)', 'aguard-safe'))), ['mode' => $mode, 'url' => $url, 'test' => $t], true, 'login_' . time());
+        self::event('settings', __('Login address:', 'aguard-safe') . ' ' . ($mode === 'off' ? __('the standard /wp-login.php restored', 'aguard-safe') : ($mode === 'soft' ? __('trial mode, new address', 'aguard-safe') . ' ' . $url : __('ONLY the new address', 'aguard-safe') . ' ' . $url . ' ' . __('(wp-login.php shows 404)', 'aguard-safe'))), ['mode' => $mode, 'url' => $url, 'test' => $t], self::loud(), 'login_' . time());
         return ['ok' => true, 'msg' => ($mode === 'off' ? __('The standard login address has been restored.', 'aguard-safe') : __('Saved and tested. Login address:', 'aguard-safe') . ' <a href="' . esc_url($url) . '" target="_blank">' . esc_html($url) . '</a>' . ($mode === 'soft' ? ' ' . __('(the old /wp-login.php still works for now).', 'aguard-safe') : __('. The old /wp-login.php no longer works – tell the address to everyone who signs in.', 'aguard-safe'))) . ' ' . __('The address has been sent to the notification e-mail.', 'aguard-safe'), 'test' => $t];
     }
 
@@ -2183,7 +2275,7 @@ final class AGuard_Safe {
         if ($c['tries'] > 5) { delete_transient($k); self::event('settings', __('Too many wrong unlock codes – the code has been cancelled', 'aguard-safe'), [], true); return false; }
         if (!hash_equals($c['h'], hash_hmac('sha256', preg_replace('~\D~', '', $code), wp_salt('auth')))) { set_transient($k, $c, 10 * MINUTE_IN_SECONDS); return false; }
         delete_transient($k); set_transient(self::unlock_key(), 1, 15 * MINUTE_IN_SECONDS);
-        self::event('settings', __('Settings unlocked with a code', 'aguard-safe'), [], true, 'unlock_' . time());
+        self::event('settings', __('Settings unlocked with a code', 'aguard-safe'), [], self::loud(), 'unlock_' . time());
         return true;
     }
 
@@ -2456,7 +2548,7 @@ final class AGuard_Safe {
             if (empty($o['vuln_check'])) { $o['vuln_check'] = 1; $done[] = 'vuln_check'; }
             if (empty($o['pw_check'])) { $o['pw_check'] = 1; $done[] = 'pw_check'; }
             $o['setup_done'] = 1; update_option(self::OPT, $o, true); self::$opts = null;
-            self::event('settings', __('Recommended protection turned on', 'aguard-safe'), ['ip' => self::ip(), 'turned_on' => implode(', ', $done)], true);
+            self::event('settings', __('Recommended protection turned on', 'aguard-safe'), ['ip' => self::ip(), 'turned_on' => implode(', ', $done)], self::loud());
             self::vuln_refresh(true);
             echo '<div class="notice notice-' . ($failed ? 'warning' : 'success') . '"><p>' . esc_html($failed ? __('The vulnerability check is on, but the PHP block could not be written to the uploads folder. Try again in Settings.', 'aguard-safe') : __('Recommended protection is on. You can change each item in Settings.', 'aguard-safe')) . '</p></div>';
         }
@@ -2481,7 +2573,7 @@ final class AGuard_Safe {
             if (!self::is_unlocked()) echo '<div class="notice notice-error"><p>' . esc_html__('The vulnerability check can be turned off only when Settings are unlocked with the code from the e-mail.', 'aguard-safe') . '</p></div>';
             else {
                 $o = self::opts(); $o['vuln_check'] = 0; update_option(self::OPT, $o, true); self::$opts = null; delete_option(self::OPT_VULNS);
-                self::event('settings', __('Plugin vulnerability check turned off', 'aguard-safe'), ['ip' => self::ip()], true, 'vuln_off_' . time());
+                self::event('settings', __('Plugin vulnerability check turned off', 'aguard-safe'), ['ip' => self::ip()], self::loud(), 'vuln_off_' . time());
                 echo '<div class="notice notice-success"><p>' . esc_html__('The vulnerability check is off. Nothing is sent to data.aguard.lt.', 'aguard-safe') . '</p></div>';
             }
             $tab = 'plugins';
@@ -2522,7 +2614,7 @@ final class AGuard_Safe {
             $want = empty($_POST['block_php_uploads']) ? 0 : 1;
             if ($want !== (int) ($o['block_php_uploads'] ?? 0)) { $res = self::uploads_guard_apply((bool) $want); $o['block_php_uploads'] = $want; echo '<div class="notice notice-info"><p>' . esc_html__('PHP block in uploads:', 'aguard-safe') . ' ' . esc_html(wp_json_encode($res, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) . '</p></div>'; }
             update_option(self::OPT, $o, true); self::$opts = null;
-            self::event('settings', __('Settings changed', 'aguard-safe'), ['email' => $o['email'], 'notify' => $o['notify'], 'whitelist' => $o['whitelist'], 'block_php_uploads' => $o['block_php_uploads'], 'credit' => $o['credit']], true, 'settings_' . time());
+            self::event('settings', __('Settings changed', 'aguard-safe'), ['email' => $o['email'], 'notify' => $o['notify'], 'whitelist' => $o['whitelist'], 'block_php_uploads' => $o['block_php_uploads'], 'credit' => $o['credit']], self::loud(), 'settings_' . time());
             echo '<div class="notice notice-success"><p>' . esc_html__('Saved.', 'aguard-safe') . '</p></div>'; $tab = 'settings';
         }
         if (isset($_POST['aguard_test_mail']) && check_admin_referer('aguard_safe_settings')) {
@@ -2550,7 +2642,7 @@ final class AGuard_Safe {
                 $o = self::opts(); $wl = array_values(array_filter((array) ($o['whitelist'] ?? []))); if (!in_array($arel, $wl, true)) $wl[] = $arel; $o['whitelist'] = $wl; update_option(self::OPT, $o, true); self::$opts = null;
                 $ls = get_option(self::OPT . '_last_scan', []);
                 if (is_array($ls) && !empty($ls['core']['extra'])) { $ls['core']['extra'] = array_values(array_filter((array) $ls['core']['extra'], function ($x) use ($arel) { return preg_replace('~ \(.*$~', '', (string) $x) !== $arel; })); update_option(self::OPT . '_last_scan', $ls, false); }
-                self::event('settings', __('File added to the allowlist:', 'aguard-safe') . ' ' . $arel, ['whitelist' => $wl], true, 'allow_' . md5($arel));
+                self::event('settings', __('File added to the allowlist:', 'aguard-safe') . ' ' . $arel, ['whitelist' => $wl], self::loud(), 'allow_' . md5($arel));
                 echo '<div class="notice notice-success"><p>' . esc_html__('Added to the allowlist. The file will not be reported again.', 'aguard-safe') . '</p></div>';
             }
         }
@@ -2587,13 +2679,13 @@ final class AGuard_Safe {
             { $r = self::login_apply(sanitize_key(wp_unslash($_POST['login_mode'] ?? 'off')), sanitize_title(wp_unslash($_POST['login_slug'] ?? ''))); echo '<div class="notice notice-' . ($r['ok'] ? 'success' : 'error') . '"><p>' . wp_kses_post($r['msg']) . '</p>' . (!empty($r['test']) ? '<p style="font-size:12px;color:#555">' . esc_html__('Test:', 'aguard-safe') . ' ' . esc_html(wp_json_encode($r['test'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)) . '</p>' : '') . '</div>'; }
             $tab = 'settings';
         }
-        if (isset($_POST['aguard_2fa_forget']) && check_admin_referer('aguard_safe_settings')) { self::twofa_revoke(); self::event('settings', __('2FA: all remembered browsers forgotten', 'aguard-safe'), ['ip' => self::ip()], true, '2fa_forget_' . time()); echo '<div class="notice notice-success"><p>' . esc_html__('All remembered browsers have been forgotten – next time every administrator will enter a code.', 'aguard-safe') . '</p></div>'; $tab = 'settings'; }
+        if (isset($_POST['aguard_2fa_forget']) && check_admin_referer('aguard_safe_settings')) { self::twofa_revoke(); self::event('settings', __('2FA: all remembered browsers forgotten', 'aguard-safe'), ['ip' => self::ip()], self::loud(), '2fa_forget_' . time()); echo '<div class="notice notice-success"><p>' . esc_html__('All remembered browsers have been forgotten – next time every administrator will enter a code.', 'aguard-safe') . '</p></div>'; $tab = 'settings'; }
         if (isset($_POST['aguard_2fa_save']) && check_admin_referer('aguard_safe_settings')) {
             $o = self::opts(); $want = empty($_POST['twofa']) ? 0 : 1; $was = (int) ($o['twofa'] ?? 0);
             if ($want === 0 && $was === 1 && !self::is_unlocked()) { echo '<div class="notice notice-error"><p>' . esc_html__('The confirmation can be turned off only when Settings are unlocked with the code from the e-mail (above).', 'aguard-safe') . '</p></div>'; $tab = 'settings'; }
             else {
                 $o['twofa'] = $want; update_option(self::OPT, $o, true); self::$opts = null;
-                if ($want !== $was) { self::twofa_revoke(); self::event('settings', __('E-mail confirmation (2FA)', 'aguard-safe') . ' ' . ($want ? __('ENABLED', 'aguard-safe') : __('DISABLED', 'aguard-safe')) . ' ' . __('for administrators', 'aguard-safe'), ['ip' => self::ip()], true, '2fa_' . time()); }
+                if ($want !== $was) { self::twofa_revoke(); self::event('settings', __('E-mail confirmation (2FA)', 'aguard-safe') . ' ' . ($want ? __('ENABLED', 'aguard-safe') : __('DISABLED', 'aguard-safe')) . ' ' . __('for administrators', 'aguard-safe'), ['ip' => self::ip()], !$want || self::loud(), '2fa_' . time()); }
                 $test = '';
                 if ($want && $want !== $was) { $me = wp_get_current_user(); $ok = self::twofa_send($me, '000000'); $test = $ok ? ' ' . __('A test e-mail has been sent to', 'aguard-safe') . ' ' . esc_html(self::mask_email($me->user_email)) . (' ' . __('– if it does not arrive within a few minutes, turn the confirmation off.', 'aguard-safe')) : ' ' . __('WARNING: the test e-mail could not be sent – check the site\'s mail before relying on this.', 'aguard-safe'); }
                 echo '<div class="notice notice-success"><p>' . esc_html__('E-mail confirmation', 'aguard-safe') . ' ' . ($want ? esc_html__('enabled: from the next login administrators will enter a code from the e-mail after the password.', 'aguard-safe') : esc_html__('disabled.', 'aguard-safe')) . wp_kses_post($test) . '</p></div>'; $tab = 'settings';
@@ -2719,7 +2811,7 @@ final class AGuard_Safe {
     }
     /** Skirtuko „Patikra“ rezultatas žmogui: santrauka + lentelės pagal patikros rūšį. */
     private static function scan_view($what, $data) {
-        if (is_wp_error($data)) return '<p class="ag-sum ag-risk">' . esc_html($data->get_error_message()) . '</p>';
+        if (is_wp_error($data)) return '<p class="ag-sum ag-risk">' . ($data->get_error_code() === 'off' ? '<a href="' . esc_url(self::url(['tab' => 'settings']) . '#ag-s-tools') . '">' . esc_html($data->get_error_message()) . '</a>' : esc_html($data->get_error_message())) . '</p>';
         if (!is_array($data)) return '<div class="ag-top">' . self::dial('–') . '<div class="ag-top-text"><b>' . esc_html__('No check has run yet', 'aguard-safe') . '</b><span>' . esc_html__('The first automatic check starts within an hour. You can run it now.', 'aguard-safe') . '</span></div><a class="button button-primary" data-ag-busy="1" href="' . esc_url(self::url(['tab' => 'scan', 'what' => 'all'])) . '">' . esc_html__('Full check', 'aguard-safe') . '</a></div>';
         $sum = function ($k, $v) { [$st, $tx] = self::step_text($k, $v); return '<p class="ag-sum ag-' . $st . '">' . esc_html($tx) . '</p>'; };
         $out = '';
@@ -2808,7 +2900,7 @@ final class AGuard_Safe {
         $one = $tab === 'scan' ? sanitize_key(self::req('what')) : '';
         if ($one !== '' && $one !== 'all') echo '<div class="ag-top"><div class="ag-top-text"><b>' . esc_html__('Result of one check, run just now', 'aguard-safe') . '</b><span>' . esc_html__('The other checks were not run again.', 'aguard-safe') . '</span></div><a class="button" href="' . esc_url(self::url(['tab' => 'scan'])) . '">← ' . esc_html__('All checks', 'aguard-safe') . '</a></div>';
         if (isset($intro[$tab])) echo '<div class="ag-top"><div class="ag-top-text"><b>' . esc_html($intro[$tab][0]) . '</b><span>' . esc_html($intro[$tab][1]) . '</span></div></div>';
-        if (is_wp_error($data)) { echo '<div class="notice notice-error"><p>' . esc_html($data->get_error_message()) . '</p></div></div></div>'; return; }
+        if (is_wp_error($data)) { echo '<div class="notice notice-' . ($data->get_error_code() === 'off' ? 'info' : 'error') . ' inline"><p>' . ($data->get_error_code() === 'off' ? '<a href="' . esc_url(self::url(['tab' => 'settings']) . '#ag-s-tools') . '">' . esc_html($data->get_error_message()) . '</a>' : esc_html($data->get_error_message())) . '</p></div></div></div>'; return; }
         $esc = 'esc_html';
         switch ($tab) {
             case 'status':

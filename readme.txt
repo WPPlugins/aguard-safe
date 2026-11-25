@@ -4,7 +4,7 @@ Tags: security, malware scanner, 2fa, login security, activity log
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.10.0
+Stable tag: 1.10.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -202,6 +202,16 @@ All of it is in the plugin. The JavaScript and CSS files in the `assets` folder 
 The plugin name in the header is set in a typeface by TypeTogether (Veronika Burian, José Scaglione), SIL Open Font License 1.1. The font file `assets/wordmark.woff` is a renamed subset that contains only the letters of the name.
 
 == Changelog ==
+
+= 1.10.1 =
+* Fewer e-mails. What an administrator does from an address they have signed in from during the last 30 days goes to the log only: settings, quarantine, allowlist, installing, activating, deactivating and deleting plugins, theme and profile changes. From an unknown address the e-mail is still sent.
+* No e-mail for a blocked address, a password reset request or a WordPress update; password guessing and XML-RPC abuse are reported once a day.
+* Remote access tools that were already on the site at the first check are not reported by e-mail, only the ones that appear later. A file manager plugin is no longer treated as one.
+* Notification e-mails have the same look as the login code e-mail, with a plain-text copy inside.
+* In e-mails "anonymous", "cron" and "wp-cli" are replaced with plain words.
+* Suggested text for the site's privacy policy (Settings > Privacy > Policy Guide), following the checks that are turned on.
+* The "viewer is turned off" notice is a link to the setting.
+* More space in the first-run window.
 
 = 1.10.0 =
 * New "Plugins" tab: waiting updates, known vulnerabilities of the installed plugins and plugins closed on WordPress.org. The vulnerability check is optional and off by default.
