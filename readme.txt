@@ -4,7 +4,7 @@ Tags: security, malware scanner, 2fa, login security, activity log
 Requires at least: 6.2
 Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.11.0
+Stable tag: 1.11.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,8 @@ For the cloaking check and the self-tests the plugin requests pages of your own 
 
 The Emergency screen has a "Need help?" block. The "Contact the specialists" button is an ordinary link that opens the contact form on `aguard.lt` in a new tab; the address of the site is added to the link so the form can fill it in. "Send a request from here" sends one e-mail through the site's own mail function to `info@aguard.lt`, and only when an administrator presses "Send the request". The full text of the e-mail is shown on the screen before it is sent: the site address, the WordPress, PHP and plugin versions, the headlines of what the plugin currently reports, the message and the reply address the administrator typed. Nothing is sent automatically. [AGuard privacy policy](https://aguard.lt/en/privacy).
 
+When an administrator turns the plugin off on the Plugins screen, a small window asks why. "Skip and turn off" sends nothing. "Send and turn off" sends one e-mail through the site's own mail function to `info@aguard.lt` with the chosen reason, the words the administrator typed, the address of the site and the versions of the plugin, WordPress and PHP; the window says so before the button is pressed. [AGuard privacy policy](https://aguard.lt/en/privacy).
+
 == Installation ==
 
 1. Install the plugin and activate it.
@@ -204,6 +206,15 @@ All of it is in the plugin. The JavaScript and CSS files in the `assets` folder 
 The plugin name in the header is set in a typeface by TypeTogether (Veronika Burian, José Scaglione), SIL Open Font License 1.1. The font file `assets/wordmark.woff` is a renamed subset that contains only the letters of the name.
 
 == Changelog ==
+
+= 1.11.1 =
+* Hardening: three new switches in Settings, all off until you turn them on. Security headers, hiding the WordPress version, and hiding user names from visitors who are not signed in (?author=, the REST API, the sitemap).
+* Shorter e-mails: a long list of files is cut to the first eight lines; the full list stays in the plugin, under Events.
+* Fewer false alarms: template cache files of known plugins in the uploads folder are recognised and no longer reported; a file that was already reported is not reported again.
+* The file and log viewers can be turned on right where you need them.
+* The notice on the site is now a small mark that opens on hover.
+* When the plugin is turned off, it asks why. Answering is optional; nothing is sent if you skip.
+* Lithuanian, Russian, German and Spanish translations are included in the plugin.
 
 = 1.11.0 =
 * Sign-in history: every sign-in, sign-out and failed attempt of every user, with the IP address and device, kept for 90 days. Search by user name or address.
