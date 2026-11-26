@@ -3918,8 +3918,89 @@
 .aguard .ag-diffbox tr:first-child td.ag-diff-at{border-top:0}
 
 .aguard .ag-setup-mail { display: block; margin: 16px 0 0; }
-.aguard .ag-setup-mail span { display: block; margin: 0 0 6px; line-height: 1.5; }
+.aguard .ag-setup-mail span { display: block; margin: 0 0 6px; line-height: 1.5; color: var(--ag-text2, #3b4a66); font-size: 13.5px; }
 .aguard .ag-setup-mail input { width: 100%; max-width: 340px; }
-.aguard .ag-lock-fix { margin: 12px 0 0; }
-.aguard .ag-lock-fix p { margin: 0 0 8px; }
-.aguard .ag-lock-fix input { width: 280px; max-width: 100%; }
+
+.aguard .ag-logins-q { margin: 10px 0 12px; }
+.aguard .ag-logins-q input[type=search] { width: 260px; max-width: 100%; }
+.aguard .ag-pager { margin: 12px 0 0; }
+.aguard h2.ag-h { margin: 32px 0 6px; }
+
+/* 7-day chart. The whole column of a day is a link to its events; the red part is a link to its failed logins.
+   Hover: a soft band behind the day and the figures of that day in the card header instead of the legend. No floating boxes, nothing is covered. */
+.aguard .ag-day-bars { position: relative; border-radius: 8px; transition: background-color .15s ease; }
+.aguard .ag-day:hover .ag-day-bars, .aguard .ag-day:focus-within .ag-day-bars { background-color: rgba(15,31,69,.05); }
+.aguard .ag-day-link { position: absolute; inset: 0; border-radius: 8px; z-index: 1; }
+.aguard .ag-stack { transition: filter .15s ease; }
+.aguard .ag-day:hover .ag-stack:not(.ag-stack-0) { filter: brightness(.94); }
+.aguard .ag-stack a.ag-bar-f { display: block; z-index: 2; transition: filter .15s ease; }
+.aguard .ag-stack a.ag-bar-f::before { content: ""; position: absolute; left: 0; right: 0; top: -22px; bottom: -8px; } /* a thin red part still has a comfortable target */
+.aguard .ag-stack a.ag-bar-f:hover { filter: brightness(.8); }
+.aguard .ag-day-link:focus, .aguard .ag-stack a.ag-bar-f:focus { outline: 0; box-shadow: none; }
+.aguard .ag-day-link:focus-visible { outline: 2px solid #3fb9a8; outline-offset: 2px; }
+.aguard .ag-stack a.ag-bar-f:focus-visible { outline: 2px solid #d62828; outline-offset: 2px; }
+.aguard .ag-readout { display: none; font-size: 12.5px; font-weight: 600; color: var(--ag-navy); }
+.aguard .ag-chart.ag-on .ag-legend { display: none; }
+.aguard .ag-chart.ag-on .ag-readout { display: block; }
+@media (prefers-reduced-motion: reduce) { .aguard .ag-stack, .aguard .ag-stack a, .aguard .ag-day-bars { transition: none; } }
+
+.aguard .ag-mail { max-width: 340px; }
+.aguard .ag-mail input[type=email], .aguard .ag-mail input[name=email] { width: 100%; }
+.aguard .ag-mail-l { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.aguard .ag-mail-l.ag-mail-top { margin-top: 0; justify-content: space-between; }
+.aguard .ag-mail-l input[name=aguard_unlock_code] { flex: 1 1 auto; min-width: 0; width: auto; letter-spacing: .08em; }
+.aguard .ag-mail-l .button { flex: 0 0 auto; margin: 0; }
+.aguard .ag-mail .ag-mail-a { font-weight: 600; overflow-wrap: anywhere; }
+.aguard .ag-mail .ag-mail-st { margin: 10px 0 0; font-size: 12.5px; line-height: 1.45; }
+
+.aguard a.ag-row-prot { text-decoration: none; color: inherit; transition: background-color .15s ease; }
+.aguard a.ag-row-prot:hover, .aguard a.ag-row-prot:focus-visible { background-color: rgba(15,31,69,.04); }
+.aguard a.ag-row-prot:focus { box-shadow: none; outline: 0; }
+.aguard a.ag-row-prot:focus-visible { outline: 2px solid #3fb9a8; outline-offset: -2px; }
+
+.aguard .ag-who-hist { margin-left: auto; font-size: 13px; white-space: nowrap; }
+.aguard .ag-who-hist + form { margin-left: 0; }
+.aguard .ag-ev-t span a { color: inherit; text-decoration: underline; text-decoration-color: rgba(15,31,69,.25); text-underline-offset: 2px; }
+.aguard .ag-ev-t span a:hover { text-decoration-color: currentColor; }
+.aguard .ag-ses span a, .aguard .ag-tbl td a { color: inherit; text-decoration: underline; text-decoration-color: rgba(15,31,69,.25); text-underline-offset: 2px; }
+.aguard .ag-ses span a:hover, .aguard .ag-tbl td a:hover { text-decoration-color: currentColor; }
+
+/* five sections (Activity) stay on one row on a desktop screen */
+@media (min-width: 1100px) {
+.aguard .ag-sub:has(a:nth-child(5)) { max-width: none; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+/* Emergency: help from a person */
+.aguard .ag-help { max-width: 760px; margin-top: 16px; padding: 18px 22px 16px; background: #fff; border: 1px solid var(--ag-border-soft); border-radius: 10px; }
+.aguard .ag-help h3 { margin: 0 0 6px; font-size: 16px; color: var(--ag-ink); }
+.aguard .ag-help p { margin: 0 0 12px; }
+.aguard .ag-help-d { margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--ag-border-soft); }
+.aguard .ag-help-d summary { cursor: pointer; font-weight: 600; color: var(--ag-ink); }
+.aguard .ag-help-d form { margin-top: 12px; }
+.aguard .ag-help-pre { margin: 0 0 14px; padding: 12px 14px; background: #f6f8fa; border-radius: 6px; font-size: 12.5px; line-height: 1.55; white-space: pre-wrap; word-break: break-word; }
+.aguard .ag-help label { display: block; margin-bottom: 4px; font-weight: 600; }
+.aguard .ag-help textarea, .aguard .ag-help input[type=email] { width: 100%; max-width: 520px; }
+.aguard .ag-help-first { margin-top: 0; }
+.aguard .ag-help .button + .ag-muted { margin-left: 12px; }
+.aguard .ag-help hr { margin: 14px 0; border: 0; border-top: 1px solid var(--ag-border-soft); }
+.aguard .ag-help > p:last-child { margin-bottom: 0; }
+
+.aguard .ag-tbl-req code { background: none; padding: 0; font-size: 12px; word-break: break-all; }
+.aguard .ag-tbl-req th:nth-child(1) { width: 150px; }
+.aguard .ag-tbl-req th:nth-child(2) { width: 150px; }
+.aguard .ag-tbl-req th:nth-child(3) { width: 21%; }
+.aguard .ag-tbl-req th:nth-child(5) { width: 17%; }
+.aguard .ag-logins-q input[name=hq] { width: 340px; max-width: 100%; }
+.aguard .ag-help-go { display: flex; align-items: center; gap: 14px; }
+.aguard .ag-help-go .button { flex: none; }
+.aguard .ag-help-go .button + .ag-muted { margin-left: 0; }
+@media (max-width: 600px) { .aguard .ag-help-go { flex-direction: column; align-items: flex-start; gap: 8px; } }
+.aguard .ag-tbl-req .ag-cc { display: block; margin-top: 2px; font-size: 12px; color: var(--ag-text2); }
+
+/* Emergency: the actions on the left, help from a person beside them */
+.aguard .ag-emerg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.aguard .ag-emerg .ag-help { max-width: none; margin-top: 0; }
+.aguard .ag-help-d h4 { margin: 0 0 8px; font-size: 14px; color: var(--ag-ink); }
+.aguard .ag-emerg .ag-help textarea, .aguard .ag-emerg .ag-help input[type=email] { max-width: none; }
+.aguard .ag-emerg .ag-help-go { flex-direction: column; align-items: flex-start; gap: 8px; }
+@media (max-width: 1100px) { .aguard .ag-emerg { grid-template-columns: minmax(0, 1fr); } }

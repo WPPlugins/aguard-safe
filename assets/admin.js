@@ -6,6 +6,27 @@
 (function () {
 	'use strict';
 
+	// 7-day chart: the figures of the day under the pointer (or in keyboard focus) are shown in the card header in place of the legend.
+	var chart = document.querySelector('.aguard .ag-chart');
+	var readout = chart && chart.querySelector('.ag-readout');
+	if (readout) {
+		var show = function (e) {
+			var day = e.target.closest ? e.target.closest('.ag-day') : null;
+			if (!day || !day.getAttribute('data-ag-tip')) { return; }
+			readout.textContent = day.getAttribute('data-ag-tip');
+			chart.classList.add('ag-on');
+		};
+		var hide = function () { chart.classList.remove('ag-on'); };
+		chart.addEventListener('mouseover', show);
+		chart.addEventListener('focusin', show);
+		chart.addEventListener('mouseleave', hide);
+		chart.addEventListener('focusout', hide);
+	}
+
+	// Scan results opened from a note: bring the row it was about into view.
+	var target = document.querySelector('.aguard [data-ag-target]');
+	if (target) { target.scrollIntoView({ block: 'center' }); }
+
 	// File viewer: go straight to the first line the scan pointed at.
 	var hit = document.querySelector('.aguard .ag-ln-hit');
 	if (hit && !window.location.hash) {

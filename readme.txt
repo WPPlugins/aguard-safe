@@ -4,7 +4,7 @@ Tags: security, malware scanner, 2fa, login security, activity log
 Requires at least: 6.2
 Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.10.2
+Stable tag: 1.11.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,8 @@ The optional footer notice (off by default) only prints a link to the plugin aut
 
 For the cloaking check and the self-tests the plugin requests pages of your own site from your own server.
 
+The Emergency screen has a "Need help?" block. The "Contact the specialists" button is an ordinary link that opens the contact form on `aguard.lt` in a new tab; the address of the site is added to the link so the form can fill it in. "Send a request from here" sends one e-mail through the site's own mail function to `info@aguard.lt`, and only when an administrator presses "Send the request". The full text of the e-mail is shown on the screen before it is sent: the site address, the WordPress, PHP and plugin versions, the headlines of what the plugin currently reports, the message and the reply address the administrator typed. Nothing is sent automatically. [AGuard privacy policy](https://aguard.lt/en/privacy).
+
 == Installation ==
 
 1. Install the plugin and activate it.
@@ -202,6 +204,23 @@ All of it is in the plugin. The JavaScript and CSS files in the `assets` folder 
 The plugin name in the header is set in a typeface by TypeTogether (Veronika Burian, José Scaglione), SIL Open Font License 1.1. The font file `assets/wordmark.woff` is a renamed subset that contains only the letters of the name.
 
 == Changelog ==
+
+= 1.11.0 =
+* Sign-in history: every sign-in, sign-out and failed attempt of every user, with the IP address and device, kept for 90 days. Search by user name or address.
+* Actions: who changed which page, post, media file, comment, menu or user, kept for 90 days.
+* Requests: who knocked on the site looking for a way in. Requests for forgotten backups and scripts that do not exist, attempts to list user names, attack patterns in the address, kept for 30 days. Nothing is sent by e-mail.
+* The bars of the 7-day chart open the events and the failed logins of that day.
+* The notification address is confirmed right next to the field: enter the address, get a code, type it in.
+* Every note on the Overview has a button that leads to the place where the thing can be seen or fixed; a new administrator account is shown as a note with a link to the account.
+* User names and IP addresses in the logs are links to their sign-in history; files found by the checks, changed recently or differing from WordPress.org open in the viewer.
+* A note from the Overview opens the saved result of the check instead of running the check again.
+* Emergency: a "Need help?" block with a link to the contact form of the plugin's authors and an optional request sent by e-mail, with its full text shown before sending.
+* Requests show the visitor's country when the site is behind Cloudflare.
+* A plugin installed and activated by the same user within ten minutes produces one e-mail, not two.
+* A plugin uploaded as a file produces one e-mail instead of two, and replacing an existing plugin is called a replacement, not an installation.
+* An administrator's address becomes known after the settings are unlocked with the code from the e-mail, and stays known during a long session; routine actions from a known address are logged without an e-mail.
+* Results of the tests in Settings and of LOCKDOWN are written in words instead of raw data; a check that ran out of time says so and offers to continue folder by folder.
+* The log files are opened from the Requests screen; the suggested privacy policy text describes the new logs.
 
 = 1.10.2 =
 * A notification address that was never confirmed with a code can be replaced without one: in the first-run window and on the locked Settings screen. Only for an administrator working from an address they have signed in from before; a notice goes to the old address.
