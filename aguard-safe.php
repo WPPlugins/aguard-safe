@@ -2,7 +2,7 @@
 /**
  * Plugin Name: AGuard Safe – Login Security, 2FA, Malware Scan
  * Description: Watches the site for signs of a break-in and reports them by e-mail: changed core files, new administrators, cloaking, PHP in uploads. Optional e-mail login confirmation, custom login address and file quarantine.
- * Version:     1.11.1
+ * Version:     1.11.2
  * Author:      AGuard
  * Author URI:  https://aguard.lt
  * License:     GPLv2 or later
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) exit;
 
 final class AGuard_Safe {
 
-    const VERSION      = '1.11.1';
+    const VERSION      = '1.11.2';
     const OPT          = 'aguard_safe';
     const OPT_EVENTS   = 'aguard_safe_events';
     const OPT_BASELINE = 'aguard_safe_baseline';
@@ -904,7 +904,7 @@ const MAIL_LIST = 8;
 
     /** One page of the history, newest first. $kind: '' | in | fail | out; $q: part of a login or an IP address. */
     public static function logins_rows($kind = '', $q = '', $page = 1, $per = 50, $day = '') {
-        global $wpdb; $out = ['rows' => [], 'total' => 0, 'counts' => ['in' => 0, 'fail' => 0, 'out' => 0], 'pages' => 1];
+        global $wpdb; $out = ['rows' => [], 'total' => 0, 'counts' => ['in' => 0, 'fail' => 0, 'out' => 0], 'pages' => 1, 'tried' => []];
         if (get_option(self::OPT . '_db') !== self::DB_V) return $out;
         $t = self::logins_table(); $like = '%' . $wpdb->esc_like((string) $q) . '%'; $kinds = in_array($kind, ['in', 'fail', 'out'], true) ? [$kind] : ['in', 'fail', 'out'];
         $from = 0; $to = 4294967295; if (preg_match('~^\d{4}-\d{2}-\d{2}$~', (string) $day)) { try { $from = (new DateTime($day . ' 00:00:00', wp_timezone()))->getTimestamp(); $to = $from + DAY_IN_SECONDS - 1; } catch (Exception $e) { $from = 0; } }
@@ -914,6 +914,8 @@ const MAIL_LIST = 8;
         $out['pages'] = max(1, (int) ceil($out['total'] / $per)); $page = max(1, min((int) $page, $out['pages']));
         $in = implode(',', array_fill(0, count($kinds), '%s'));
         $out['rows'] = (array) $wpdb->get_results($wpdb->prepare("SELECT t, kind, uid, login, role, ip, ua FROM %i WHERE kind IN ($in) AND (login LIKE %s OR ip LIKE %s) AND t BETWEEN %d AND %d ORDER BY id DESC LIMIT %d OFFSET %d", array_merge([$t], $kinds, [$like, $like, $from, $to, $per, ($page - 1) * $per])), ARRAY_A); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $in is a list of %s placeholders, one per value in $kinds.
+        $tf = $from ?: time() - DAY_IN_SECONDS; // names that were tried: the chosen day, otherwise the last 24 hours
+        $out['tried'] = (array) $wpdb->get_results($wpdb->prepare('SELECT login, MAX(uid) AS uid, COUNT(*) AS n, COUNT(DISTINCT ip) AS ips FROM %i WHERE kind = %s AND (login LIKE %s OR ip LIKE %s) AND t BETWEEN %d AND %d GROUP BY login ORDER BY n DESC LIMIT 12', $t, 'fail', $like, $like, $tf, $to), ARRAY_A);
         // phpcs:enable
         $out['page'] = $page; return $out;
     }
@@ -3788,6 +3790,10 @@ const MAIL_LIST = 8;
                 echo '<nav class="ag-filter">';
                 foreach (['' => [__('All', 'aguard-safe'), $all], 'in' => [__('Signed in', 'aguard-safe'), $h['counts']['in']], 'fail' => [__('Failed', 'aguard-safe'), $h['counts']['fail']], 'out' => [__('Signed out', 'aguard-safe'), $h['counts']['out']]] as $k => $f) echo '<a class="' . ($lk === $k ? 'on' : '') . '" href="' . esc_url(self::url($base + ($k !== '' ? ['lk' => $k] : [])) . '') . '">' . esc_html($f[0]) . '<i>' . (int) $f[1] . '</i></a>';
                 echo '</nav><form method="get" action="' . esc_url(admin_url('admin.php')) . '" class="ag-logins-q"><input type="hidden" name="page" value="aguard-safe"><input type="hidden" name="tab" value="history">' . ($ld !== '' ? '<input type="hidden" name="day" value="' . esc_attr($ld) . '">' : '') . ($lk !== '' ? '<input type="hidden" name="lk" value="' . esc_attr($lk) . '">' : '') . wp_kses(wp_nonce_field('aguard_safe', '_wpnonce', false, false), ['input' => ['type' => true, 'id' => true, 'name' => true, 'value' => true]]) . '<input type="search" name="lq" value="' . esc_attr($lq) . '" placeholder="' . esc_attr__('User name or IP address', 'aguard-safe') . '" aria-label="' . esc_attr__('Search the sign-in history', 'aguard-safe') . '"> <button class="button">' . esc_html__('Search', 'aguard-safe') . '</button></form>';
+                if ($lk !== 'in' && $lk !== 'out' && !empty($h['tried'])) {
+                    $tn = []; $star = false; foreach ($h['tried'] as $tr) { $nm = (string) $tr['login']; $ns = $nm !== '' && !(int) $tr['uid']; $star = $star || $ns; $tn[] = ($nm === '' ? esc_html__('no name given', 'aguard-safe') : '<a href="' . esc_url(self::url(['tab' => 'history', 'lk' => 'fail', 'lq' => $nm] + ($ld !== '' ? ['day' => $ld] : []))) . '">' . esc_html($nm) . '</a>') . ($ns ? '*' : '') . ' (' . (int) $tr['n'] . ((int) $tr['ips'] > 1 ? ', ' . esc_html(sprintf(/* translators: %d: number of IP addresses */ _n('%d address', '%d addresses', (int) $tr['ips'], 'aguard-safe'), (int) $tr['ips'])) : '') . ')'; }
+                    echo '<p class="ag-note">' . esc_html($ld !== '' ? __('Names tried with a wrong password that day:', 'aguard-safe') : __('Names tried with a wrong password in the last 24 hours:', 'aguard-safe')) . ' ' . wp_kses(implode(', ', $tn), ['a' => ['href' => true]]) . '.' . ($star ? ' <span class="ag-muted">' . esc_html__('* there is no such user on this site.', 'aguard-safe') . '</span>' : '') . '</p>';
+                }
                 if (!$h['rows']) echo '<p class="ag-muted">' . esc_html($all || $lq !== '' ? __('Nothing matches.', 'aguard-safe') : __('Nothing recorded yet. The first row appears with the next sign-in.', 'aguard-safe')) . '</p>';
                 else {
                     $kw = ['in' => [__('signed in', 'aguard-safe'), 'ag-ok'], 'fail' => [__('failed attempt', 'aguard-safe'), 'ag-risk'], 'out' => [__('signed out', 'aguard-safe'), '']];
@@ -3795,7 +3801,7 @@ const MAIL_LIST = 8;
                     foreach ($h['rows'] as $r) {
                         $w = $kw[$r['kind']] ?? [$r['kind'], ''];
                         $lg = '<a href="' . esc_url(self::url(['tab' => 'history', 'lq' => $r['login']])) . '">' . esc_html($r['login']) . '</a>';
-                        $who = (int) $r['uid'] ? $lg . ' <span class="ag-muted">' . esc_html(self::role_human(array_filter(explode(',', (string) $r['role'])))) . '</span>' : $lg . ' <span class="ag-muted">' . esc_html__('no such user', 'aguard-safe') . '</span>';
+                        $who = (int) $r['uid'] ? $lg . ' <span class="ag-muted">' . esc_html(self::role_human(array_filter(explode(',', (string) $r['role'])))) . '</span>' : ((string) $r['login'] === '' ? '<span class="ag-muted">' . esc_html__('no name given', 'aguard-safe') . '</span>' : $lg . ' <span class="ag-muted">' . esc_html__('no such user', 'aguard-safe') . '</span>');
                         echo '<tr><td>' . esc_html(wp_date('Y-m-d H:i:s', (int) $r['t'])) . '</td><td>' . wp_kses($who, ['a' => ['href' => true], 'span' => ['class' => true]]) . '</td><td class="' . esc_attr($w[1]) . '">' . esc_html($w[0]) . '</td><td><a href="' . esc_url(self::url(['tab' => 'history', 'lq' => $r['ip']]) . '') . '">' . esc_html($r['ip']) . '</a></td><td title="' . esc_attr($r['ua']) . '">' . esc_html(self::ua_human((string) $r['ua'])) . '</td></tr>';
                     }
                     echo '</tbody></table>';

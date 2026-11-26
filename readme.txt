@@ -4,7 +4,7 @@ Tags: security, malware scanner, 2fa, login security, activity log
 Requires at least: 6.2
 Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.11.1
+Stable tag: 1.11.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -206,6 +206,10 @@ All of it is in the plugin. The JavaScript and CSS files in the `assets` folder 
 The plugin name in the header is set in a typeface by TypeTogether (Veronika Burian, José Scaglione), SIL Open Font License 1.1. The font file `assets/wordmark.woff` is a renamed subset that contains only the letters of the name.
 
 == Changelog ==
+
+= 1.11.2 =
+* Sign-in history: a line above the table lists the names that were tried with a wrong password in the last 24 hours (or on the chosen day), how many times and from how many addresses. Names that do not exist on the site are marked.
+* A failed attempt that came without a user name now says so instead of "no such user".
 
 = 1.11.1 =
 * Hardening: three new switches in Settings, all off until you turn them on. Security headers, hiding the WordPress version, and hiding user names from visitors who are not signed in (?author=, the REST API, the sitemap).
